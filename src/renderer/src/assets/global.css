@@ -12,6 +12,14 @@ body {
 
 @layer components {
    * {
-      @apply duration-400 transition-colors ease-in-out;
+      @apply duration-400 transition-all ease-in-out;
+   }
+
+   body {
+      @apply bg-radix-gray-500;
+   }
+
+   body.dark {
+      @apply bg-radix-gray-300;
    }
 }
