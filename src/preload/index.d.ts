@@ -1,12 +1,19 @@
-import { ElectronAPI } from '@electron-toolkit/preload'
+import { ElectronAPI } from "@electron-toolkit/preload";
 
 declare global {
-  interface Window {
-    electron: ElectronAPI
-    api: {
-      showOpenDialog: (
-        options: Electron.OpenDialogOptions
-      ) => Promise<Electron.OpenDialogReturnValue>
-    }
-  }
+   interface Window {
+      electron: ElectronAPI;
+      api: {
+         showOpenDialog: (
+            options: Electron.OpenDialogOptions
+         ) => Promise<Electron.OpenDialogReturnValue>;
+         getSystemTheme: () => "light" | "dark";
+         onSystemThemeChange: (
+            callback: (
+               event: Electron.IpcRendererEvent,
+               theme: "light" | "dark"
+            ) => void
+         ) => () => Electron.IpcRenderer;
+      };
+   }
 }
