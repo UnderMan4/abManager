@@ -1,4 +1,3 @@
-import { Theme } from "@radix-ui/themes";
 import { useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 
@@ -10,7 +9,6 @@ function App(): JSX.Element {
 
    useEffect(() => {
       const unsubscribe = window.api.onSystemThemeChange((_, newTheme) => {
-         // console.log("Theme changed", newTheme);
          if (theme === "system") {
             useSettingsStore.setState({ realTheme: newTheme });
          }
@@ -25,12 +23,7 @@ function App(): JSX.Element {
       document.body.classList.add(realTheme);
    }, [realTheme]);
 
-   return (
-      <Theme appearance={realTheme} accentColor="iris" radius="large">
-         <RouterProvider router={appRouter} />
-         {/* <ThemePanel /> */}
-      </Theme>
-   );
+   return <RouterProvider router={appRouter} />;
 }
 
 export default App;

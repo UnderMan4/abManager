@@ -1,9 +1,15 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
    darkMode: "class",
-   content: ["./src/**/*.{html,js}"],
+   content: [
+      "./src/renderer/index.html",
+      "./src/renderer/src/**/*.{html,js,ts,jsx,tsx}",
+   ],
    theme: {
       extend: {
+         transitionDuration: {
+            400: "400ms",
+         },
          colors: {
             radix: {
                gray: {
@@ -19,10 +25,49 @@ export default {
                   1000: "var(--gray-10)",
                   1100: "var(--gray-11)",
                   1200: "var(--gray-12)",
+                  a100: "var(--gray-a1)",
+                  a200: "var(--gray-a2)",
+                  a300: "var(--gray-a3)",
+                  a400: "var(--gray-a4)",
+                  a500: "var(--gray-a5)",
+                  a600: "var(--gray-a6)",
+                  a700: "var(--gray-a7)",
+                  a800: "var(--gray-a8)",
+                  a900: "var(--gray-a9)",
+                  a1000: "var(--gray-a10)",
+                  a1100: "var(--gray-a11)",
+                  a1200: "var(--gray-a12)",
+               },
+               indigo: {
+                  100: "var(--indigo-1)",
+                  200: "var(--indigo-2)",
+                  300: "var(--indigo-3)",
+                  400: "var(--indigo-4)",
+                  500: "var(--indigo-5)",
+                  600: "var(--indigo-6)",
+                  700: "var(--indigo-7)",
+                  800: "var(--indigo-8)",
+                  900: "var(--indigo-9)",
+                  1000: "var(--indigo-10)",
+                  1100: "var(--indigo-11)",
+                  1200: "var(--indigo-12)",
+                  a100: "var(--indigo-a1)",
+                  a200: "var(--indigo-a2)",
+                  a300: "var(--indigo-a3)",
+                  a400: "var(--indigo-a4)",
+                  a500: "var(--indigo-a5)",
+                  a600: "var(--indigo-a6)",
+                  a700: "var(--indigo-a7)",
+                  a800: "var(--indigo-a8)",
+                  a900: "var(--indigo-a9)",
+                  a1000: "var(--indigo-a10)",
+                  a1100: "var(--indigo-a11)",
+                  a1200: "var(--indigo-a12)",
                },
             },
          },
       },
    },
-   plugins: [],
+   plugins: [require("@tailwindcss/forms")],
+   safelist: ["bg-radix-gray-300"],
 };
