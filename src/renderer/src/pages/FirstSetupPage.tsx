@@ -11,16 +11,13 @@ export const FirstSetupPage: FC<FirstSetupPageProps> = ({ className }) => {
    return (
       <div className={twMerge("", className)}>
          <Button
-         // onClick={async () => {
-         //    // const dir = await dialog.showOpenDialog({
-         //    //    properties: ["openDirectory"],
-         //    // });
-         //    const dir = await window.electron.dialog.showOpenDialog({
-         //       properties: ["openDirectory"],
-         //    });
-         //    if (dir.canceled) return;
-         //    setSelectedDir(dir.filePaths[0]);
-         // }}
+            onClick={async () => {
+               const result = await window.api.showOpenDialog({
+                  properties: ["openDirectory"],
+               });
+               console.log(result);
+               setSelectedDir(result.filePaths[0]);
+            }}
          >
             Select folder
          </Button>

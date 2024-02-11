@@ -1,5 +1,5 @@
 import { Button } from "@radix-ui/themes";
-import React, { FC, useLayoutEffect } from "react";
+import { FC, useLayoutEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 

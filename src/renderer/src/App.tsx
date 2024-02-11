@@ -1,10 +1,10 @@
-import { Theme, ThemePanel } from "@radix-ui/themes";
+import { Theme } from "@radix-ui/themes";
 import { RouterProvider } from "react-router-dom";
 
-import { appRouter } from "@/routing";
+import { appRouter } from "@/routes";
 import { useSettingsStore } from "@/stores";
 
-function App() {
+function App(): JSX.Element {
    const { theme } = useSettingsStore();
    return (
       <Theme appearance={theme} accentColor="ruby" radius="large">

@@ -1,33 +1,11 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
 node_modules
 dist
-dist-ssr
-dist-electron
-release
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+out
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+*.log*
 
-
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,node,windows,macos,react
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,node,windows,macos,react
+# Created by https://www.toptal.com/developers/gitignore/api/windows,macos,node,visualstudiocode,react
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,node,visualstudiocode,react
 
 ### macOS ###
 # General
@@ -260,4 +238,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,node,windows,macos,react
+# End of https://www.toptal.com/developers/gitignore/api/windows,macos,node,visualstudiocode,react
