@@ -24,7 +24,11 @@ export const Card: FC<CardProps> = ({
          )}
          {...props}
       >
-         {title && <Heading as="h3">{title}</Heading>}
+         {title && (
+            <Heading className="px-2" as="h3">
+               {title}
+            </Heading>
+         )}
          <div className={contentClassName}>{children}</div>
       </div>
    );

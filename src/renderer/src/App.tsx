@@ -1,3 +1,4 @@
+import { LazyMotion, domAnimation } from "framer-motion";
 import { useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 
@@ -23,7 +24,11 @@ function App(): JSX.Element {
       document.body.classList.add(realTheme);
    }, [realTheme]);
 
-   return <RouterProvider router={appRouter} />;
+   return (
+      <LazyMotion features={domAnimation} strict>
+         <RouterProvider router={appRouter} />
+      </LazyMotion>
+   );
 }
 
 export default App;

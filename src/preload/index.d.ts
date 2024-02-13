@@ -13,7 +13,12 @@ declare global {
                event: Electron.IpcRendererEvent,
                theme: "light" | "dark"
             ) => void
-         ) => () => Electron.IpcRenderer;
+         ) => Electron.IpcRenderer;
+      };
+      fs: {
+         listDirectory: (
+            path: string
+         ) => { files: string[] } | { error: NodeJS.ErrnoException | null };
       };
    }
 }

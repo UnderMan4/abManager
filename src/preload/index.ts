@@ -20,6 +20,14 @@ const api = {
    },
 };
 
+const fs = {
+   listDirectory: (
+      path: string
+   ): { files: string[] } | { error: NodeJS.ErrnoException | null } => {
+      return ipcRenderer.sendSync("list-directory", path);
+   },
+};
+
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
 // just add to the DOM global.
@@ -27,6 +35,7 @@ if (process.contextIsolated) {
    try {
       contextBridge.exposeInMainWorld("electron", electronAPI);
       contextBridge.exposeInMainWorld("api", api);
+      contextBridge.exposeInMainWorld("fs", fs);
    } catch (error) {
       console.error(error);
    }

@@ -24,7 +24,7 @@ const appearanceClassNames: Record<ButtonAppearance, string> = {
 const hoverClassNames: Record<ButtonAppearance, string> = {
    solid: "hover:bg-radix-indigo-900 hover:border-radix-indigo-900 dark:hover:bg-radix-indigo-700 dark:hover:border-radix-indigo-700",
    outlineColor: "hover:bg-radix-indigo-a500 hover:border-radix-indigo-800",
-   outlineGray: "hover:bg-radix-gray-600 hover:border-radix-gray-600",
+   outlineGray: "hover:bg-radix-gray-600 hover:border-radix-gray-700",
 };
 
 const iconClassNames: Record<ButtonAppearance, string> = {
@@ -46,7 +46,7 @@ export const Button: FC<ButtonProps> = ({
    return (
       <button
          className={cls(
-            "px-3 py-2 rounded-xl font-bold tracking-wide border flex flex-row gap-2 items-center group",
+            "px-4 py-2 rounded-xl font-bold tracking-wide border flex flex-row gap-2 items-center group",
             "disabled:bg-radix-gray-500 disabled:text-radix-gray-700 disabled:border-radix-gray-600",
             "dark:disabled:bg-radix-gray-500 dark:disabled:text-radix-gray-700 dark:disabled:border-radix-gray-600",
             appearanceClassNames[appearance],

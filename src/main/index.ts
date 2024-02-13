@@ -7,6 +7,7 @@ import {
    nativeTheme,
    shell,
 } from "electron";
+import * as fs from "fs";
 import { join } from "path";
 
 import icon from "../../resources/icon.png?asset";
@@ -17,7 +18,7 @@ function createWindow(): void {
       width: 1400,
       height: 900,
       show: false,
-      autoHideMenuBar: true,
+      autoHideMenuBar: false,
       ...(process.platform === "linux" ? { icon } : {}),
       webPreferences: {
          preload: join(__dirname, "../preload/index.js"),
@@ -76,6 +77,8 @@ app.whenReady().then(() => {
       event.returnValue = nativeTheme.shouldUseDarkColors ? "dark" : "light";
    });
 
+   fsHandling();
+
    createWindow();
 
    app.on("activate", function () {
@@ -96,3 +99,15 @@ app.on("window-all-closed", () => {
 
 // In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.
+
+const fsHandling = () => {
+   ipcMain.on("list-directory", (event, path) => {
+      fs.readdir(path, (err, files) => {
+         if (err) {
+            event.returnValue = { error: err };
+         } else {
+            event.returnValue = { files };
+         }
+      });
+   });
+};
