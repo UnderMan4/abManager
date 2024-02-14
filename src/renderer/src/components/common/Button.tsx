@@ -1,16 +1,44 @@
 import { Icon } from "@iconify/react";
-import { ButtonHTMLAttributes, FC } from "react";
+import { ButtonHTMLAttributes, FC, useMemo } from "react";
 
 import { cls } from "@/utils/styleUtils";
 
 export type ButtonAppearance = "solid" | "outlineColor" | "outlineGray";
 
+export type ButtonIconHoverAnimation =
+   | "moveRight"
+   | "moveLeft"
+   | "moveUp"
+   | "moveDown"
+   | "scale"
+   | "none";
+
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
    appearance?: ButtonAppearance;
-   icon?: string;
-   iconPosition?: "left" | "right";
-   iconSize?: number;
-   iconClassName?: string;
+   icon?: ButtonIconOptions;
+};
+
+export type ButtonIconOptions =
+   | string
+   | {
+        name: string;
+        position?: "left" | "right";
+        size?: number;
+        className?: string;
+        hoverAnimation?: ButtonIconHoverAnimation;
+     };
+
+const iconHoverAnimations: Record<ButtonIconHoverAnimation, string> = {
+   moveRight:
+      "group-hover:group-enabled:translate-x-1 transition-transform duration-300 ease-in-out",
+   moveLeft:
+      "group-hover:group-enabled:-translate-x-1 transition-transform duration-300 ease-in-out",
+   moveUp:
+      "group-hover:group-enabled:-translate-y-1 transition-transform duration-300 ease-in-out",
+   moveDown:
+      "group-hover:group-enabled:translate-y-1 transition-transform duration-300 ease-in-out",
+   scale: "group-hover:group-enabled:scale-110 transition-transform duration-300 ease-in-out",
+   none: "",
 };
 
 const appearanceClassNames: Record<ButtonAppearance, string> = {
@@ -35,14 +63,31 @@ const iconClassNames: Record<ButtonAppearance, string> = {
 
 export const Button: FC<ButtonProps> = ({
    className,
-   iconPosition = "left",
    icon,
    appearance = "solid",
    children,
-   iconSize = 1.4,
-   iconClassName,
    ...props
 }) => {
+   const iconOptions = useMemo(() => {
+      if (!icon) return undefined;
+      if (typeof icon === "string") {
+         return {
+            name: icon,
+            iconPosition: "left",
+            iconSize: 1.3,
+            iconClassName: "",
+            iconHoverAnimation: "none",
+         };
+      }
+      return {
+         name: icon.name,
+         iconPosition: icon.position ?? "left",
+         iconSize: (icon.size ?? 1) * 1.3,
+         iconClassName: icon.className ?? "",
+         iconHoverAnimation: icon.hoverAnimation ?? "none",
+      };
+   }, [icon]);
+
    return (
       <button
          className={cls(
@@ -55,23 +100,28 @@ export const Button: FC<ButtonProps> = ({
          )}
          {...props}
       >
-         {icon && iconPosition === "left" && (
+         {iconOptions?.iconPosition === "left" && (
             <Icon
-               className={cls(iconClassNames[appearance], iconClassName)}
-               icon={icon}
-               height={`${iconSize}rem`}
+               className={cls(
+                  iconClassNames[appearance],
+                  iconOptions.iconClassName,
+                  iconHoverAnimations[iconOptions.iconHoverAnimation]
+               )}
+               icon={iconOptions.name}
+               height={`${iconOptions.iconSize}rem`}
             />
          )}
          {children}
-         {icon && iconPosition === "right" && (
+         {iconOptions?.iconPosition === "right" && (
             <Icon
                className={cls(
                   "group-disabled:text-radix-gray-700",
                   iconClassNames[appearance],
-                  iconClassName
+                  iconOptions.iconClassName,
+                  iconHoverAnimations[iconOptions.iconHoverAnimation]
                )}
-               icon={icon}
-               height={`${iconSize}rem`}
+               icon={iconOptions.name}
+               height={`${iconOptions.iconSize}rem`}
             />
          )}
       </button>

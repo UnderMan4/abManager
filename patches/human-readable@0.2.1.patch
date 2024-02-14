@@ -1,0 +1,65 @@
+diff --git a/javascript/disk_size.d.ts b/javascript/disk_size.d.ts
+index 0379224a8f0c295548a9273590794af9ecace4aa..6c6dfcdb4d8da98e134559a0055d97e508eae972 100644
+--- a/javascript/disk_size.d.ts
++++ b/javascript/disk_size.d.ts
+@@ -10,19 +10,21 @@ export declare const T: number;
+ export declare const P: number;
+ declare type Multiple = [string, number];
+ declare const Standards: {
+-    SI: Multiple[];
+-    IEC: Multiple[];
+-    JEDEC: Multiple[];
++  SI: Multiple[];
++  IEC: Multiple[];
++  JEDEC: Multiple[];
+ };
+ declare type StandardName = keyof typeof Standards;
+ declare type RenderFunction<T> = (literal: string, symbol: string) => T;
+-interface IOptions<T> {
+-    std?: StandardName;
+-    decimalPlaces?: number;
+-    keepTrailingZeroes?: boolean;
+-    allowMultiples?: string[];
+-    render?: RenderFunction<T>;
++export interface DiskSizeOptions<T> {
++  std?: StandardName;
++  decimalPlaces?: number;
++  keepTrailingZeroes?: boolean;
++  allowMultiples?: string[];
++  render?: RenderFunction<T>;
+ }
+ declare type FormatterFunction<T> = (size: number) => T;
+-export declare function sizeFormatter<T>(options?: IOptions<T>): FormatterFunction<T>;
++export declare function sizeFormatter<T>(
++  options?: DiskSizeOptions<T>
++): FormatterFunction<T>;
+ export {};
+diff --git a/javascript/duration.d.ts b/javascript/duration.d.ts
+index 42295106e5ed4dafa0d1abff378f807672a51270..9bef7d330ae2e298150e6bb34c5c83370595e213 100644
+--- a/javascript/duration.d.ts
++++ b/javascript/duration.d.ts
+@@ -7,15 +7,17 @@ export declare const DUR_W: number;
+ export declare const DUR_MO: number;
+ export declare const DUR_Y: number;
+ declare type DurationPart = {
+-    literal: string;
+-    symbol: string;
++  literal: string;
++  symbol: string;
+ };
+ declare type RenderFunction<T> = (parts: DurationPart[]) => T;
+-interface IOptions<T> {
+-    allowMultiples?: string[];
+-    keepNonLeadingZeroes?: boolean;
+-    render?: RenderFunction<T>;
++interface DurationOptions<T> {
++  allowMultiples?: string[];
++  keepNonLeadingZeroes?: boolean;
++  render?: RenderFunction<T>;
+ }
+ declare type FormatterFunction<T> = (duration: number) => T;
+-export declare function durationFormatter<T>(options?: IOptions<T>): FormatterFunction<T>;
++export declare function durationFormatter<T>(
++  options?: DurationOptions<T>
++): FormatterFunction<T>;
+ export {};

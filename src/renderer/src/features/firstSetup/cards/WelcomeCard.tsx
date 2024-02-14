@@ -8,32 +8,41 @@ import { variants } from "./variants";
 export type WelcomeCardProps = {
    nextStep: () => void;
    count: number;
+   setIsBack: (isBack: boolean) => void;
+   isBack: boolean;
 };
 
-export const WelcomeCard: FC<WelcomeCardProps> = ({ count, nextStep }) => {
+export const WelcomeCard: FC<WelcomeCardProps> = ({
+   count,
+   nextStep,
+   setIsBack,
+   isBack,
+}) => {
    return (
       <AbsoluteCenter className="max-w-lg">
          <AnimatePresence>
             {count === 0 && (
                <m.div
                   variants={variants}
-                  initial="initial"
+                  initial={isBack ? "initialBack" : "initial"}
                   animate="animate"
                   exit="exit"
                >
                   <Card
-                     contentClassName="flex flex-col gap-2 items-center"
+                     contentClassName="flex flex-col items-center justify-end"
                      title="Welcome to audiobook manager"
                   >
                      <Button
-                        icon="ph:arrow-right-bold"
-                        appearance="solid"
-                        iconPosition="right"
-                        className="group"
-                        iconClassName="group-hover:group-enabled:translate-x-1 transition-transform duration-300 ease-in-out"
                         onClick={nextStep}
+                        onMouseEnter={() => setIsBack(false)}
+                        onFocusCapture={() => setIsBack(false)}
+                        icon={{
+                           name: "ph:arrow-right-bold",
+                           hoverAnimation: "moveRight",
+                           position: "right",
+                        }}
                      >
-                        Start
+                        Get started
                      </Button>
                   </Card>
                </m.div>

@@ -8,7 +8,9 @@ import {
    shell,
 } from "electron";
 import * as fs from "fs";
-import { join } from "path";
+import { getDiskInfoSync } from "node-disk-info";
+import os from "os";
+import path from "path";
 
 import icon from "../../resources/icon.png?asset";
 
@@ -21,7 +23,7 @@ function createWindow(): void {
       autoHideMenuBar: false,
       ...(process.platform === "linux" ? { icon } : {}),
       webPreferences: {
-         preload: join(__dirname, "../preload/index.js"),
+         preload: path.join(__dirname, "../preload/index.js"),
          sandbox: false,
       },
    });
@@ -40,7 +42,7 @@ function createWindow(): void {
    if (is.dev && process.env["ELECTRON_RENDERER_URL"]) {
       mainWindow.loadURL(process.env["ELECTRON_RENDERER_URL"]);
    } else {
-      mainWindow.loadFile(join(__dirname, "../renderer/index.html"));
+      mainWindow.loadFile(path.join(__dirname, "../renderer/index.html"));
    }
 
    nativeTheme.on("updated", () => {
@@ -67,15 +69,9 @@ app.whenReady().then(() => {
 
    // IPC test
    ipcMain.on("ping", () => console.log("pong"));
+   //expose variable to the renderer
 
-   ipcMain.handle(
-      "show-open-dialog",
-      (_, options: Electron.OpenDialogOptions) => dialog.showOpenDialog(options)
-   );
-
-   ipcMain.on("get-system-theme", (event) => {
-      event.returnValue = nativeTheme.shouldUseDarkColors ? "dark" : "light";
-   });
+   apiHandling();
 
    fsHandling();
 
@@ -100,6 +96,25 @@ app.on("window-all-closed", () => {
 // In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.
 
+const apiHandling = () => {
+   ipcMain.on("get-system-theme", (event) => {
+      event.returnValue = nativeTheme.shouldUseDarkColors ? "dark" : "light";
+   });
+
+   ipcMain.handle(
+      "show-open-dialog",
+      (_, options: Electron.OpenDialogOptions) => dialog.showOpenDialog(options)
+   );
+
+   ipcMain.on("get-system-theme", (event) => {
+      event.returnValue = nativeTheme.shouldUseDarkColors ? "dark" : "light";
+   });
+
+   ipcMain.on("get-platform", (event) => {
+      event.returnValue = os.platform();
+   });
+};
+
 const fsHandling = () => {
    ipcMain.on("list-directory", (event, path) => {
       fs.readdir(path, (err, files) => {
@@ -109,5 +124,36 @@ const fsHandling = () => {
             event.returnValue = { files };
          }
       });
+   });
+
+   ipcMain.on("create-directory", (event, path) => {
+      try {
+         fs.mkdirSync(path, { recursive: true });
+         event.returnValue = { success: true };
+      } catch (err) {
+         if (err instanceof Error) {
+            event.returnValue = { error: err };
+         } else {
+            event.returnValue = { error: new Error("Unknown error") };
+         }
+      }
+   });
+
+   ipcMain.on("get-disk-stats", (event, targetPath) => {
+      try {
+         const disks = getDiskInfoSync();
+         const disk = disks.find((diskInfo) =>
+            path.resolve(targetPath).startsWith(diskInfo.mounted)
+         );
+
+         if (!disk) {
+            event.returnValue = { error: new Error("Disk not found") };
+            return;
+         }
+
+         event.returnValue = { data: disk };
+      } catch (error) {
+         event.returnValue = { error };
+      }
    });
 };

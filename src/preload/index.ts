@@ -1,5 +1,6 @@
 import { electronAPI } from "@electron-toolkit/preload";
 import { contextBridge, ipcRenderer } from "electron";
+import path from "path";
 
 // Custom APIs for renderer
 const api = {
@@ -18,6 +19,7 @@ const api = {
       ipcRenderer.addListener("system-theme-changed", callback);
       return () => ipcRenderer.removeListener("system-theme-changed", callback);
    },
+   getPlatform: (): NodeJS.Platform => ipcRenderer.sendSync("get-platform"),
 };
 
 const fs = {
@@ -25,6 +27,12 @@ const fs = {
       path: string
    ): { files: string[] } | { error: NodeJS.ErrnoException | null } => {
       return ipcRenderer.sendSync("list-directory", path);
+   },
+   createDirectory: (path: string): { success: true } | { error: Error } => {
+      return ipcRenderer.sendSync("create-directory", path);
+   },
+   getDiskStats: (path: string) => {
+      return ipcRenderer.sendSync("get-disk-stats", path);
    },
 };
 
@@ -36,6 +44,7 @@ if (process.contextIsolated) {
       contextBridge.exposeInMainWorld("electron", electronAPI);
       contextBridge.exposeInMainWorld("api", api);
       contextBridge.exposeInMainWorld("fs", fs);
+      contextBridge.exposeInMainWorld("path", path);
    } catch (error) {
       console.error(error);
    }
@@ -44,4 +53,8 @@ if (process.contextIsolated) {
    window.electron = electronAPI;
    // @ts-ignore (define in dts)
    window.api = api;
+   // @ts-ignore (define in dts)
+   window.fs = fs;
+   // @ts-ignore (define in dts)
+   window.path = path;
 }

@@ -1,12 +1,19 @@
 import { FC, HTMLAttributes } from "react";
 
+import { Button, ButtonProps } from "@/components/common/Button";
 import { cls } from "@/utils/styleUtils";
 
 import { Heading } from "./Heading";
 
+export type CardButtonProps = Omit<ButtonProps, "children"> & {
+   label: string;
+};
+
 export type CardProps = HTMLAttributes<HTMLDivElement> & {
    title?: string;
    contentClassName?: string;
+   leftButton?: CardButtonProps;
+   rightButton?: CardButtonProps;
 };
 
 export const Card: FC<CardProps> = ({
@@ -14,6 +21,8 @@ export const Card: FC<CardProps> = ({
    title,
    children,
    contentClassName,
+   leftButton,
+   rightButton,
    ...props
 }) => {
    return (
@@ -30,6 +39,20 @@ export const Card: FC<CardProps> = ({
             </Heading>
          )}
          <div className={contentClassName}>{children}</div>
+         {(leftButton || rightButton) && (
+            <div className="flex justify-between">
+               <div>
+                  {leftButton && (
+                     <Button {...leftButton}>{leftButton.label}</Button>
+                  )}
+               </div>
+               <div>
+                  {rightButton && (
+                     <Button {...rightButton}>{rightButton.label}</Button>
+                  )}
+               </div>
+            </div>
+         )}
       </div>
    );
 };
