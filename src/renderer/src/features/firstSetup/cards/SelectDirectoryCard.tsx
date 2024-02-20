@@ -1,11 +1,9 @@
-import { constants } from "buffer";
 import { AnimatePresence, m } from "framer-motion";
-import { Dispatch, FC, SetStateAction, useLayoutEffect } from "react";
+import { Dispatch, FC, SetStateAction, useEffect } from "react";
 import { z } from "zod";
 
-import { AbsoluteCenter, Card } from "@/components/common";
-import { LIBRARY_DIRECTORY_NAME, pathRegex } from "@/constants";
-import { FolderSelector } from "@/features/firstSetup/FolderSelector";
+import { AbsoluteCenter, Card, FolderSelector } from "@/components/common";
+import { LIBRARY_DIRECTORY_NAME } from "@/constants";
 import { useAppForm } from "@/hooks";
 
 import { variants } from "./variants";
@@ -29,9 +27,15 @@ export const SelectDirectoryCard: FC<SelectDirectoryCardProps> = ({
    selectedDirectory,
    setSelectedDirectory,
 }) => {
-   const form = useAppForm(
-      z.object({ path: z.string().min(1).regex(pathRegex) })
-   );
+   const form = useAppForm(z.object({ path: z.string().min(1) }));
+
+   useEffect(() => {
+      if (!selectedDirectory) return;
+      const diskStats = window.fs.getDiskStats(selectedDirectory);
+
+      if ("error" in diskStats) return;
+   }, [selectedDirectory]);
+
    return (
       <AbsoluteCenter className="max-w-lg">
          <AnimatePresence>
@@ -68,17 +72,17 @@ export const SelectDirectoryCard: FC<SelectDirectoryCardProps> = ({
                         },
                         appearance: "solid",
                         label: "Next",
+                        disabled:
+                           !selectedDirectory || selectedDirectory === "",
                      }}
                   >
                      <FolderSelector
                         className="w-96"
                         value={selectedDirectory}
                         onChange={(value) => {
-                           console.log(value.path);
                            const lastDirectory = window.path.parse(
                               value.path
                            ).base;
-                           console.log(lastDirectory);
 
                            if (!lastDirectory) return;
 

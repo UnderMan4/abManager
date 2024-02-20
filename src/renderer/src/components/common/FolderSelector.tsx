@@ -45,7 +45,8 @@ export const FolderSelector: FC<FolderSelectorProps> = ({
                   "bg-transparent p-0 border-none grow text-radix-gray-1200"
                )}
                ref={inputRef}
-               onChange={() => {}}
+               onChange={(e) => onChange?.({ path: e.target.value })}
+               disabled
                {...inputProps}
             />
          </div>
@@ -59,26 +60,6 @@ export const FolderSelector: FC<FolderSelectorProps> = ({
                ).filePaths[0];
 
                if (selectedDir && inputRef.current) {
-                  ////////////////
-                  const diskStats = window.fs.getDiskStats(
-                     selectedDir + "/dfdfdsfsd"
-                  );
-                  const format = sizeFormatter({
-                     decimalPlaces: 2,
-                     std: "IEC",
-                  });
-
-                  if ("data" in diskStats) {
-                     Object.keys(diskStats.data).forEach((key) => {
-                        const data = diskStats.data[key];
-                        if (typeof data === "number") {
-                           console.log(key, format(data));
-                        } else {
-                           console.log(key, data);
-                        }
-                     });
-                  }
-                  ////////////////
                   onChange?.({
                      path: selectedDir,
                   });

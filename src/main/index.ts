@@ -7,12 +7,13 @@ import {
    nativeTheme,
    shell,
 } from "electron";
-import * as fs from "fs";
+import fs from "fs";
 import { getDiskInfoSync } from "node-disk-info";
 import os from "os";
 import path from "path";
 
 import icon from "../../resources/icon.png?asset";
+import { getDiskStats } from "./utils";
 
 function createWindow(): void {
    // Create the browser window.
@@ -151,7 +152,16 @@ const fsHandling = () => {
             return;
          }
 
-         event.returnValue = { data: disk };
+         event.returnValue = {
+            data: {
+               filesystem: disk.filesystem,
+               blocks: disk.blocks,
+               used: disk.used,
+               available: disk.available,
+               capacity: disk.capacity,
+               mounted: disk.mounted,
+            },
+         };
       } catch (error) {
          event.returnValue = { error };
       }
