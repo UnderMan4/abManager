@@ -1,6 +1,4 @@
-import drivelist from "drivelist";
 import fs from "fs";
-import os from "os";
 import path from "path";
 
 export const findMountPoint = (targetPath: string): string | null => {

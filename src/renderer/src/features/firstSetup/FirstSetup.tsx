@@ -1,11 +1,12 @@
 import { FC, useState } from "react";
 import { useCounter } from "usehooks-ts";
 
+import { SaveTypeCard } from "./cards/SaveTypeCard";
 import { SelectDirectoryCard } from "./cards/SelectDirectoryCard";
 import { WelcomeCard } from "./cards/WelcomeCard";
 
 export const FirstSetup: FC = () => {
-   const { count, increment, decrement } = useCounter(0);
+   const { count: currentStep, increment, decrement } = useCounter(0);
 
    const [isBack, setIsBack] = useState(false);
 
@@ -18,23 +19,23 @@ export const FirstSetup: FC = () => {
    const previousStep = () => {
       decrement();
    };
+
+   const navigation = {
+      currentStep,
+      previousStep,
+      nextStep,
+      setIsBack,
+      isBack,
+   };
    return (
       <div className="min-h-screen relative">
-         <WelcomeCard
-            count={count}
-            nextStep={nextStep}
-            setIsBack={setIsBack}
-            isBack={isBack}
-         />
+         <WelcomeCard cardNavigation={navigation} />
          <SelectDirectoryCard
-            count={count}
-            nextStep={nextStep}
-            previousStep={previousStep}
-            isBack={isBack}
-            setIsBack={setIsBack}
+            cardNavigation={navigation}
             setSelectedDirectory={setSelectedDirectory}
             selectedDirectory={selectedDirectory}
          />
+         <SaveTypeCard cardNavigation={navigation} />
       </div>
    );
 };

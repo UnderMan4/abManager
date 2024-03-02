@@ -1,53 +1,33 @@
-import { AnimatePresence, m } from "framer-motion";
 import { FC } from "react";
 
-import { AbsoluteCenter, Button, Card } from "@/components/common";
-
-import { variants } from "./variants";
+import { Button } from "@/components/common";
+import { FirstSetupCard } from "@/features/firstSetup/FirstSetupCard";
+import { CardNavigation } from "@/features/firstSetup/types";
 
 export type WelcomeCardProps = {
-   nextStep: () => void;
-   count: number;
-   setIsBack: (isBack: boolean) => void;
-   isBack: boolean;
+   cardNavigation: CardNavigation;
 };
 
-export const WelcomeCard: FC<WelcomeCardProps> = ({
-   count,
-   nextStep,
-   setIsBack,
-   isBack,
-}) => {
+export const WelcomeCard: FC<WelcomeCardProps> = ({ cardNavigation }) => {
    return (
-      <AbsoluteCenter className="max-w-lg">
-         <AnimatePresence>
-            {count === 0 && (
-               <m.div
-                  variants={variants}
-                  initial={isBack ? "initialBack" : "initial"}
-                  animate="animate"
-                  exit="exit"
-               >
-                  <Card
-                     contentClassName="flex flex-col items-center justify-end"
-                     title="Welcome to audiobook manager"
-                  >
-                     <Button
-                        onClick={nextStep}
-                        onMouseEnter={() => setIsBack(false)}
-                        onFocusCapture={() => setIsBack(false)}
-                        icon={{
-                           name: "ph:arrow-right-bold",
-                           hoverAnimation: "moveRight",
-                           position: "right",
-                        }}
-                     >
-                        Get started
-                     </Button>
-                  </Card>
-               </m.div>
-            )}
-         </AnimatePresence>
-      </AbsoluteCenter>
+      <FirstSetupCard
+         cardNavigation={cardNavigation}
+         isVisible={cardNavigation.currentStep === 0}
+         title="Welcome to audiobook manager"
+         cardClassName="flex flex-col items-center justify-end"
+      >
+         <Button
+            onClick={cardNavigation.nextStep}
+            onMouseEnter={() => cardNavigation.setIsBack(false)}
+            onFocusCapture={() => cardNavigation.setIsBack(false)}
+            icon={{
+               name: "ph:arrow-right-bold",
+               hoverAnimation: "moveRight",
+               position: "right",
+            }}
+         >
+            Get started
+         </Button>
+      </FirstSetupCard>
    );
 };
