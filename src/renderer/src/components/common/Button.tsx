@@ -103,6 +103,7 @@ export const Button: FC<ButtonProps> = ({
          {iconOptions?.iconPosition === "left" && (
             <Icon
                className={cls(
+                  "group-disabled:text-radix-gray-700",
                   iconClassNames[appearance],
                   iconOptions.iconClassName,
                   iconHoverAnimations[iconOptions.iconHoverAnimation]

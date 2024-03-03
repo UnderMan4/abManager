@@ -7,7 +7,7 @@ import { CardNavigation } from "@/features/firstSetup/types";
 export type FirstSetupCardProps = {
    isVisible: boolean;
    cardNavigation: CardNavigation;
-   children: React.ReactNode;
+   children?: React.ReactNode;
    title: string;
    backButtonLabel?: string;
    nextButtonLabel?: string;

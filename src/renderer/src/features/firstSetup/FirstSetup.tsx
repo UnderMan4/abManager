@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
 import { useCounter } from "usehooks-ts";
 
-import { SaveTypeCard } from "./cards/SaveTypeCard";
-import { SelectDirectoryCard } from "./cards/SelectDirectoryCard";
-import { WelcomeCard } from "./cards/WelcomeCard";
+import { SaveTypeCard } from "./components/cards/SaveTypeCard";
+import { SelectDirectoryCard } from "./components/cards/SelectDirectoryCard";
+import { WelcomeCard } from "./components/cards/WelcomeCard";
 
 export const FirstSetup: FC = () => {
    const { count: currentStep, increment, decrement } = useCounter(0);

@@ -2,7 +2,7 @@ import { Dispatch, FC, SetStateAction, useEffect } from "react";
 
 import { FolderSelector } from "@/components/common";
 import { LIBRARY_DIRECTORY_NAME } from "@/constants";
-import { FirstSetupCard } from "@/features/firstSetup/FirstSetupCard";
+import { FirstSetupCard } from "@/features/firstSetup/components/FirstSetupCard";
 import { CardNavigation } from "@/features/firstSetup/types";
 
 export type SelectDirectoryCardProps = {

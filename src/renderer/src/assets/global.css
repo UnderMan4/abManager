@@ -17,6 +17,7 @@ body {
 
    body {
       @apply bg-radix-gray-500;
+      @apply text-radix-gray-1200;
    }
 
    body.dark {

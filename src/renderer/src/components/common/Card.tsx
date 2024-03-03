@@ -28,13 +28,13 @@ export const Card: FC<CardProps> = ({
    return (
       <div
          className={cls(
-            "p-4 bg-radix-gray-a200 border border-radix-gray-700 rounded-2xl flex flex-col gap-3",
+            "p-4 px-6 pb-6 bg-radix-gray-a200 border border-radix-gray-700 rounded-2xl flex flex-col gap-8",
             className
          )}
          {...props}
       >
          {title && (
-            <Heading className="px-2" as="h3">
+            <Heading className="" as="h3">
                {title}
             </Heading>
          )}

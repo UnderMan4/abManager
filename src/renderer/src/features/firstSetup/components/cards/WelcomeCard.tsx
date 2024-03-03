@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { Button } from "@/components/common";
-import { FirstSetupCard } from "@/features/firstSetup/FirstSetupCard";
+import { FirstSetupCard } from "@/features/firstSetup/components/FirstSetupCard";
 import { CardNavigation } from "@/features/firstSetup/types";
 
 export type WelcomeCardProps = {

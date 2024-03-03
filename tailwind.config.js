@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
+const plugin = require("tailwindcss/plugin");
+
 module.exports = {
    darkMode: "class",
    content: [
@@ -69,6 +71,17 @@ module.exports = {
          },
       },
    },
-   plugins: [require("@tailwindcss/forms")],
+   plugins: [
+      require("@tailwindcss/forms"),
+      plugin(({ addUtilities }) => {
+         addUtilities({
+            ".center": {
+               display: "flex",
+               "align-items": "center",
+               "justify-content": "center",
+            },
+         });
+      }),
+   ],
    safelist: ["bg-radix-gray-300"],
 };
