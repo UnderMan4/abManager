@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { FirstSetupProvider } from "@/features/firstSetup/components/FirstSetupContext";
 import {
+   FinishCard,
    SaveTypeCard,
    SelectDirectoryCard,
    WelcomeCard,
@@ -14,6 +15,7 @@ export const FirstSetup: FC = () => {
             <WelcomeCard />
             <SelectDirectoryCard />
             <SaveTypeCard />
+            <FinishCard />
          </FirstSetupProvider>
       </div>
    );

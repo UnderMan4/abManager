@@ -3,7 +3,6 @@ import React, { FC } from "react";
 
 import { AbsoluteCenter, Card } from "@/components/common";
 import { useFirstSetupContext } from "@/features/firstSetup/components/FirstSetupContext";
-import { CardNavigation } from "@/features/firstSetup/types";
 
 export type FirstSetupCardProps = {
    cardNumber: number;

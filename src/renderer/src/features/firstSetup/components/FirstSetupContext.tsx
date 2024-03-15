@@ -64,10 +64,6 @@ export const FirstSetupProvider: FC<FirstSetupContextProps> = ({
       [isBack, setIsBack, currentStep, nextStep, previousStep]
    );
 
-   useEffect(() => {
-      console.log(currentStep, navigation.currentStep);
-   }, [currentStep]);
-
    const submit = useCallback(() => {
       if (!(data.selectedDirectory && data.selectedSaveType))
          throw new Error("Data is not complete");

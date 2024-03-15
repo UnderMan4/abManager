@@ -5,13 +5,7 @@ import { cls } from "@/utils/styleUtils";
 
 export type ButtonAppearance = "solid" | "outlineColor" | "outlineGray";
 
-export type ButtonIconHoverAnimation =
-   | "moveRight"
-   | "moveLeft"
-   | "moveUp"
-   | "moveDown"
-   | "scale"
-   | "none";
+export type ButtonIconHoverAnimation = keyof typeof iconHoverAnimations;
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
    appearance?: ButtonAppearance;
@@ -28,7 +22,7 @@ export type ButtonIconOptions =
         hoverAnimation?: ButtonIconHoverAnimation;
      };
 
-const iconHoverAnimations: Record<ButtonIconHoverAnimation, string> = {
+const iconHoverAnimations = {
    moveRight:
       "group-hover:group-enabled:translate-x-1 transition-transform duration-300 ease-in-out",
    moveLeft:
@@ -38,8 +32,10 @@ const iconHoverAnimations: Record<ButtonIconHoverAnimation, string> = {
    moveDown:
       "group-hover:group-enabled:translate-y-1 transition-transform duration-300 ease-in-out",
    scale: "group-hover:group-enabled:scale-110 transition-transform duration-300 ease-in-out",
+   scaleRotate:
+      "group-hover:group-enabled:scale-110 group-hover:group-enabled:rotate-12 transition-transform duration-300 ease-in-out",
    none: "",
-};
+} as const;
 
 const appearanceClassNames: Record<ButtonAppearance, string> = {
    solid: "border-radix-indigo-1000 bg-radix-indigo-1000 text-white dark:bg-radix-indigo-600 dark:border-radix-indigo-600",
