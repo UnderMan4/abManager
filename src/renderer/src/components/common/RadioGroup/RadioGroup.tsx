@@ -1,7 +1,6 @@
-import React, { FC, ReactElement, forwardRef } from "react";
+import React, { FC, ReactElement } from "react";
 import { AriaRadioGroupProps, useRadioGroup } from "react-aria";
 import { RadioGroupState, useRadioGroupState } from "react-stately";
-import { twMerge } from "tailwind-merge";
 
 import { RadioButton } from "@/components/common/RadioGroup/RadioButton";
 

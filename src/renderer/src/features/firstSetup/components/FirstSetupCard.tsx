@@ -2,11 +2,11 @@ import { AnimatePresence, Variants, m } from "framer-motion";
 import React, { FC } from "react";
 
 import { AbsoluteCenter, Card } from "@/components/common";
+import { useFirstSetupContext } from "@/features/firstSetup/components/FirstSetupContext";
 import { CardNavigation } from "@/features/firstSetup/types";
 
 export type FirstSetupCardProps = {
-   isVisible: boolean;
-   cardNavigation: CardNavigation;
+   cardNumber: number;
    children?: React.ReactNode;
    title: string;
    backButtonLabel?: string;
@@ -50,19 +50,22 @@ const variants: Variants = {
 };
 
 export const FirstSetupCard: FC<FirstSetupCardProps> = ({
-   isVisible,
-   cardNavigation: { previousStep, nextStep, setIsBack, isBack },
    children,
    title,
    backButtonLabel,
    nextButtonLabel,
    cardClassName,
+   cardNumber,
    nextButtonActive,
 }) => {
+   const {
+      navigation: { nextStep, previousStep, setIsBack, isBack, currentStep },
+   } = useFirstSetupContext();
+
    return (
       <AbsoluteCenter className="max-w-lg">
          <AnimatePresence>
-            {isVisible && (
+            {currentStep === cardNumber && (
                <m.div
                   variants={variants}
                   initial={isBack ? "initialBack" : "initial"}

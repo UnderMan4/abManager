@@ -1,13 +1,15 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { RealTheme, Theme } from "@/types/common";
+import { RealTheme, SaveType, Theme } from "@/types/common";
 
 export type SettingsState = {
    theme: Theme;
    realTheme: RealTheme;
    setTheme: (theme: Theme) => void;
    libraryPath: string | null;
+   saveType: SaveType;
+   firstSetup: (data: { libraryPath: string; saveType: SaveType }) => void;
 };
 
 export const useSettingsStore = create<SettingsState>()(
@@ -21,6 +23,9 @@ export const useSettingsStore = create<SettingsState>()(
                : set({ theme, realTheme: theme });
          },
          libraryPath: null,
+         saveType: "copy",
+         firstSetup: ({ libraryPath, saveType }) =>
+            set({ libraryPath, saveType }),
       }),
       {
          name: "settings",

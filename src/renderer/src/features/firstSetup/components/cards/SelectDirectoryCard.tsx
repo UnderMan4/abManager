@@ -1,54 +1,48 @@
-import { Dispatch, FC, SetStateAction, useEffect } from "react";
+import { FC, useEffect } from "react";
 
 import { FolderSelector } from "@/components/common";
 import { LIBRARY_DIRECTORY_NAME } from "@/constants";
 import { FirstSetupCard } from "@/features/firstSetup/components/FirstSetupCard";
-import { CardNavigation } from "@/features/firstSetup/types";
+import { useFirstSetupContext } from "@/features/firstSetup/components/FirstSetupContext";
 
-export type SelectDirectoryCardProps = {
-   cardNavigation: CardNavigation;
-
-   selectedDirectory: string | undefined;
-   setSelectedDirectory: Dispatch<SetStateAction<string | undefined>>;
-};
-
-export const SelectDirectoryCard: FC<SelectDirectoryCardProps> = ({
-   cardNavigation,
-   selectedDirectory,
-   setSelectedDirectory,
-}) => {
+export const SelectDirectoryCard: FC = () => {
+   const { data, setData } = useFirstSetupContext();
    useEffect(() => {
-      if (!selectedDirectory) return;
-      const diskStats = window.fs.getDiskStats(selectedDirectory);
+      if (!data.selectedDirectory) return;
+      const diskStats = window.fs.getDiskStats(data.selectedDirectory);
 
       if ("error" in diskStats) return;
-   }, [selectedDirectory]);
+   }, [data.selectedDirectory]);
 
    return (
       <FirstSetupCard
-         cardNavigation={cardNavigation}
-         isVisible={cardNavigation.currentStep === 1}
+         cardNumber={1}
          title="Select path to your library"
          backButtonLabel="Back"
          nextButtonLabel="Next"
-         nextButtonActive={!!selectedDirectory && selectedDirectory !== ""}
+         nextButtonActive={
+            !!data.selectedDirectory && data.selectedDirectory !== ""
+         }
       >
          <FolderSelector
             className="w-96"
-            value={selectedDirectory}
+            value={data.selectedDirectory}
             onChange={(value) => {
                const lastDirectory = window.path.parse(value.path).base;
 
                if (!lastDirectory) return;
 
                if (lastDirectory === LIBRARY_DIRECTORY_NAME) {
-                  setSelectedDirectory(value.path);
+                  setData({ selectedDirectory: value.path });
                   return;
                }
 
-               setSelectedDirectory(
-                  window.path.join(value.path, LIBRARY_DIRECTORY_NAME)
-               );
+               setData({
+                  selectedDirectory: window.path.join(
+                     value.path,
+                     LIBRARY_DIRECTORY_NAME
+                  ),
+               });
             }}
          />
       </FirstSetupCard>

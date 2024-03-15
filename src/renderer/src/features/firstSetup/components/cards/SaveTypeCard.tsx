@@ -3,23 +3,26 @@ import { FC } from "react";
 import { RadioGroup } from "@/components/common/RadioGroup";
 import { RadioButton } from "@/components/common/RadioGroup/RadioButton";
 import { FirstSetupCard } from "@/features/firstSetup/components/FirstSetupCard";
-import { CardNavigation } from "@/features/firstSetup/types";
+import { useFirstSetupContext } from "@/features/firstSetup/components/FirstSetupContext";
+import { SaveType } from "@/types/common";
 
-export type SaveTypeCardProps = {
-   cardNavigation: CardNavigation;
-};
-
-export const SaveTypeCard: FC<SaveTypeCardProps> = ({ cardNavigation }) => {
+export const SaveTypeCard: FC = () => {
+   const { setData } = useFirstSetupContext();
    return (
       <FirstSetupCard
-         cardNavigation={cardNavigation}
-         isVisible={cardNavigation.currentStep === 2}
+         cardNumber={2}
          backButtonLabel="Back"
-         nextButtonLabel="Finish"
+         nextButtonLabel="Next"
          title="Select save type"
          nextButtonActive={true}
       >
-         <RadioGroup className="flex flex-col gap-5" defaultValue="copy">
+         <RadioGroup
+            className="flex flex-col gap-5"
+            defaultValue="copy"
+            onChange={(e) => {
+               setData({ selectedSaveType: e as SaveType });
+            }}
+         >
             <RadioButton
                label="Copy all audiobooks (recommended)"
                value="copy"
