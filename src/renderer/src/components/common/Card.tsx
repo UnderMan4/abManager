@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes } from "react";
+import { FC, HTMLAttributes, RefObject } from "react";
 
 import { Button, ButtonProps } from "@/components/common/Button";
 import { cls } from "@/utils/styleUtils";
@@ -14,6 +14,7 @@ export type CardProps = HTMLAttributes<HTMLDivElement> & {
    contentClassName?: string;
    leftButton?: CardButtonProps;
    rightButton?: CardButtonProps;
+   contentRef?: RefObject<HTMLDivElement>;
 };
 
 export const Card: FC<CardProps> = ({
@@ -23,6 +24,7 @@ export const Card: FC<CardProps> = ({
    contentClassName,
    leftButton,
    rightButton,
+   contentRef,
    ...props
 }) => {
    return (
@@ -38,7 +40,9 @@ export const Card: FC<CardProps> = ({
                {title}
             </Heading>
          )}
-         <div className={contentClassName}>{children}</div>
+         <div className={contentClassName} ref={contentRef}>
+            {children}
+         </div>
          {(leftButton || rightButton) && (
             <div className="flex justify-between">
                <div>

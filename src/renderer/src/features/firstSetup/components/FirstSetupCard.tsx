@@ -1,5 +1,5 @@
 import { AnimatePresence, Variants, m } from "framer-motion";
-import React, { FC } from "react";
+import React, { FC, RefObject } from "react";
 
 import { AbsoluteCenter, Card } from "@/components/common";
 import { useFirstSetupContext } from "@/features/firstSetup/components/FirstSetupContext";
@@ -12,6 +12,7 @@ export type FirstSetupCardProps = {
    nextButtonLabel?: string;
    nextButtonActive?: boolean;
    cardClassName?: string;
+   contentRef?: RefObject<HTMLDivElement>;
 };
 
 const variants: Variants = {
@@ -56,6 +57,7 @@ export const FirstSetupCard: FC<FirstSetupCardProps> = ({
    cardClassName,
    cardNumber,
    nextButtonActive,
+   contentRef,
 }) => {
    const {
       navigation: { nextStep, previousStep, setIsBack, isBack, currentStep },
@@ -74,6 +76,7 @@ export const FirstSetupCard: FC<FirstSetupCardProps> = ({
                   <Card
                      className={cardClassName}
                      title={title}
+                     contentRef={contentRef}
                      leftButton={
                         backButtonLabel
                            ? {

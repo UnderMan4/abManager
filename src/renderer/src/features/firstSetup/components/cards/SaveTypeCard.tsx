@@ -7,7 +7,7 @@ import { useFirstSetupContext } from "@/features/firstSetup/components/FirstSetu
 import { SaveType } from "@/types/common";
 
 export const SaveTypeCard: FC = () => {
-   const { setData } = useFirstSetupContext();
+   const { setData, data } = useFirstSetupContext();
    return (
       <FirstSetupCard
          cardNumber={2}
@@ -18,7 +18,7 @@ export const SaveTypeCard: FC = () => {
       >
          <RadioGroup
             className="flex flex-col gap-5"
-            defaultValue="copy"
+            defaultValue={data.selectedSaveType}
             onChange={(e) => {
                setData({ selectedSaveType: e as SaveType });
             }}
