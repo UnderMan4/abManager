@@ -11,10 +11,6 @@ body {
 }
 
 @layer components {
-   * {
-      @apply transition-all duration-400 ease-in-out;
-   }
-
    body {
       @apply bg-radix-gray-500;
       @apply text-radix-gray-1200;

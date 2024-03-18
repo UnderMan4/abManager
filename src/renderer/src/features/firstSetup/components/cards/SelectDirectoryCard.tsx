@@ -28,9 +28,9 @@ export const SelectDirectoryCard: FC = () => {
             className="w-96"
             value={data.selectedDirectory}
             onChange={(value) => {
+               console.log("🚀 ~ value:", value);
                const lastDirectory = window.path.parse(value.path).base;
-
-               if (!lastDirectory) return;
+               console.log("🚀 ~ lastDirectory:", lastDirectory);
 
                if (lastDirectory === LIBRARY_DIRECTORY_NAME) {
                   setData({ selectedDirectory: value.path });

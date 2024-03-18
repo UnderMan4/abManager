@@ -28,6 +28,7 @@
       "@radix-ui/colors": "^3.0.0",
       "classnames": "^2.5.1",
       "electron-updater": "^6.1.7",
+      "focus-trap-react": "^10.2.3",
       "framer-motion": "^11.0.3",
       "human-readable": "^0.2.1",
       "i18next": "^23.8.2",

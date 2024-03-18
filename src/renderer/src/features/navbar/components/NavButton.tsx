@@ -1,28 +1,47 @@
 import { Icon } from "@iconify/react";
 import { FC } from "react";
-import { Link, useLocation, useRoutes } from "react-router-dom";
+import { Link, useLocation, useNavigate, useRoutes } from "react-router-dom";
 
 import { cls } from "@/utils/styleUtils";
 
 export type NavButtonProps = {
    icon: string;
    isCollapsed?: boolean;
-   navigateTo: string;
    children: string;
-};
+} & (
+   | {
+        navigateTo?: string;
+        onClick?: never;
+     }
+   | {
+        navigateTo?: never;
+        onClick?: () => void;
+     }
+);
 
 export const NavButton: FC<NavButtonProps> = ({
    icon,
    isCollapsed,
    navigateTo,
    children,
+   onClick,
 }) => {
    const { pathname } = useLocation();
+   const navigate = useNavigate();
+
+   const handleClick = () => {
+      if (navigateTo) {
+         navigate(navigateTo);
+      } else {
+         onClick?.();
+      }
+   };
+
    return (
-      <Link
-         to={navigateTo}
+      <button
+         onClick={handleClick}
          className={cls(
-            "flex gap-3 p-2 pr-5 rounded-r-2xl items-center",
+            "flex gap-3 p-2 pr-5 pl-6 rounded-r-2xl items-center transition-colors duration-200 select-none",
             "hover:bg-radix-gray-a400",
             {
                "bg-radix-indigo-a300 hover:bg-radix-indigo-a400":
@@ -32,6 +51,6 @@ export const NavButton: FC<NavButtonProps> = ({
       >
          <Icon height="2rem" icon={icon} />
          {!isCollapsed && <span>{children}</span>}
-      </Link>
+      </button>
    );
 };

@@ -30,7 +30,7 @@ export const Card: FC<CardProps> = ({
    return (
       <div
          className={cls(
-            "p-4 px-6 pb-6 bg-radix-gray-a200 border border-radix-gray-700 rounded-2xl flex flex-col gap-8",
+            "p-4 px-6 pb-6 bg-radix-gray-300 border border-radix-gray-700 rounded-2xl flex flex-col gap-8",
             className
          )}
          {...props}
