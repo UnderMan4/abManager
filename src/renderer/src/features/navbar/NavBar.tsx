@@ -26,9 +26,6 @@ export const NavBar: FC = () => {
          >
             Add new
          </NavButton>
-         <Modal ref={modalRef}>
-            <Button>Test</Button>
-         </Modal>
       </div>
    );
 };
