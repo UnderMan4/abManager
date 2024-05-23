@@ -13,7 +13,7 @@ import os from "os";
 import path from "path";
 
 import icon from "../../resources/icon.png?asset";
-import { getDiskStats } from "./utils";
+import { getDiskStats, readFileMetadata } from "./utils";
 
 function createWindow(): void {
    // Create the browser window.
@@ -165,5 +165,11 @@ const fsHandling = () => {
       } catch (error) {
          event.returnValue = { error };
       }
+   });
+
+   ipcMain.handle("read-file-metadata", async (_, filePath) => {
+      const result = await readFileMetadata(filePath);
+
+      return result;
    });
 };

@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react";
 import { ButtonHTMLAttributes, FC, useMemo } from "react";
+import { useFocusRing } from "react-aria";
 
 import { cls } from "@/utils/styleUtils";
 
@@ -84,17 +85,22 @@ export const Button: FC<ButtonProps> = ({
       };
    }, [icon]);
 
+   const { isFocusVisible, focusProps } = useFocusRing();
    return (
       <button
          className={cls(
-            "px-4 py-2 rounded-xl font-bold tracking-wide border flex flex-row gap-2 items-center group",
+            "px-4 py-2 rounded-xl font-bold tracking-wide border flex flex-row gap-2 items-center group outline-none",
             "disabled:bg-radix-gray-500 disabled:text-radix-gray-700 disabled:border-radix-gray-600",
             "dark:disabled:bg-radix-gray-500 dark:disabled:text-radix-gray-700 dark:disabled:border-radix-gray-600",
             appearanceClassNames[appearance],
             hoverClassNames[appearance],
+            {
+               "ring-2 ring-radix-gray-1200": isFocusVisible,
+            },
             className
          )}
          {...props}
+         {...focusProps}
       >
          {iconOptions?.iconPosition === "left" && (
             <Icon

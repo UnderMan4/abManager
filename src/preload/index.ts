@@ -1,5 +1,6 @@
 import { electronAPI } from "@electron-toolkit/preload";
 import { contextBridge, ipcRenderer } from "electron";
+import { read } from "fs";
 import path from "path";
 
 // Custom APIs for renderer
@@ -33,6 +34,9 @@ const fs = {
    },
    getDiskStats: (path: string) => {
       return ipcRenderer.sendSync("get-disk-stats", path);
+   },
+   readFileMetadata: (filePath: string) => {
+      return ipcRenderer.invoke("read-file-metadata", filePath);
    },
 };
 

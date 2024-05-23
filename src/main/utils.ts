@@ -1,4 +1,5 @@
 import fs from "fs";
+import * as mm from "music-metadata";
 import path from "path";
 
 export const findMountPoint = (targetPath: string): string | null => {
@@ -109,4 +110,17 @@ export const getDiskStats = async (targetPath: string) => {
    //          return { error: new Error("Unknown error") };
    //       }
    //    }
+};
+
+export const readFileMetadata = async (filePath: string) => {
+   try {
+      const audioMetadata = await mm.parseFile(filePath);
+      const stats = await fs.promises.stat(filePath);
+      return {
+         audioMetadata,
+         stats,
+      };
+   } catch (error) {
+      return { error };
+   }
 };

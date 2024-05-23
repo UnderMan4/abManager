@@ -19,4 +19,8 @@ body {
    body.dark {
       @apply bg-radix-gray-300;
    }
+
+   /* * {
+      @apply outline outline-1 outline-pink-600;
+   } */
 }

@@ -1,12 +1,13 @@
 import { FC, useRef } from "react";
 
-import { Button } from "@/components/common";
+import {
+   AddNewModal,
+   AddNewModalRef,
+} from "@/features/navbar/components/AddNewModal";
 import { NavButton } from "@/features/navbar/components/NavButton";
 
-import { Modal, ModalRef } from "../../components/common/Modal";
-
 export const NavBar: FC = () => {
-   const modalRef = useRef<ModalRef>(null);
+   const modalRef = useRef<AddNewModalRef>(null);
    return (
       <div className="bg-radix-gray-a200 rounded-r-3xl p-3 pl-0 flex justify-between flex-col min-w-52">
          <div className="flex flex-col gap-2">
@@ -26,9 +27,7 @@ export const NavBar: FC = () => {
          >
             Add new
          </NavButton>
-         <Modal ref={modalRef}>
-            <Button>Test</Button>
-         </Modal>
+         <AddNewModal ref={modalRef} />
       </div>
    );
 };

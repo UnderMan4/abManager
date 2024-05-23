@@ -1,4 +1,5 @@
 import { ElectronAPI } from "@electron-toolkit/preload";
+import * as mm from "music-metadata";
 import Drive from "node-disk-info/dist/classes/drive";
 import { PlatformPath } from "path";
 
@@ -26,6 +27,15 @@ declare global {
             path: string
          ) => { success: true } | { error: Error };
          getDiskStats: (path: string) => { error: Error } | { data: Drive };
+         readFileMetadata: (filePath: string) => Promise<
+            | {
+                 error: Error;
+              }
+            | {
+                 stats: fs.Stats;
+                 audioMetadata: mm.IAudioMetadata;
+              }
+         >;
       };
       path: PlatformPath;
    }

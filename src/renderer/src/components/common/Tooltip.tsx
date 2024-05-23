@@ -13,17 +13,12 @@ import {
    useInteractions,
    useRole,
 } from "@floating-ui/react";
-import { AnimatePresence, Variants } from "framer-motion";
-import { m } from "framer-motion";
-import {
-   AriaRole,
-   FC,
-   MouseEventHandler,
-   ReactNode,
-   useRef,
-   useState,
-} from "react";
+import { AnimatePresence, Variants, m } from "framer-motion";
+import { FC, MouseEventHandler, ReactNode, useRef, useState } from "react";
+import { useFocusRing } from "react-aria";
 import { twMerge } from "tailwind-merge";
+
+import { cls } from "@/utils/styleUtils";
 
 export type TooltipProps = {
    className?: string;
@@ -70,6 +65,7 @@ export const Tooltip: FC<TooltipProps> = ({
       whileElementsMounted: autoUpdate,
    });
 
+   const { isFocusVisible, focusProps } = useFocusRing();
    const hover = useHover(context, { move: false });
    const focus = useFocus(context);
    const dismiss = useDismiss(context);
@@ -87,9 +83,12 @@ export const Tooltip: FC<TooltipProps> = ({
    return (
       <div className={twMerge("relative", className)}>
          <button
+            className={cls("outline-none rounded-full", {
+               "ring-2 ring-radix-gray-1200": isFocusVisible,
+            })}
             type="button"
             ref={refs.setReference}
-            {...getReferenceProps()}
+            {...getReferenceProps(focusProps)}
             onClick={onClick}
          >
             {children}

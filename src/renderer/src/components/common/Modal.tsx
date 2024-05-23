@@ -4,10 +4,13 @@ import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 
 import { Portal } from "@/components/common/Portal";
+import { cls } from "@/utils/styleUtils";
 
 import { Card, CardProps } from "./Card";
 
-export type ModalProps = CardProps;
+export type ModalProps = CardProps & {
+   onDismiss?: () => void;
+};
 
 export type ModalRef = {
    open: () => void;
@@ -16,12 +19,15 @@ export type ModalRef = {
 };
 
 export const Modal = forwardRef<ModalRef, ModalProps>(
-   ({ ...cardProps }, ref) => {
+   ({ onDismiss, ...cardProps }, ref) => {
       const [isOpen, setIsOpen] = useState(false);
 
       const modalRef = useRef<HTMLDivElement>(null);
 
-      useOnClickOutside(modalRef, () => setIsOpen(false));
+      useOnClickOutside(modalRef, () => {
+         onDismiss?.();
+         setIsOpen(false);
+      });
       useImperativeHandle(ref, () => ({
          open: () => {
             setIsOpen(true);
@@ -46,10 +52,19 @@ export const Modal = forwardRef<ModalRef, ModalProps>(
                         <div
                            ref={modalRef}
                            onKeyDown={(e) => {
-                              if (e.key === "Escape") setIsOpen(false);
+                              if (e.key === "Escape") {
+                                 onDismiss?.();
+                                 setIsOpen(false);
+                              }
                            }}
                         >
-                           <Card {...cardProps} />
+                           <Card
+                              {...cardProps}
+                              className={cls(
+                                 "max-h-[calc(100vh-4rem)] max-w-[calc(100vw-4rem)] overflow-y-auto",
+                                 cardProps.className
+                              )}
+                           />
                         </div>
                      </FocusTrap>
                   </div>
