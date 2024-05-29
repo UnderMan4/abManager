@@ -37,7 +37,7 @@ export const ArrayCover: FC<ArrayCoverProps> = ({
    return (
       <div
          className={cls(
-            "bg-radix-gray-500 rounded-xl overflow-hidden flex items-center justify-center aspect-square",
+            "bg-radix-gray-500 rounded-xl overflow-hidden flex items-center justify-center aspect-square shrink-0",
             className
          )}
          style={{ width: `${sizeMap[size]}rem` }}

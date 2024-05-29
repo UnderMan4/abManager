@@ -52,7 +52,7 @@ export const Checkbox: FC<CheckboxProps> = ({
             </VisuallyHidden>
             <div
                className={cls(
-                  "size-6 rounded-lg transition-colors duration-75",
+                  "size-6 rounded-lg transition-colors duration-75 select-none",
                   {
                      "bg-radix-indigo-700": state.isSelected,
                      "bg-radix-gray-700": !state.isSelected,

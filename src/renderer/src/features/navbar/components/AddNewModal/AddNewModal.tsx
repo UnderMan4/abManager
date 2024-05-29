@@ -2,6 +2,7 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from "react";
 
 import { Button } from "@/components/common";
 import { Modal, ModalRef } from "@/components/common/Modal";
+import { MethodButton } from "@/features/navbar/components/AddNewModal/MethodButton";
 import { useObjectState } from "@/hooks";
 
 import { ImportFilesModal } from "./ImportFilesModal";
@@ -83,16 +84,16 @@ export const AddNewModal = forwardRef<AddNewModalRef>((_, ref) => {
       <>
          <Modal
             ref={importMethodModalRef}
-            contentClassName="flex flex-col gap-3"
+            contentClassName="flex gap-5"
             title="Import new"
             onDismiss={handleDismiss}
          >
-            <Button icon="ph:file-bold" onClick={selectFile}>
+            <MethodButton icon="ph:file-bold" onClick={selectFile}>
                File
-            </Button>
-            <Button icon="ph:folder-open-bold" onClick={selectFolder}>
+            </MethodButton>
+            <MethodButton icon="ph:folder-open-bold" onClick={selectFolder}>
                Folder
-            </Button>
+            </MethodButton>
          </Modal>
          <ImportFilesModal
             handleDismiss={handleDismiss}

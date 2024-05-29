@@ -11,6 +11,7 @@ export type ButtonIconHoverAnimation = keyof typeof iconHoverAnimations;
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
    appearance?: ButtonAppearance;
    icon?: ButtonIconOptions;
+   mini?: boolean;
 };
 
 export type ButtonIconOptions =
@@ -63,6 +64,7 @@ export const Button: FC<ButtonProps> = ({
    icon,
    appearance = "solid",
    children,
+   mini,
    ...props
 }) => {
    const iconOptions = useMemo(() => {
@@ -89,13 +91,15 @@ export const Button: FC<ButtonProps> = ({
    return (
       <button
          className={cls(
-            "px-4 py-2 rounded-xl font-bold tracking-wide border flex flex-row gap-2 items-center group outline-none",
+            "font-bold tracking-wide border flex flex-row items-center group outline-none",
             "disabled:bg-radix-gray-500 disabled:text-radix-gray-700 disabled:border-radix-gray-600",
             "dark:disabled:bg-radix-gray-500 dark:disabled:text-radix-gray-700 dark:disabled:border-radix-gray-600",
             appearanceClassNames[appearance],
             hoverClassNames[appearance],
             {
                "ring-2 ring-radix-gray-1200": isFocusVisible,
+               "px-4 py-2 rounded-xl gap-2": !mini,
+               "px-1 rounded-md gap-1": mini,
             },
             className
          )}
