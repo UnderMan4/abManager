@@ -10,6 +10,7 @@ import {
    useState,
 } from "react";
 import { useButton, useFocusRing, useId } from "react-aria";
+import { set } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
 import { AccordionContext } from "@/components/common/Accordion/AccordionRoot";
@@ -34,27 +35,33 @@ export const AccordionItem: FC<AccordionItemProps> = ({
 }) => {
    const id = useId(props.id);
 
-   const [isOpen, setIsOpen] = useState(defaultOpen || false);
-
    const { closeItem, openItem, openItems } = useSafeContext(
       AccordionContext,
       "AccordionItem should be used within an AccordionRoot"
    );
+   const [isOpen, setIsOpen] = useState(defaultOpen);
 
    const onHeaderClick = useCallback(() => {
-      console.log("onHeaderClick");
-      setIsOpen((prev) => !prev);
-   }, [isOpen, openItem, closeItem, id]);
-
-   useEffect(() => {
+      console.log("onHeaderClick", isOpen, id);
       if (isOpen) {
-         openItem(id);
-      } else {
          closeItem(id);
+      } else {
+         openItem(id);
       }
-   }, [isOpen]);
+   }, [openItem, closeItem, id]);
 
    const { isFocusVisible, focusProps } = useFocusRing();
+
+   useEffect(() => {
+      if (defaultOpen) {
+         openItem(id);
+      }
+   }, []);
+
+   useEffect(() => {
+      console.log("openItems", openItems, id, openItems.has(id));
+      setIsOpen(openItems.has(id));
+   }, [openItems]);
 
    return (
       <div className={twMerge("", className)} {...props}>
