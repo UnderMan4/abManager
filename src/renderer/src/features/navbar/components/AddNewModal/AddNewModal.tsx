@@ -1,4 +1,11 @@
-import { forwardRef, useCallback, useImperativeHandle, useRef } from "react";
+import {
+   forwardRef,
+   useCallback,
+   useImperativeHandle,
+   useRef,
+   useState,
+} from "react";
+import { set } from "react-hook-form";
 
 import { Button } from "@/components/common";
 import { Modal, ModalRef } from "@/components/common/Modal";
@@ -20,6 +27,8 @@ export type AddNewModalData = {
 export const AddNewModal = forwardRef<AddNewModalRef>((_, ref) => {
    const importMethodModalRef = useRef<ModalRef>(null);
    const importFileModalRef = useRef<ModalRef>(null);
+
+   const [canOpenDialog, setCanOpenDialog] = useState(true);
 
    const [data, setData] = useObjectState<AddNewModalData>({
       type: undefined,
@@ -53,11 +62,15 @@ export const AddNewModal = forwardRef<AddNewModalRef>((_, ref) => {
    }, [data, setData]);
 
    const selectFile = useCallback(async () => {
+      if (!canOpenDialog) return;
+
       setData({ type: "file" });
+
+      setCanOpenDialog(false);
       const result = await window.api.showOpenDialog({
          properties: ["multiSelections", "openFile"],
       });
-
+      setCanOpenDialog(true);
       if (!result || result.canceled) return;
 
       setData({ dirs: result.filePaths });
@@ -65,10 +78,15 @@ export const AddNewModal = forwardRef<AddNewModalRef>((_, ref) => {
    }, [setData]);
 
    const selectFolder = useCallback(async () => {
+      if (!canOpenDialog) return;
+
       setData({ type: "folder" });
+
+      setCanOpenDialog(false);
       const result = await window.api.showOpenDialog({
          properties: ["openDirectory"],
       });
+      setCanOpenDialog(true);
 
       if (!result || result.canceled) return;
 

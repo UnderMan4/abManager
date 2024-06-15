@@ -34,36 +34,7 @@ export const AccordionRoot: FC<AccordionRootProps> = ({
    const accordionRef = React.useRef<HTMLDivElement>(null);
 
    const [openItems, setOpenItems] = useState(new Set<string>());
-
-   const openItem = useCallback(
-      (id: string) => {
-         console.log("openItem");
-         setOpenItems((prev) => {
-            if (options?.allowMultipleExpanded) {
-               const newSet = new Set(prev);
-               newSet.add(id);
-               return newSet;
-            }
-            return new Set([id]);
-         });
-      },
-      [options?.allowMultipleExpanded, setOpenItems]
-   );
-
-   const closeItem = useCallback(
-      (id: string) => {
-         console.log("closeItem");
-         setOpenItems((prev) => {
-            const next = new Set(prev);
-            next.delete(id);
-            return next;
-         });
-      },
-      [setOpenItems]
-   );
-
    const toggleItem = useCallback((id: string) => {
-      console.log("toggleItem");
       if (options.allowMultipleExpanded) {
          setOpenItems((prev) => {
             const newSet = new Set(prev);

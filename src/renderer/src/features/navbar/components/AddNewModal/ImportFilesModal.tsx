@@ -10,6 +10,7 @@ import { ArrayCover } from "@/components/common/ArrayCover";
 import { Checkbox } from "@/components/common/Checkbox";
 import { Modal, ModalRef } from "@/components/common/Modal";
 import { AddNewModalData } from "@/features/navbar/components/AddNewModal/AddNewModal";
+import { NewBookItem } from "@/features/navbar/components/AddNewModal/NewBookItem";
 
 export type ImportFilesModalProps = {
    data: AddNewModalData;
@@ -91,14 +92,6 @@ export const ImportFilesModal = forwardRef<ModalRef, ImportFilesModalProps>(
                appearance: "outlineGray",
             }}
          >
-            <AccordionRoot options={{ allowMultipleExpanded: true }}>
-               <AccordionItem label="Advanced options">
-                  <p>
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Ex?
-                  </p>
-               </AccordionItem>
-            </AccordionRoot>
             <div className="flex gap-3">
                <Button
                   appearance="outlineGray"
@@ -118,53 +111,21 @@ export const ImportFilesModal = forwardRef<ModalRef, ImportFilesModalProps>(
                </Button>
             </div>
 
-            <div className="flex flex-col gap-3">
-               {filesRead.map(({ audioMetadata, path, isSelected }) => {
-                  const title = audioMetadata.common?.title;
-                  const cover = audioMetadata.common?.picture?.[0];
-                  const authors = audioMetadata.common?.artists;
-                  const series = audioMetadata.common?.album;
-                  const seriesPart = audioMetadata.common?.track.no;
-                  const year = audioMetadata.common?.year;
-
-                  return (
-                     <div
-                        className="flex gap-2 bg-radix-gray-400 p-2 rounded-2xl items-center w-full overflow-hidden"
-                        key={path}
-                     >
-                        <Checkbox
-                           className="flex gap-2 shrink-0"
-                           isSelected={isSelected}
-                           onChange={(value) => setIsChecked(path, value)}
-                           aria-label={
-                              title
-                                 ? `${title} by ${authors?.join(", ")}`
-                                 : path
-                           }
-                        />
-                        <div className="flex gap-2 w-full min-w-0">
-                           <ArrayCover data={cover} size="sm" />
-                           <div className="flex flex-col w-full min-w-0">
-                              <div className="max-w-full pr-3 overflow-hidden overflow-ellipsis whitespace-nowrap">
-                                 <span className="font-bold text-lg">
-                                    {title}
-                                 </span>
-                              </div>
-                              <span className="text-sm text-radix-gray-1100 font-bold">
-                                 {authors?.join(", ")}
-                              </span>
-                              {series && (
-                                 <span className="text-sm text-radix-gray-1100">
-                                    {series}
-                                    {seriesPart && ` ${seriesPart}`}
-                                 </span>
-                              )}
-                           </div>
-                        </div>
-                     </div>
-                  );
-               })}
+            <div className="flex flex-col gap-3 max-h-[32rem] overflow-y-auto custom-scrollbar">
+               {filesRead.map((data) => (
+                  <NewBookItem {...data} setIsChecked={setIsChecked} />
+               ))}
             </div>
+
+            <AccordionRoot options={{ allowMultipleExpanded: true }}>
+               <AccordionItem label="Advanced options">
+                  <Checkbox
+                     label="One book"
+                     descriptionAsTooltip
+                     description="If checked all selected files are treated as parts of one book"
+                  />
+               </AccordionItem>
+            </AccordionRoot>
          </Modal>
       );
    }

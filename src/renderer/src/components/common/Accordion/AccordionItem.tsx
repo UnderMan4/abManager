@@ -1,16 +1,7 @@
 import { Icon } from "@iconify/react";
 import { Variants, m } from "framer-motion";
-import {
-   FC,
-   HTMLAttributes,
-   useCallback,
-   useEffect,
-   useLayoutEffect,
-   useRef,
-   useState,
-} from "react";
-import { useButton, useFocusRing, useId } from "react-aria";
-import { set } from "react-hook-form";
+import { FC, HTMLAttributes, useEffect, useState } from "react";
+import { useFocusRing, useId } from "react-aria";
 import { twMerge } from "tailwind-merge";
 
 import { AccordionContext } from "@/components/common/Accordion/AccordionRoot";
@@ -45,7 +36,6 @@ export const AccordionItem: FC<AccordionItemProps> = ({
    const { isFocusVisible, focusProps } = useFocusRing();
 
    useEffect(() => {
-      console.log("openItems", openItems, id, openItems.has(id));
       setIsOpen(openItems.has(id));
    }, [openItems]);
 

@@ -23,4 +23,31 @@ body {
    /* * {
       @apply outline outline-1 outline-pink-600;
    } */
+
+   .custom-scrollbar {
+      --sb-track-color: theme("colors.radix.gray.300");
+      --sb-thumb-color: theme("colors.radix.gray.800");
+      --sb-size: 14px;
+   }
+
+   .custom-scrollbar::-webkit-scrollbar {
+      width: var(--sb-size);
+   }
+
+   .custom-scrollbar::-webkit-scrollbar-track {
+      background: var(--sb-track-color);
+      border-radius: 15px;
+   }
+
+   .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: var(--sb-thumb-color);
+      border-radius: 15px;
+      border: 4px solid var(--sb-track-color);
+   }
+
+   @supports not selector(::-webkit-scrollbar) {
+      .custom-scrollbar {
+         scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+      }
+   }
 }

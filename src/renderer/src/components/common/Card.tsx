@@ -30,7 +30,7 @@ export const Card: FC<CardProps> = ({
    return (
       <div
          className={cls(
-            "p-4 px-6 pb-6 bg-radix-gray-300 border border-radix-gray-700 rounded-2xl flex flex-col gap-8",
+            "p-4 px-6 pb-6 bg-radix-gray-300 border border-radix-gray-700 rounded-2xl flex flex-col gap-8 overflow-hidden",
             className
          )}
          {...props}
@@ -40,7 +40,13 @@ export const Card: FC<CardProps> = ({
                {title}
             </Heading>
          )}
-         <div className={contentClassName} ref={contentRef}>
+         <div
+            className={cls(
+               contentClassName,
+               "custom-scrollbar max-h-full overflow-y-auto"
+            )}
+            ref={contentRef}
+         >
             {children}
          </div>
          {(leftButton || rightButton) && (

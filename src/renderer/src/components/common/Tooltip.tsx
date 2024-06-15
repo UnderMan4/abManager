@@ -20,6 +20,8 @@ import { twMerge } from "tailwind-merge";
 
 import { cls } from "@/utils/styleUtils";
 
+import { Portal } from "./Portal";
+
 export type TooltipProps = {
    className?: string;
    content: ReactNode;
@@ -85,6 +87,7 @@ export const Tooltip: FC<TooltipProps> = ({
          <button
             className={cls("outline-none rounded-full", {
                "ring-2 ring-radix-gray-1200": isFocusVisible,
+               "cursor-default": !onClick,
             })}
             type="button"
             ref={refs.setReference}
@@ -93,27 +96,29 @@ export const Tooltip: FC<TooltipProps> = ({
          >
             {children}
          </button>
-         <AnimatePresence>
-            {isOpen && (
-               <m.div
-                  initial="hidden"
-                  animate="visible"
-                  variants={tooltipVariants}
-                  exit="hidden"
-                  ref={refs.setFloating}
-                  style={floatingStyles}
-                  className="absolute bg-radix-gray-600 p-2 rounded-lg transition-none w-max max-w-sm"
-                  {...getFloatingProps()}
-               >
-                  {content}
-                  <FloatingArrow
-                     className="fill-radix-gray-600 transition-none"
-                     ref={arrowRef}
-                     context={context}
-                  />
-               </m.div>
-            )}
-         </AnimatePresence>
+         <Portal portalId="tooltip">
+            <AnimatePresence>
+               {isOpen && (
+                  <m.div
+                     initial="hidden"
+                     animate="visible"
+                     variants={tooltipVariants}
+                     exit="hidden"
+                     ref={refs.setFloating}
+                     style={floatingStyles}
+                     className="absolute bg-radix-gray-600 p-2 rounded-lg transition-none w-max max-w-sm"
+                     {...getFloatingProps()}
+                  >
+                     {content}
+                     <FloatingArrow
+                        className="fill-radix-gray-600 transition-none"
+                        ref={arrowRef}
+                        context={context}
+                     />
+                  </m.div>
+               )}
+            </AnimatePresence>
+         </Portal>
       </div>
    );
 };
