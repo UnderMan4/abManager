@@ -6,11 +6,10 @@ import { set } from "react-hook-form";
 
 import { Button } from "@/components/common";
 import { AccordionItem, AccordionRoot } from "@/components/common/Accordion";
+import { ArrayCover } from "@/components/common/ArrayCover";
 import { Checkbox } from "@/components/common/Checkbox";
 import { Modal, ModalRef } from "@/components/common/Modal";
 import { AddNewModalData } from "@/features/navbar/components/AddNewModal/AddNewModal";
-
-import { ArrayCover } from "../../../../components/common/ArrayCover";
 
 export type ImportFilesModalProps = {
    data: AddNewModalData;
@@ -92,53 +91,11 @@ export const ImportFilesModal = forwardRef<ModalRef, ImportFilesModalProps>(
                appearance: "outlineGray",
             }}
          >
-            <AccordionRoot>
+            <AccordionRoot options={{ allowMultipleExpanded: true }}>
                <AccordionItem label="Advanced options">
                   <p>
                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
                      Ex?
-                  </p>
-               </AccordionItem>
-               <AccordionItem label="Advanced options 2">
-                  <p>
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Voluptas amet fugit quos temporibus earum expedita harum
-                     assumenda, et numquam cum consequatur, unde perferendis
-                     veniam ipsum. Doloribus quae cumque fugiat assumenda.
-                  </p>
-               </AccordionItem>
-               <AccordionItem label="Advanced options 3">
-                  <p>
-                     Distinctio maiores harum vero modi, dolorem molestiae ex
-                     eligendi. Asperiores unde saepe dolorum necessitatibus in,
-                     ipsam mollitia odit eius? Adipisci labore obcaecati
-                     nesciunt rerum distinctio pariatur eligendi doloremque
-                     atque. Accusantium?
-                  </p>
-               </AccordionItem>
-               <AccordionItem label="Advanced options 4">
-                  <p>
-                     Deserunt consequatur laborum est consequuntur libero.
-                     Officia commodi omnis exercitationem corrupti placeat, esse
-                     velit error corporis, tenetur quos ut illo possimus
-                     perspiciatis, odio nemo ullam aperiam porro fugiat
-                     consequuntur! Similique.
-                  </p>
-               </AccordionItem>
-               <AccordionItem label="Advanced options 5">
-                  <p>
-                     Deleniti molestias rerum assumenda nemo exercitationem?
-                     Nemo quam autem omnis dolor eos sunt architecto quod ea
-                     molestias esse eaque, odit ipsa sequi laboriosam eveniet
-                     eius dignissimos. Iusto explicabo inventore placeat?
-                  </p>
-               </AccordionItem>
-               <AccordionItem label="Advanced options 6">
-                  <p>
-                     Perspiciatis unde illum ea, quas rerum quos aperiam iste
-                     repudiandae ipsum reiciendis sequi tempora ab, natus ut
-                     dolorem nihil voluptates ratione consectetur veniam, iusto
-                     delectus earum labore! Est, quo officiis!
                   </p>
                </AccordionItem>
             </AccordionRoot>

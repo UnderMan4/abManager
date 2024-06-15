@@ -99,12 +99,17 @@ module.exports = {
    },
    plugins: [
       require("@tailwindcss/forms"),
-      plugin(({ addUtilities }) => {
+      plugin(({ addUtilities, addComponents }) => {
          addUtilities({
             ".center": {
                display: "flex",
                "align-items": "center",
                "justify-content": "center",
+            },
+         });
+         addComponents({
+            ".focus-ring": {
+               "@apply ring-2 ring-radix-gray-1200 outline-none": {},
             },
          });
       }),

@@ -15,6 +15,7 @@ import { twMerge } from "tailwind-merge";
 
 import { AccordionContext } from "@/components/common/Accordion/AccordionRoot";
 import { useSafeContext } from "@/hooks";
+import { cls } from "@/utils/styleUtils";
 
 export type AccordionItemProps = {
    className?: string;
@@ -35,28 +36,13 @@ export const AccordionItem: FC<AccordionItemProps> = ({
 }) => {
    const id = useId(props.id);
 
-   const { closeItem, openItem, openItems } = useSafeContext(
+   const { toggleItem, openItems } = useSafeContext(
       AccordionContext,
       "AccordionItem should be used within an AccordionRoot"
    );
-   const [isOpen, setIsOpen] = useState(defaultOpen);
-
-   const onHeaderClick = useCallback(() => {
-      console.log("onHeaderClick", isOpen, id);
-      if (isOpen) {
-         closeItem(id);
-      } else {
-         openItem(id);
-      }
-   }, [openItem, closeItem, id]);
+   const [isOpen, setIsOpen] = useState(defaultOpen ?? false);
 
    const { isFocusVisible, focusProps } = useFocusRing();
-
-   useEffect(() => {
-      if (defaultOpen) {
-         openItem(id);
-      }
-   }, []);
 
    useEffect(() => {
       console.log("openItems", openItems, id, openItems.has(id));
@@ -66,8 +52,10 @@ export const AccordionItem: FC<AccordionItemProps> = ({
    return (
       <div className={twMerge("", className)} {...props}>
          <button
-            className="flex w-full items-center"
-            onClick={onHeaderClick}
+            className={cls("flex w-full items-center px-2 py-1 rounded-lg", {
+               "focus-ring": isFocusVisible,
+            })}
+            onClick={toggleItem.bind(null, id)}
             {...focusProps}
          >
             <span className="grow text-left text-lg font-bold">{label}</span>
@@ -84,7 +72,7 @@ export const AccordionItem: FC<AccordionItemProps> = ({
             initial={false}
             animate={{ height: isOpen ? "auto" : 0 }}
          >
-            <div>{props.children}</div>
+            <div className="p-2">{props.children}</div>
          </m.div>
       </div>
    );

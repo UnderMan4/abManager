@@ -18,8 +18,7 @@ export type AccordionOptions = {
 
 export type AccordionState = {
    openItems: Set<string>;
-   openItem: (id: string) => void;
-   closeItem: (id: string) => void;
+   toggleItem: (id: string) => void;
    allowMultipleExpanded: boolean;
 };
 
@@ -33,7 +32,6 @@ export const AccordionRoot: FC<AccordionRootProps> = ({
    options = { allowMultipleExpanded: false },
 }) => {
    const accordionRef = React.useRef<HTMLDivElement>(null);
-   if (!children) return null;
 
    const [openItems, setOpenItems] = useState(new Set<string>());
 
@@ -64,16 +62,36 @@ export const AccordionRoot: FC<AccordionRootProps> = ({
       [setOpenItems]
    );
 
+   const toggleItem = useCallback((id: string) => {
+      console.log("toggleItem");
+      if (options.allowMultipleExpanded) {
+         setOpenItems((prev) => {
+            const newSet = new Set(prev);
+            if (newSet.has(id)) {
+               newSet.delete(id);
+            } else {
+               newSet.add(id);
+            }
+            return newSet;
+         });
+      } else {
+         setOpenItems((prev) => {
+            return prev.has(id) ? new Set() : new Set([id]);
+         });
+      }
+   }, []);
+
    const [state, setState] = useObjectState<AccordionState>({
       openItems,
-      openItem,
-      closeItem,
+      toggleItem,
       allowMultipleExpanded: options?.allowMultipleExpanded ?? false,
    });
 
    useEffect(() => {
       setState({ openItems });
    }, [openItems]);
+
+   if (!children) return null;
 
    return (
       <div className={twMerge("", className)} ref={accordionRef}>
