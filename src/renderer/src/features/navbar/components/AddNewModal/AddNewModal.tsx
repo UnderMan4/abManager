@@ -5,9 +5,7 @@ import {
    useRef,
    useState,
 } from "react";
-import { set } from "react-hook-form";
 
-import { Button } from "@/components/common";
 import { Modal, ModalRef } from "@/components/common/Modal";
 import { MethodButton } from "@/features/navbar/components/AddNewModal/MethodButton";
 import { useObjectState } from "@/hooks";

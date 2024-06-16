@@ -1,6 +1,5 @@
 import { electronAPI } from "@electron-toolkit/preload";
 import { contextBridge, ipcRenderer } from "electron";
-import { read } from "fs";
 import path from "path";
 
 // Custom APIs for renderer

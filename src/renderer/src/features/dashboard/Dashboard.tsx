@@ -6,5 +6,5 @@ export type DashboardProps = {
 };
 
 export const Dashboard: FC<DashboardProps> = ({ className }) => {
-   return <div className={twMerge("", className)}>Dashboard</div>;
+   return <div className={twMerge("", className)}></div>;
 };

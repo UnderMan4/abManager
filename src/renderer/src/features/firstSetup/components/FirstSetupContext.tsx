@@ -1,11 +1,4 @@
-import {
-   FC,
-   createContext,
-   useCallback,
-   useEffect,
-   useMemo,
-   useState,
-} from "react";
+import { FC, createContext, useCallback, useMemo, useState } from "react";
 
 import { CardNavigation } from "@/features/firstSetup/types";
 import { SetObjectState, useObjectState, useSafeContext } from "@/hooks";

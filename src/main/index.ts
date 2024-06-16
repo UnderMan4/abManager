@@ -13,7 +13,7 @@ import os from "os";
 import path from "path";
 
 import icon from "../../resources/icon.png?asset";
-import { getDiskStats, readFileMetadata } from "./utils";
+import { readFileMetadata } from "./utils";
 
 function createWindow(): void {
    // Create the browser window.

@@ -2,6 +2,7 @@ import { createMemoryRouter } from "react-router-dom";
 
 import { Dashboard } from "@/features/dashboard";
 import { Library } from "@/features/library/Library";
+import { Playground } from "@/features/playground/Playground";
 import { Settings } from "@/features/settings";
 import { MainLayout } from "@/layout/MainLayout";
 
@@ -21,6 +22,10 @@ export const appRouter: ReturnType<typeof createMemoryRouter> =
             {
                path: "/settings",
                element: <Settings />,
+            },
+            {
+               path: "/playground",
+               element: <Playground />,
             },
          ],
       },

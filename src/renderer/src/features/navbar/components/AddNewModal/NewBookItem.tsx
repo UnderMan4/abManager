@@ -1,5 +1,4 @@
-import React, { FC } from "react";
-import { twMerge } from "tailwind-merge";
+import { FC } from "react";
 
 import { ArrayCover } from "@/components/common/ArrayCover";
 import { Checkbox } from "@/components/common/Checkbox";
@@ -20,7 +19,7 @@ export const NewBookItem: FC<NewBookItemProps> = ({
    const authors = audioMetadata.common?.artists;
    const series = audioMetadata.common?.album;
    const seriesPart = audioMetadata.common?.track.no;
-   const year = audioMetadata.common?.year;
+   // const year = audioMetadata.common?.year;
 
    return (
       <div

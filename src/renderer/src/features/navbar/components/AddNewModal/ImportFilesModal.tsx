@@ -1,20 +1,23 @@
 import { Stats } from "fs";
-import { use } from "i18next";
 import { IAudioMetadata } from "music-metadata";
 import { forwardRef, useCallback, useEffect, useState } from "react";
-import { set } from "react-hook-form";
 
 import { Button } from "@/components/common";
 import { AccordionItem, AccordionRoot } from "@/components/common/Accordion";
-import { ArrayCover } from "@/components/common/ArrayCover";
 import { Checkbox } from "@/components/common/Checkbox";
 import { Modal, ModalRef } from "@/components/common/Modal";
 import { AddNewModalData } from "@/features/navbar/components/AddNewModal/AddNewModal";
 import { NewBookItem } from "@/features/navbar/components/AddNewModal/NewBookItem";
+import { useObjectState } from "@/hooks";
 
 export type ImportFilesModalProps = {
    data: AddNewModalData;
    handleDismiss: () => void;
+};
+
+export type AdvancedOptions = {
+   oneBook: boolean;
+   sortType: "auto" | "fileName" | "trackNumber";
 };
 
 export type FileData = {
@@ -78,6 +81,12 @@ export const ImportFilesModal = forwardRef<ModalRef, ImportFilesModalProps>(
          );
       }, [setFilesRead]);
 
+      const [advancedOptions, setAdvancedOptions] =
+         useObjectState<AdvancedOptions>({
+            oneBook: false,
+            sortType: "auto",
+         });
+
       return (
          <Modal
             ref={ref}
@@ -121,6 +130,10 @@ export const ImportFilesModal = forwardRef<ModalRef, ImportFilesModalProps>(
                <AccordionItem label="Advanced options">
                   <Checkbox
                      label="One book"
+                     isSelected={advancedOptions.oneBook}
+                     onChange={(value) =>
+                        setAdvancedOptions({ oneBook: value })
+                     }
                      descriptionAsTooltip
                      description="If checked all selected files are treated as parts of one book"
                   />

@@ -30,6 +30,11 @@ body {
       --sb-size: 14px;
    }
 
+   .custom-scrollbar.light-scrollbar {
+      --sb-track-color: theme("colors.radix.gray.400");
+      --sb-thumb-color: theme("colors.radix.gray.900");
+   }
+
    .custom-scrollbar::-webkit-scrollbar {
       width: var(--sb-size);
    }

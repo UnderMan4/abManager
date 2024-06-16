@@ -1,5 +1,4 @@
 import { Icon } from "@iconify/react";
-import { sizeFormatter } from "human-readable";
 import { FC, InputHTMLAttributes, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { useEventListener } from "usehooks-ts";

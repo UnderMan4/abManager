@@ -16,6 +16,7 @@ function App(): JSX.Element {
          }
       });
       return () => {
+         // @ts-ignore
          unsubscribe();
       };
    }, []);

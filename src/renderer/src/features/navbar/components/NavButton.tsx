@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 import { FC } from "react";
-import { Link, useLocation, useNavigate, useRoutes } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { cls } from "@/utils/styleUtils";
 

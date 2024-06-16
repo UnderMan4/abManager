@@ -1,4 +1,3 @@
-import { ElementType, FC } from "react";
 import { PolymorphicPropsWithoutRef } from "react-polymorphic-types";
 import { twMerge } from "tailwind-merge";
 

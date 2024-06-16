@@ -20,6 +20,11 @@ export const NavBar: FC = () => {
             <NavButton icon="ph:gear-six-bold" navigateTo="/settings">
                Settings
             </NavButton>
+            {process.env.NODE_ENV === "development" && (
+               <NavButton icon="ph:cheers-bold" navigateTo="/playground">
+                  Playground
+               </NavButton>
+            )}
          </div>
          <NavButton
             icon="ph:plus-bold"

@@ -2,7 +2,7 @@ import React, { FC, ReactNode, useEffect } from "react";
 import { createPortal } from "react-dom";
 
 export type PortalProps = {
-   portalId: "modal" | "tooltip";
+   portalId: "modal" | "tooltip" | "dropdown" | "contextMenu";
    children: ReactNode;
 };
 
