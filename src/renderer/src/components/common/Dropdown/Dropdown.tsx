@@ -4,19 +4,19 @@ import { AnimatePresence, Variants, m } from "framer-motion";
 import {
    FC,
    ReactElement,
-   useEffect,
    useLayoutEffect,
+   useMemo,
    useRef,
    useState,
 } from "react";
 import { twMerge } from "tailwind-merge";
 import { useHover, useOnClickOutside } from "usehooks-ts";
 
+import { DropdownMultiselectList } from "@/components/common/Dropdown/DropdownMultiselectList";
 import {
    DropdownOptionProps,
    DropdownOptionSeparatorProps,
 } from "@/components/common/Dropdown/DropdownOption";
-import { useObjectState } from "@/hooks";
 import { createNullableContext } from "@/utils/componentUtils";
 import { cls } from "@/utils/styleUtils";
 
@@ -72,32 +72,36 @@ export const Dropdown: FC<DropdownProps> = ({
          : new Set()
    );
 
-   useEffect(() => {
-      console.log(selectedValue);
-   }, [selectedValue]);
    const [isOpen, setIsOpen] = useState(false);
 
-   const [state] = useObjectState<DropdownState>({
-      selectedValue,
-      setSelectedValue: (newValue) => {
-         if (options?.multiselect) {
-            setSelectedValue((prev) => {
-               if ([...prev].some((value) => value.value === newValue.value)) {
-                  return new Set(
-                     [...prev].filter((value) => value.value !== newValue.value)
-                  );
-               }
-               return new Set([...prev, newValue]);
-            });
-         } else {
-            setSelectedValue(new Set([newValue]));
-            setIsOpen(false);
-         }
+   const state = useMemo<DropdownState>(
+      () => ({
+         selectedValue,
+         setSelectedValue: (newValue) => {
+            if (options?.multiselect) {
+               setSelectedValue((prev) => {
+                  if (
+                     [...prev].some((value) => value.value === newValue.value)
+                  ) {
+                     return new Set(
+                        [...prev].filter(
+                           (value) => value.value !== newValue.value
+                        )
+                     );
+                  }
+                  return new Set([...prev, newValue]);
+               });
+            } else {
+               setSelectedValue(new Set([newValue]));
+               setIsOpen(false);
+            }
 
-         onChange?.(selectedValue);
-      },
-      isOpen,
-   });
+            onChange?.(selectedValue);
+         },
+         isOpen,
+      }),
+      [selectedValue, isOpen]
+   );
 
    const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -135,18 +139,7 @@ export const Dropdown: FC<DropdownProps> = ({
             >
                {selectedValue.size > 0 ? (
                   options?.multiselect ? (
-                     <div className="flex overflow-hidden gap-2 items-center">
-                        {Array.from(selectedValue).map((value, index) => (
-                           <>
-                              <span className="text-nowrap" key={value.value}>
-                                 {value.label}
-                              </span>
-                              {index < selectedValue.size - 1 && (
-                                 <div className="rounded-full size-1 bg-radix-gray-1200 shrink-0" />
-                              )}
-                           </>
-                        ))}
-                     </div>
+                     <DropdownMultiselectList list={selectedValue} />
                   ) : (
                      <span className="text-ellipsis overflow-hidden whitespace-nowrap">
                         {selectedValue.values().next().value.label}
@@ -163,7 +156,7 @@ export const Dropdown: FC<DropdownProps> = ({
                   initial="closed"
                   className="flex items-center justify-center h-full"
                >
-                  <Icon icon="ph:caret-down-bold"></Icon>
+                  <Icon icon="ph:caret-down-bold" />
                </m.div>
             </button>
          </div>

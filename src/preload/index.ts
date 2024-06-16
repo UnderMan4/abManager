@@ -52,12 +52,12 @@ if (process.contextIsolated) {
       console.error(error);
    }
 } else {
-   // @ts-ignore (define in dts)
+   // @ts-expect-error (defined in dts)
    window.electron = electronAPI;
-   // @ts-ignore (define in dts)
+   // @ts-expect-error (defined in dts)
    window.api = api;
-   // @ts-ignore (define in dts)
+   // @ts-expect-error (defined in dts)
    window.fs = fs;
-   // @ts-ignore (define in dts)
+   // @ts-expect-error (defined in dts)
    window.path = path;
 }

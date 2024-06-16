@@ -3,7 +3,7 @@ import { FC } from "react";
 import { RadioGroup } from "@/components/common/RadioGroup";
 import { RadioButton } from "@/components/common/RadioGroup/RadioButton";
 import { FirstSetupCard } from "@/features/firstSetup/components/FirstSetupCard";
-import { useFirstSetupContext } from "@/features/firstSetup/components/FirstSetupContext";
+import { useFirstSetupContext } from "@/hooks/contexts/useFirstSetupContext";
 import { SaveType } from "@/types/common";
 
 export const SaveTypeCard: FC = () => {

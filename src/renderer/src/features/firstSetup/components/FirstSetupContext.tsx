@@ -1,7 +1,7 @@
 import { FC, createContext, useCallback, useMemo, useState } from "react";
 
 import { CardNavigation } from "@/features/firstSetup/types";
-import { SetObjectState, useObjectState, useSafeContext } from "@/hooks";
+import { SetObjectState, useObjectState } from "@/hooks";
 import { useSettingsStore } from "@/stores";
 import { SaveType } from "@/types/common";
 
@@ -83,9 +83,3 @@ export const FirstSetupProvider: FC<FirstSetupContextProps> = ({
       </FirstSetupContext.Provider>
    );
 };
-
-export const useFirstSetupContext = () =>
-   useSafeContext(
-      FirstSetupContext,
-      "You are trying to use FirstSetupContext outside of its provider."
-   );

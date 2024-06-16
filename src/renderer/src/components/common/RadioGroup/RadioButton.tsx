@@ -10,14 +10,12 @@ import { cls } from "@/utils/styleUtils";
 import { RadioContext } from "./RadioGroup";
 
 export type RadioButtonProps = AriaRadioProps & {
-   className?: string;
    label: string;
    description?: ReactNode;
    descriptionAsTooltip?: boolean;
 };
 
 export const RadioButton: FC<RadioButtonProps> = ({
-   className,
    label,
    description,
    descriptionAsTooltip,

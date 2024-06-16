@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 export type HeadingTagName = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
-export type HeadingOwnProps = {};
+export type HeadingOwnProps = unknown;
 
 export type HeadingProps<T extends HeadingTagName = "h1"> =
    PolymorphicPropsWithoutRef<HeadingOwnProps, T>;

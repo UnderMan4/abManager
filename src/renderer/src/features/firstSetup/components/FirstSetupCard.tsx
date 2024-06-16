@@ -2,7 +2,7 @@ import { AnimatePresence, Variants, m } from "framer-motion";
 import React, { FC, RefObject } from "react";
 
 import { AbsoluteCenter, Card } from "@/components/common";
-import { useFirstSetupContext } from "@/features/firstSetup/components/FirstSetupContext";
+import { useFirstSetupContext } from "@/hooks/contexts/useFirstSetupContext";
 
 export type FirstSetupCardProps = {
    cardNumber: number;

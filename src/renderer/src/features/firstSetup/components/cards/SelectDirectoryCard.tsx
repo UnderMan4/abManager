@@ -3,7 +3,7 @@ import { FC, useEffect } from "react";
 import { FolderSelector } from "@/components/common";
 import { LIBRARY_DIRECTORY_NAME } from "@/constants";
 import { FirstSetupCard } from "@/features/firstSetup/components/FirstSetupCard";
-import { useFirstSetupContext } from "@/features/firstSetup/components/FirstSetupContext";
+import { useFirstSetupContext } from "@/hooks/contexts/useFirstSetupContext";
 
 export const SelectDirectoryCard: FC = () => {
    const { data, setData } = useFirstSetupContext();
@@ -28,9 +28,7 @@ export const SelectDirectoryCard: FC = () => {
             className="w-96"
             value={data.selectedDirectory}
             onChange={(value) => {
-               console.log("🚀 ~ value:", value);
                const lastDirectory = window.path.parse(value.path).base;
-               console.log("🚀 ~ lastDirectory:", lastDirectory);
 
                if (lastDirectory === LIBRARY_DIRECTORY_NAME) {
                   setData({ selectedDirectory: value.path });

@@ -9,14 +9,12 @@ export type FolderSelectorProps = Omit<
    InputHTMLAttributes<HTMLInputElement>,
    "className" | "onChange"
 > & {
-   inputClassName?: string;
    className?: string;
    onChange?: (e: { path: string }) => void;
 };
 
 export const FolderSelector: FC<FolderSelectorProps> = ({
    className,
-   inputClassName,
    onChange,
    ...inputProps
 }) => {

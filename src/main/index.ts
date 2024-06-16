@@ -69,7 +69,7 @@ app.whenReady().then(() => {
    });
 
    // IPC test
-   ipcMain.on("ping", () => console.log("pong"));
+   ipcMain.on("ping", () => console.warn("pong"));
    //expose variable to the renderer
 
    apiHandling();

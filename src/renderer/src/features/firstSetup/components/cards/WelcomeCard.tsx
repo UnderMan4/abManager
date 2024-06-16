@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { Button } from "@/components/common";
 import { FirstSetupCard } from "@/features/firstSetup/components/FirstSetupCard";
-import { useFirstSetupContext } from "@/features/firstSetup/components/FirstSetupContext";
+import { useFirstSetupContext } from "@/hooks/contexts/useFirstSetupContext";
 
 export const WelcomeCard: FC = () => {
    const { navigation } = useFirstSetupContext();

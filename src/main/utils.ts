@@ -5,6 +5,7 @@ import path from "path";
 export const findMountPoint = (targetPath: string): string | null => {
    let currentPath = path.resolve(targetPath);
 
+   // eslint-disable-next-line no-constant-condition
    while (true) {
       try {
          const stats = fs.statSync(currentPath);
@@ -43,7 +44,6 @@ export type DiskStats =
 
 export const getDiskStats = async (targetPath: string) => {
    fs.statfs(targetPath, (err, stats) => {
-      console.log("%cutils.ts line:48 stats", "color: #007acc;", stats, err);
       if (err) {
          return { error: err };
       }
@@ -57,8 +57,6 @@ export const getDiskStats = async (targetPath: string) => {
          },
       };
    });
-   const aa = await fs.promises.stat(targetPath, { bigint: true });
-   console.log(aa);
    //    try {
    //       if (os.platform() === "win32") {
    //          const drives = await drivelist.list();

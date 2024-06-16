@@ -42,7 +42,6 @@ export const ImportFilesModal = forwardRef<ModalRef, ImportFilesModalProps>(
                console.error(metadata.error);
                return null;
             }
-            console.log(metadata);
             return { ...metadata, path: dir, isSelected: true };
          });
 

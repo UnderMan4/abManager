@@ -16,7 +16,7 @@ function App(): JSX.Element {
          }
       });
       return () => {
-         // @ts-ignore
+         // @ts-expect-error trust me it works
          unsubscribe();
       };
    }, []);

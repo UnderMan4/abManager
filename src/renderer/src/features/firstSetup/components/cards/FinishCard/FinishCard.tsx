@@ -1,9 +1,9 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 
 import { Button } from "@/components/common";
 import { FirstSetupCard } from "@/features/firstSetup/components/FirstSetupCard";
-import { useFirstSetupContext } from "@/features/firstSetup/components/FirstSetupContext";
 import { ConfirmItem } from "@/features/firstSetup/components/cards/FinishCard/ConfirmItem";
+import { useFirstSetupContext } from "@/hooks/contexts/useFirstSetupContext";
 import { useSettingsStore } from "@/stores";
 
 export const FinishCard: FC = () => {
@@ -12,11 +12,6 @@ export const FinishCard: FC = () => {
    const { firstSetup } = useSettingsStore();
 
    const cardContentRef = useRef<HTMLDivElement>(null);
-
-   useEffect(() => {
-      if (cardContentRef.current) {
-      }
-   }, [cardContentRef]);
 
    const [isErrorCreatingLibrary, setIsErrorCreatingLibrary] = useState(false);
    return (

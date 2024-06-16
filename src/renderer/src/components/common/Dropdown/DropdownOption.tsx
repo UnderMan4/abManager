@@ -1,4 +1,5 @@
-import { FC } from "react";
+import { Icon } from "@iconify/react";
+import { FC, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { DropdownContext } from "@/components/common/Dropdown/Dropdown";
@@ -23,10 +24,19 @@ const DropdownOption: DropdownOptionComponent = ({
       DropdownContext,
       "DropdownOption should be used within a Dropdown component"
    );
+
+   const [isSelected, setIsSelected] = useState(
+      [...selectedValue].some((v) => v.value === value)
+   );
+
+   useEffect(() => {
+      setIsSelected([...selectedValue].some((v) => v.value === value));
+   }, [selectedValue]);
+
    return (
       <button
          className={twMerge(
-            "p-2 rounded-lg text-left",
+            "p-2 rounded-lg text-left flex items-center gap-2",
             "hover:bg-radix-gray-600",
             className
          )}
@@ -35,6 +45,9 @@ const DropdownOption: DropdownOptionComponent = ({
             label: children ?? value,
          })}
       >
+         <div className="w-5 h-full flex items-center justify-center">
+            {isSelected && <Icon icon="ph:check-bold" />}
+         </div>
          {children}
       </button>
    );
