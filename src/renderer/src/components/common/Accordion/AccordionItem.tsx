@@ -29,7 +29,7 @@ export const AccordionItem: FC<AccordionItemProps> = ({
 
    const { toggleItem, openItems } = useSafeContext(
       AccordionContext,
-      "AccordionItem should be used within an AccordionRoot"
+      "AccordionItem should be used within an AccordionRoot component"
    );
    const [isOpen, setIsOpen] = useState(defaultOpen ?? false);
 

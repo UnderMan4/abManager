@@ -69,21 +69,50 @@ export const Playground: FC = () => {
                />
             </Flexbox>
          </Flexbox>
-         <Dropdown options={{ placeholder: "Select one" }}>
-            <DropdownOption>Option 1</DropdownOption>
-            <DropdownOption>Option 2</DropdownOption>
-            <DropdownOption>Option 3</DropdownOption>
+         <Dropdown
+            options={{
+               placeholder:
+                  "Commodo labore eiusmod eiusmod irure ex exercitation adipisicing laborum do elit dolore.",
+            }}
+         >
+            <DropdownOption value="option1">Option 1</DropdownOption>
+            <DropdownOption value="option2">Option 2</DropdownOption>
+            <DropdownOption value="option3">Option 3</DropdownOption>
             <DropdownOption.Separator label="Separator" />
-            <DropdownOption>Option 4</DropdownOption>
-            <DropdownOption>Option 5</DropdownOption>
-            <DropdownOption>Option 5</DropdownOption>
-            <DropdownOption>Option 5</DropdownOption>
-            <DropdownOption>Option 5</DropdownOption>
-            <DropdownOption>Option 5</DropdownOption>
-            <DropdownOption>Option 5</DropdownOption>
-            <DropdownOption>Option 5</DropdownOption>
-            <DropdownOption>Option 5</DropdownOption>
-            <DropdownOption>Option 5</DropdownOption>
+            <DropdownOption value="option4">Option 4</DropdownOption>
+            <DropdownOption value="option5">Option 5</DropdownOption>
+            <DropdownOption value="option6">Option 6</DropdownOption>
+            <DropdownOption value="option7">Option 7</DropdownOption>
+            <DropdownOption value="option8">Option 8</DropdownOption>
+            <DropdownOption value="option9">Option 9</DropdownOption>
+            <DropdownOption value="option10">Option 10</DropdownOption>
+            <DropdownOption value="option11">Option 11</DropdownOption>
+            <DropdownOption value="option12">Option 12</DropdownOption>
+            <DropdownOption value="option13">Option 13</DropdownOption>
+            <DropdownOption value="option14">Option 14</DropdownOption>
+         </Dropdown>
+         <Dropdown
+            options={{
+               multiselect: true,
+               placeholder:
+                  "Commodo labore eiusmod eiusmod irure ex exercitation adipisicing laborum do elit dolore.",
+            }}
+         >
+            <DropdownOption value="option1">Option 1</DropdownOption>
+            <DropdownOption value="option2">Option 2</DropdownOption>
+            <DropdownOption value="option3">Option 3</DropdownOption>
+            <DropdownOption.Separator label="Separator" />
+            <DropdownOption value="option4">Option 4</DropdownOption>
+            <DropdownOption value="option5">Option 5</DropdownOption>
+            <DropdownOption value="option6">Option 6</DropdownOption>
+            <DropdownOption value="option7">Option 7</DropdownOption>
+            <DropdownOption value="option8">Option 8</DropdownOption>
+            <DropdownOption value="option9">Option 9</DropdownOption>
+            <DropdownOption value="option10">Option 10</DropdownOption>
+            <DropdownOption value="option11">Option 11</DropdownOption>
+            <DropdownOption value="option12">Option 12</DropdownOption>
+            <DropdownOption value="option13">Option 13</DropdownOption>
+            <DropdownOption value="option14">Option 14</DropdownOption>
          </Dropdown>
       </Flexbox>
    );

@@ -1,7 +1,14 @@
 import { flip, offset, shift, useFloating } from "@floating-ui/react";
 import { Icon } from "@iconify/react";
 import { AnimatePresence, Variants, m } from "framer-motion";
-import { FC, ReactElement, useLayoutEffect, useRef, useState } from "react";
+import {
+   FC,
+   ReactElement,
+   useEffect,
+   useLayoutEffect,
+   useRef,
+   useState,
+} from "react";
 import { twMerge } from "tailwind-merge";
 import { useHover, useOnClickOutside } from "usehooks-ts";
 
@@ -15,26 +22,32 @@ import { cls } from "@/utils/styleUtils";
 
 import { Portal } from "../Portal";
 
+export type DropdownElement =
+   | ReactElement<DropdownOptionProps>
+   | ReactElement<DropdownOptionSeparatorProps>;
+
 export type DropdownProps = {
    className?: string;
-   onChange?: (value: Set<string>) => void;
-   children?: (
-      | ReactElement<DropdownOptionProps>
-      | ReactElement<DropdownOptionSeparatorProps>
-   )[];
+   onChange?: (value: Set<SelectedValue>) => void;
+   children?: DropdownElement[] | DropdownElement;
    options?: DropdownOptions;
+};
+
+export type SelectedValue = {
+   value: string;
+   label: string;
 };
 
 export type DropdownOptions = {
    multiselect?: boolean;
-   defaultValue?: string | string[];
+   defaultValue?: SelectedValue | SelectedValue[];
    placeholder?: string;
    label?: string;
 };
 
 export type DropdownState = {
-   selectedValue: Set<string>;
-   setSelectedValue: (value: string) => void;
+   selectedValue: Set<SelectedValue>;
+   setSelectedValue: (value: SelectedValue) => void;
    isOpen: boolean;
 };
 
@@ -51,27 +64,33 @@ export const Dropdown: FC<DropdownProps> = ({
    options,
    children,
 }) => {
-   const [selectedValue, setSelectedValue] = useState<Set<string>>(
-      options?.defaultValue ? new Set(options?.defaultValue) : new Set()
+   const [selectedValue, setSelectedValue] = useState<Set<SelectedValue>>(
+      options?.defaultValue
+         ? Array.isArray(options.defaultValue)
+            ? new Set(options?.defaultValue)
+            : new Set([options.defaultValue])
+         : new Set()
    );
 
+   useEffect(() => {
+      console.log(selectedValue);
+   }, [selectedValue]);
    const [isOpen, setIsOpen] = useState(false);
 
    const [state] = useObjectState<DropdownState>({
       selectedValue,
-      setSelectedValue: (value: string) => {
+      setSelectedValue: (newValue) => {
          if (options?.multiselect) {
             setSelectedValue((prev) => {
-               const newSet = new Set(prev);
-               if (newSet.has(value)) {
-                  newSet.delete(value);
-               } else {
-                  newSet.add(value);
+               if ([...prev].some((value) => value.value === newValue.value)) {
+                  return new Set(
+                     [...prev].filter((value) => value.value !== newValue.value)
+                  );
                }
-               return newSet;
+               return new Set([...prev, newValue]);
             });
          } else {
-            setSelectedValue(new Set([value]));
+            setSelectedValue(new Set([newValue]));
             setIsOpen(false);
          }
 
@@ -88,9 +107,9 @@ export const Dropdown: FC<DropdownProps> = ({
       if (buttonRef.current) {
          setButtonWidth(buttonRef.current.offsetWidth);
       }
-   }, [buttonRef.current]);
+   }, [buttonRef.current, isOpen]);
 
-   const { refs, floatingStyles, context } = useFloating({
+   const { refs, floatingStyles } = useFloating({
       placement: "bottom-start",
       open: isOpen,
       middleware: [offset(10), flip(), shift()],
@@ -104,24 +123,39 @@ export const Dropdown: FC<DropdownProps> = ({
    });
 
    return (
-      <div className={twMerge("flex", className)}>
-         <div ref={refs.setReference}>
+      <div className={twMerge("flex w-64", className)}>
+         <div ref={refs.setReference} className="w-full">
             <button
                className={cls(
-                  "rounded-xl pl-4 pr-3 py-2 flex gap-2 items-center min-w-64 justify-between",
-                  "bg-radix-gray-500 border-2 border-radix-gray-800"
+                  "rounded-xl pl-4 pr-3 py-2 flex gap-2 items-center w-full justify-between",
+                  "bg-radix-gray-500 border border-radix-gray-800"
                )}
                onClick={() => setIsOpen((prev) => !prev)}
                ref={buttonRef}
             >
                {selectedValue.size > 0 ? (
-                  <>
-                     {selectedValue.forEach((value) => (
-                        <span>{value}</span>
-                     ))}
-                  </>
+                  options?.multiselect ? (
+                     <div className="flex overflow-hidden gap-2 items-center">
+                        {Array.from(selectedValue).map((value, index) => (
+                           <>
+                              <span className="text-nowrap" key={value.value}>
+                                 {value.label}
+                              </span>
+                              {index < selectedValue.size - 1 && (
+                                 <div className="rounded-full size-1 bg-radix-gray-1200 shrink-0" />
+                              )}
+                           </>
+                        ))}
+                     </div>
+                  ) : (
+                     <span className="text-ellipsis overflow-hidden whitespace-nowrap">
+                        {selectedValue.values().next().value.label}
+                     </span>
+                  )
                ) : (
-                  <span>{options?.placeholder}</span>
+                  <span className="text-radix-gray-1000 text-ellipsis overflow-hidden whitespace-nowrap">
+                     {options?.placeholder}
+                  </span>
                )}
                <m.div
                   variants={chevronVariants}
@@ -142,7 +176,7 @@ export const Dropdown: FC<DropdownProps> = ({
                         ref={refs.setFloating}
                         className={cls(
                            "overflow-hidden",
-                           "bg-radix-gray-400 border-2 border-radix-gray-700 rounded-xl shadow-lg p-1"
+                           "bg-radix-gray-400 border border-radix-gray-700 rounded-xl shadow-lg p-1"
                         )}
                         style={{ ...floatingStyles, width: buttonWidth }}
                         initial={{ height: 0, opacity: 0 }}
@@ -151,7 +185,7 @@ export const Dropdown: FC<DropdownProps> = ({
                      >
                         <div
                            className={cls(
-                              "flex flex-col max-h-64 overflow-y-auto custom-scrollbar light-scrollbar"
+                              "flex flex-col max-h-64 gap-1 overflow-y-auto custom-scrollbar light-scrollbar"
                            )}
                         >
                            {children}

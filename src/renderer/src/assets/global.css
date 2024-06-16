@@ -55,4 +55,8 @@ body {
          scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
       }
    }
+
+   .disable-scrollbars {
+      scrollbar-width: none;
+   }
 }
