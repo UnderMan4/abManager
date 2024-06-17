@@ -4,6 +4,7 @@ import { twMerge } from "tailwind-merge";
 
 import { DropdownContext } from "@/components/common/Dropdown/Dropdown";
 import { useSafeContext } from "@/hooks";
+import { cls } from "@/utils/styleUtils";
 
 export type DropdownOptionProps = {
    className?: string;
@@ -36,7 +37,7 @@ const DropdownOption: DropdownOptionComponent = ({
    return (
       <button
          className={twMerge(
-            "p-2 rounded-lg text-left flex items-center gap-2",
+            "p-2 rounded-lg text-left flex items-center gap-2 truncate shrink-0",
             "hover:bg-radix-gray-600",
             className
          )}
@@ -45,10 +46,10 @@ const DropdownOption: DropdownOptionComponent = ({
             label: children ?? value,
          })}
       >
-         <div className="w-5 h-full flex items-center justify-center">
+         <div className="w-5 h-full flex items-center justify-center shrink-0">
             {isSelected && <Icon icon="ph:check-bold" />}
          </div>
-         {children}
+         <span className="truncate">{children}</span>
       </button>
    );
 };
@@ -58,7 +59,19 @@ export type DropdownOptionSeparatorProps = {
 };
 
 const Separator: FC<DropdownOptionSeparatorProps> = ({ label }) => {
-   return <div className="border-t border-radix-gray-300 my-1">{label}</div>;
+   return (
+      <div
+         className={cls(
+            "border-b border-radix-gray-1000 font-bold pl-4 mx-1 text-radix-gray-1000",
+            {
+               "my-1 py-1": label,
+               "my-1": !label,
+            }
+         )}
+      >
+         {label}
+      </div>
+   );
 };
 
 DropdownOption.Separator = Separator;

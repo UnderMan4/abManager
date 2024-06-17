@@ -98,7 +98,9 @@ export const Playground: FC = () => {
                   "Commodo labore eiusmod eiusmod irure ex exercitation adipisicing laborum do elit dolore.",
             }}
          >
-            <DropdownOption value="option1">Option 1</DropdownOption>
+            <DropdownOption value="option1">
+               Option 1 Commodo labore eiusmod eiusmod irure ex
+            </DropdownOption>
             <DropdownOption value="option2">Option 2</DropdownOption>
             <DropdownOption value="option3">Option 3</DropdownOption>
             <DropdownOption.Separator label="Separator" />
@@ -106,6 +108,7 @@ export const Playground: FC = () => {
             <DropdownOption value="option5">Option 5</DropdownOption>
             <DropdownOption value="option6">Option 6</DropdownOption>
             <DropdownOption value="option7">Option 7</DropdownOption>
+            <DropdownOption.Separator />
             <DropdownOption value="option8">Option 8</DropdownOption>
             <DropdownOption value="option9">Option 9</DropdownOption>
             <DropdownOption value="option10">Option 10</DropdownOption>

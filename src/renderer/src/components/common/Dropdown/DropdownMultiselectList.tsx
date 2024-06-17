@@ -1,6 +1,7 @@
 import { FC, useLayoutEffect, useRef, useState } from "react";
 
 import { SelectedValue } from "@/components/common/Dropdown/Dropdown";
+import { cls } from "@/utils/styleUtils";
 
 export type DropdownMultiselectListProps = {
    list?: Set<SelectedValue>;
@@ -37,7 +38,9 @@ export const DropdownMultiselectList: FC<DropdownMultiselectListProps> = ({
    return (
       <div className="flex gap-2">
          <div
-            className={"flex overflow-hidden gap-2 items-center flex-wrap grow"}
+            className={
+               "flex overflow-hidden gap-2 items-stretch flex-wrap grow"
+            }
             ref={ref}
          >
             {Array.from(list).map((value, index) => (
@@ -49,14 +52,19 @@ export const DropdownMultiselectList: FC<DropdownMultiselectListProps> = ({
                </div>
             ))}
          </div>
-         {/* {!!hiddenItems && ( */}
-         <div className="relative border border-radix-gray-800 rounded-xl bg-radix-gray-600 px-1">
+         <div
+            className={cls(
+               "relative ring-1 ring-radix-gray-800 rounded-xl bg-radix-gray-600 px-1",
+               {
+                  invisible: !hiddenItems,
+               }
+            )}
+         >
             <span className="invisible">+99</span>
             <span className="absolute inset-0">
                +{Math.min(99, hiddenItems)}
             </span>
          </div>
-         {/* )} */}
       </div>
    );
 };
