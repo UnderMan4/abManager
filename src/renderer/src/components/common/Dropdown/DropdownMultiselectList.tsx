@@ -1,7 +1,8 @@
 import { FC, useLayoutEffect, useRef, useState } from "react";
 
-import { SelectedValue } from "@/components/common/Dropdown/Dropdown";
 import { cls } from "@/utils/styleUtils";
+
+import { SelectedValue } from "./types";
 
 export type DropdownMultiselectListProps = {
    list?: Set<SelectedValue>;
@@ -36,7 +37,7 @@ export const DropdownMultiselectList: FC<DropdownMultiselectListProps> = ({
    }, [list]);
 
    return (
-      <div className="flex gap-2">
+      <div className="flex gap-2 w-[calc(100%-1.5rem)]">
          <div
             className={
                "flex overflow-hidden gap-2 items-stretch flex-wrap grow"
@@ -48,7 +49,7 @@ export const DropdownMultiselectList: FC<DropdownMultiselectListProps> = ({
                   {index !== 0 && (
                      <div className="rounded-full size-1 bg-radix-gray-1200 shrink-0" />
                   )}
-                  <span className="text-nowrap">{value.label}</span>
+                  <span className="text-nowrap truncate">{value.label}</span>
                </div>
             ))}
          </div>

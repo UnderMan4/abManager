@@ -55,6 +55,9 @@ importers:
       invariant:
         specifier: 2.2.4
         version: 2.2.4
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       music-metadata:
         specifier: ^7.14.0
         version: 7.14.0
@@ -113,6 +116,9 @@ importers:
       '@types/invariant':
         specifier: ^2.2.37
         version: 2.2.37
+      '@types/lodash':
+        specifier: ^4.17.5
+        version: 4.17.5
       '@types/node':
         specifier: ^18.19.9
         version: 18.19.15
@@ -1279,6 +1285,9 @@ packages:
 
   '@types/keyv@3.1.4':
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
+
+  '@types/lodash@4.17.5':
+    resolution: {integrity: sha512-MBIOHVZqVqgfro1euRDWX7OO0fBVUUMrN6Pwm8LQsz8cWhEpihlvR70ENj3f40j58TNxZaWv2ndSkInykNBBJw==}
 
   '@types/ms@0.7.34':
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
@@ -4921,6 +4930,8 @@ snapshots:
   '@types/keyv@3.1.4':
     dependencies:
       '@types/node': 18.19.15
+
+  '@types/lodash@4.17.5': {}
 
   '@types/ms@0.7.34': {}
 
