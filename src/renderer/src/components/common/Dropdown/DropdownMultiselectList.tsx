@@ -6,10 +6,12 @@ import { SelectedValue } from "./types";
 
 export type DropdownMultiselectListProps = {
    list?: Set<SelectedValue>;
+   disabled?: boolean;
 };
 
 export const DropdownMultiselectList: FC<DropdownMultiselectListProps> = ({
    list = new Set(),
+   disabled,
 }) => {
    const ref = useRef<HTMLDivElement>(null);
 
@@ -49,7 +51,13 @@ export const DropdownMultiselectList: FC<DropdownMultiselectListProps> = ({
                   {index !== 0 && (
                      <div className="rounded-full size-1 bg-radix-gray-1200 shrink-0" />
                   )}
-                  <span className="text-nowrap truncate">{value.label}</span>
+                  <span
+                     className={cls("text-nowrap truncate", {
+                        "text-radix-gray-1000": disabled,
+                     })}
+                  >
+                     {value.label}
+                  </span>
                </div>
             ))}
          </div>
@@ -58,6 +66,7 @@ export const DropdownMultiselectList: FC<DropdownMultiselectListProps> = ({
                "relative ring-1 ring-radix-gray-800 rounded-xl bg-radix-gray-600 px-1",
                {
                   invisible: !hiddenItems,
+                  "opacity-50": disabled,
                }
             )}
          >

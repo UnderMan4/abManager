@@ -73,6 +73,7 @@ export const Playground: FC = () => {
             options={{
                placeholder:
                   "Commodo labore eiusmod eiusmod irure ex exercitation adipisicing laborum do elit dolore.",
+               defaultValues: "option1",
             }}
          >
             <DropdownOption value="option1">Option 1</DropdownOption>

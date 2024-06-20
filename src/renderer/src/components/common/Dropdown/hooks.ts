@@ -1,40 +1,64 @@
 import _ from "lodash";
 import { Dispatch, SetStateAction, useMemo, useState } from "react";
 
-import { DropdownOptions, SelectedValue } from "./types";
+import { DropdownElement, DropdownOptions, SelectedValue } from "./types";
 
-type UseDropdownStateProps = {
-   options?: DropdownOptions;
+type UseDropdownStateProps<Multiselect extends boolean> = {
+   options?: DropdownOptions<Multiselect>;
    onChange?: (value: Set<SelectedValue>) => void;
+   children?: DropdownElement[] | DropdownElement;
 };
 
 export type DropdownState = {
-   selectedValue: Set<SelectedValue>;
-   setSelectedValue: (value: SelectedValue) => void;
+   selectedValues: Set<SelectedValue>;
+   setSelectedValues: (value: SelectedValue) => void;
    isOpen: boolean;
    setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-export const useDropdownState = ({
+export const useDropdownState = <Multiselect extends boolean>({
    options,
    onChange,
-}: UseDropdownStateProps) => {
-   const [selectedValue, setSelectedValue] = useState<Set<SelectedValue>>(
-      options?.defaultValue
-         ? Array.isArray(options.defaultValue)
-            ? new Set(options?.defaultValue)
-            : new Set([options.defaultValue])
-         : new Set()
+   children,
+}: UseDropdownStateProps<Multiselect>): DropdownState => {
+   const [selectedValues, setSelectedValues] = useState<Set<SelectedValue>>(
+      () => {
+         const childrenArray = Array.isArray(children) ? children : [children];
+         const childrenValues = childrenArray.reduce<Set<SelectedValue>>(
+            (acc, child) => {
+               if (!child) return acc;
+               if (!("value" in child.props)) return acc;
+
+               if (child.props.value) {
+                  return new Set([
+                     ...acc,
+                     {
+                        value: child.props.value,
+                        label: child.props.children ?? child.props.value,
+                     },
+                  ]);
+               }
+               return acc;
+            },
+            new Set()
+         );
+
+         return new Set(
+            [...childrenValues].filter((value) =>
+               options?.defaultValues?.includes(value.value)
+            )
+         );
+      }
    );
 
-   const [isOpen, setIsOpen] = useState(false);
+   const [isOpen, setIsOpen] = useState<boolean>(false);
 
    const state = useMemo<DropdownState>(
       () => ({
-         selectedValue,
-         setSelectedValue: (newValue) => {
+         selectedValues,
+         setSelectedValues: (newValue) => {
             if (options?.multiselect) {
-               setSelectedValue((prev) => {
+               setSelectedValues((prev) => {
                   if (
                      [...prev].some((value) => value.value === newValue.value)
                   ) {
@@ -53,16 +77,16 @@ export const useDropdownState = ({
                   );
                });
             } else {
-               setSelectedValue(new Set([newValue]));
+               setSelectedValues(new Set([newValue]));
                setIsOpen(false);
             }
 
-            onChange?.(selectedValue);
+            onChange?.(selectedValues);
          },
          isOpen,
          setIsOpen,
       }),
-      [selectedValue, isOpen, setIsOpen]
+      [selectedValues, isOpen, setIsOpen]
    );
 
    return state;

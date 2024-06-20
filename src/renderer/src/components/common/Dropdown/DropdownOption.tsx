@@ -21,18 +21,18 @@ const DropdownOption: DropdownOptionComponent = ({
    children,
    value,
 }) => {
-   const { setSelectedValue, selectedValue } = useSafeContext(
+   const { setSelectedValues, selectedValues } = useSafeContext(
       DropdownContext,
       "DropdownOption should be used within a Dropdown component"
    );
 
    const [isSelected, setIsSelected] = useState(
-      [...selectedValue].some((v) => v.value === value)
+      [...selectedValues].some((v) => v.value === value)
    );
 
    useEffect(() => {
-      setIsSelected([...selectedValue].some((v) => v.value === value));
-   }, [selectedValue]);
+      setIsSelected([...selectedValues].some((v) => v.value === value));
+   }, [selectedValues]);
 
    return (
       <button
@@ -41,7 +41,7 @@ const DropdownOption: DropdownOptionComponent = ({
             "hover:bg-radix-gray-600",
             className
          )}
-         onClick={setSelectedValue.bind(null, {
+         onClick={setSelectedValues.bind(null, {
             value,
             label: children ?? value,
          })}

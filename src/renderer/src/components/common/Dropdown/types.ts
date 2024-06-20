@@ -14,9 +14,9 @@ export type SelectedValue = {
    label: string;
 };
 
-export type DropdownOptions = {
-   multiselect?: boolean;
-   defaultValue?: SelectedValue | SelectedValue[];
+export type DropdownOptions<Multiselect extends boolean> = {
+   multiselect?: Multiselect;
+   defaultValues?: Multiselect extends true ? string[] : string | [string];
    placeholder?: string;
    label?: string;
 };
