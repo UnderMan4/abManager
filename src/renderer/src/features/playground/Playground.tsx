@@ -7,7 +7,7 @@ import {
    RadioButton,
    RadioGroup,
 } from "@/components/common";
-import { DropdownOption } from "@/components/common/Dropdown/DropdownOption";
+import { DropdownOption } from "@/components/common/OldDropdown/DropdownOption";
 import { cls } from "@/utils/styleUtils";
 
 type FlexboxProps = {

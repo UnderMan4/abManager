@@ -1,7 +1,7 @@
 import { flip, offset, shift, useFloating } from "@floating-ui/react";
 import { Icon } from "@iconify/react";
 import { Variants, m } from "framer-motion";
-import { FC, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { useHover, useOnClickOutside } from "usehooks-ts";
 
