@@ -1,14 +1,10 @@
 import React, { FC } from "react";
+import { Item, Section } from "react-stately";
 
-import {
-   Button,
-   Checkbox,
-   Dropdown,
-   RadioButton,
-   RadioGroup,
-} from "@/components/common";
-import { DropdownOption } from "@/components/common/OldDropdown/DropdownOption";
+import { Button, Checkbox, RadioButton, RadioGroup } from "@/components/common";
 import { cls } from "@/utils/styleUtils";
+
+import { Dropdown } from "../../components/common/ComboBoxDropdown/Dropdown";
 
 type FlexboxProps = {
    className?: string;
@@ -69,54 +65,20 @@ export const Playground: FC = () => {
                />
             </Flexbox>
          </Flexbox>
-         <Dropdown
-            options={{
-               placeholder:
-                  "Commodo labore eiusmod eiusmod irure ex exercitation adipisicing laborum do elit dolore.",
-               defaultValues: "option1",
-            }}
-         >
-            <DropdownOption value="option1">Option 1</DropdownOption>
-            <DropdownOption value="option2">Option 2</DropdownOption>
-            <DropdownOption value="option3">Option 3</DropdownOption>
-            <DropdownOption.Separator label="Separator" />
-            <DropdownOption value="option4">Option 4</DropdownOption>
-            <DropdownOption value="option5">Option 5</DropdownOption>
-            <DropdownOption value="option6">Option 6</DropdownOption>
-            <DropdownOption value="option7">Option 7</DropdownOption>
-            <DropdownOption value="option8">Option 8</DropdownOption>
-            <DropdownOption value="option9">Option 9</DropdownOption>
-            <DropdownOption value="option10">Option 10</DropdownOption>
-            <DropdownOption value="option11">Option 11</DropdownOption>
-            <DropdownOption value="option12">Option 12</DropdownOption>
-            <DropdownOption value="option13">Option 13</DropdownOption>
-            <DropdownOption value="option14">Option 14</DropdownOption>
-         </Dropdown>
-         <Dropdown
-            options={{
-               multiselect: true,
-               placeholder:
-                  "Commodo labore eiusmod eiusmod irure ex exercitation adipisicing laborum do elit dolore.",
-            }}
-         >
-            <DropdownOption value="option1">
-               Option 1 Commodo labore eiusmod eiusmod irure ex
-            </DropdownOption>
-            <DropdownOption value="option2">Option 2</DropdownOption>
-            <DropdownOption value="option3">Option 3</DropdownOption>
-            <DropdownOption.Separator label="Separator" />
-            <DropdownOption value="option4">Option 4</DropdownOption>
-            <DropdownOption value="option5">Option 5</DropdownOption>
-            <DropdownOption value="option6">Option 6</DropdownOption>
-            <DropdownOption value="option7">Option 7</DropdownOption>
-            <DropdownOption.Separator />
-            <DropdownOption value="option8">Option 8</DropdownOption>
-            <DropdownOption value="option9">Option 9</DropdownOption>
-            <DropdownOption value="option10">Option 10</DropdownOption>
-            <DropdownOption value="option11">Option 11</DropdownOption>
-            <DropdownOption value="option12">Option 12</DropdownOption>
-            <DropdownOption value="option13">Option 13</DropdownOption>
-            <DropdownOption value="option14">Option 14</DropdownOption>
+
+         <Dropdown disabledKeys={["bbb"]}>
+            <Item key="aaa">aaa</Item>
+            <Item key="bbb">bbb</Item>
+            <Item>ccc</Item>
+            <Item>ddd</Item>
+            <Item>eee</Item>
+            <Section title="Title">
+               <Item>fff</Item>
+               <Item>ggg</Item>
+               <Item>hhh</Item>
+               <Item>iii</Item>
+               <Item>jjj</Item>
+            </Section>
          </Dropdown>
       </Flexbox>
    );
