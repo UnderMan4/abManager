@@ -52,14 +52,17 @@ export const Popover: FC<PopoverProps> = (props) => {
                style: { ...popoverProps.style, ...style },
             })}
             ref={popoverRef}
-            className={cls(
-               "bg-radix-gray-400 border border-radix-gray-700 rounded-xl shadow-lg p-1",
-               className
-            )}
          >
-            {!isNonModal && <DismissButton onDismiss={state.close} />}
-            {children}
-            <DismissButton onDismiss={state.close} />
+            <div
+               className={cls(
+                  "h-full bg-radix-gray-400 border border-radix-gray-700 rounded-xl shadow-lg p-1 overflow-hidden",
+                  className
+               )}
+            >
+               {!isNonModal && <DismissButton onDismiss={state.close} />}
+               {children}
+               <DismissButton onDismiss={state.close} />
+            </div>
          </div>
       </Overlay>
    );

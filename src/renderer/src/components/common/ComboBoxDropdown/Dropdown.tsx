@@ -43,7 +43,7 @@ export const Dropdown = <T extends object>(props: DropdownProps<T>) => {
    }, [ref.current]);
 
    return (
-      <div className={cls("flex w-64", className)}>
+      <div className={cls("flex w-64 flex-col gap-1", className)}>
          <div {...labelProps}>{label}</div>
          <HiddenSelect
             state={state}
@@ -97,13 +97,13 @@ export const Dropdown = <T extends object>(props: DropdownProps<T>) => {
                state={state}
                triggerRef={ref}
                placement="bottom start"
-               className="mt-1"
+               className="mt-1 max-h-80 overflow-y-auto custom-scrollbar light-scrollbar"
                style={{ width: elementWidth }}
             >
                <ListBox
                   {...menuProps}
                   state={state}
-                  className="max-h-80 overflow-y-auto custom-scrollbar light-scrollbar w-full h-full"
+                  // className="max-h-80 overflow-y-auto custom-scrollbar light-scrollbar w-full h-full"
                />
             </Popover>
          )}

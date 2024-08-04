@@ -1,10 +1,15 @@
 import React, { FC } from "react";
 import { Item, Section } from "react-stately";
 
-import { Button, Checkbox, RadioButton, RadioGroup } from "@/components/common";
+import {
+   Button,
+   Checkbox,
+   ComboBox,
+   Dropdown,
+   RadioButton,
+   RadioGroup,
+} from "@/components/common";
 import { cls } from "@/utils/styleUtils";
-
-import { Dropdown } from "../../components/common/ComboBoxDropdown/Dropdown";
 
 type FlexboxProps = {
    className?: string;
@@ -66,7 +71,7 @@ export const Playground: FC = () => {
             </Flexbox>
          </Flexbox>
 
-         <Dropdown disabledKeys={["bbb"]}>
+         <Dropdown disabledKeys={["bbb"]} label="Dropdown">
             <Item key="aaa">aaa</Item>
             <Item key="bbb">bbb</Item>
             <Item>ccc</Item>
@@ -80,6 +85,21 @@ export const Playground: FC = () => {
                <Item>jjj</Item>
             </Section>
          </Dropdown>
+
+         <ComboBox label="Combo box">
+            <Item key="aaa">aaa</Item>
+            <Item key="bbb">bbb</Item>
+            <Item>ccc</Item>
+            <Item>ddd</Item>
+            <Item>eee</Item>
+            <Section title="Title">
+               <Item>fff</Item>
+               <Item>ggg</Item>
+               <Item>hhh</Item>
+               <Item>iii</Item>
+               <Item>jjj</Item>
+            </Section>
+         </ComboBox>
       </Flexbox>
    );
 };

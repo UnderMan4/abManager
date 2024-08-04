@@ -28,6 +28,9 @@ importers:
       '@radix-ui/colors':
         specifier: ^3.0.0
         version: 3.0.0
+      '@react-types/combobox':
+        specifier: ^3.12.1
+        version: 3.12.1(react@18.2.0)
       '@react-types/shared':
         specifier: ^3.24.1
         version: 3.24.1(react@18.2.0)
@@ -1041,10 +1044,10 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
 
-  '@react-types/combobox@3.10.1':
-    resolution: {integrity: sha512-XMno1rgVRNta49vf5nV7VJpVSVAV20tt79t618gG1qRKH5Kt2Cy8lz2fQ5vHG6UTv/6jUOvU8g5Pc93sLaTmoA==}
+  '@react-types/combobox@3.12.1':
+    resolution: {integrity: sha512-bd5YwHZWtgnJx4jGbplWbYzXj7IbO5w3IY5suNR7r891rx6IktquZ8GQwyYH0pQ/x+X5LdK2xI59i6+QC2PmlA==}
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
 
   '@react-types/datepicker@3.7.2':
     resolution: {integrity: sha512-zThqFAdhQL1dqyVDsDSSTdfCjoD6634eyg/B0ZJfQxcLUR/5pch3v/gxBhbyCVDGMNHRWUWIJvY9DVOepuoSug==}
@@ -4029,7 +4032,7 @@ snapshots:
       '@react-stately/combobox': 3.8.2(react@18.2.0)
       '@react-stately/form': 3.0.1(react@18.2.0)
       '@react-types/button': 3.9.2(react@18.2.0)
-      '@react-types/combobox': 3.10.1(react@18.2.0)
+      '@react-types/combobox': 3.12.1(react@18.2.0)
       '@react-types/shared': 3.24.1(react@18.2.0)
       '@swc/helpers': 0.5.6
       react: 18.2.0
@@ -4491,7 +4494,7 @@ snapshots:
       '@react-stately/overlays': 3.6.5(react@18.2.0)
       '@react-stately/select': 3.6.2(react@18.2.0)
       '@react-stately/utils': 3.9.1(react@18.2.0)
-      '@react-types/combobox': 3.10.1(react@18.2.0)
+      '@react-types/combobox': 3.12.1(react@18.2.0)
       '@react-types/shared': 3.24.1(react@18.2.0)
       '@swc/helpers': 0.5.6
       react: 18.2.0
@@ -4693,7 +4696,7 @@ snapshots:
       '@react-types/shared': 3.24.1(react@18.2.0)
       react: 18.2.0
 
-  '@react-types/combobox@3.10.1(react@18.2.0)':
+  '@react-types/combobox@3.12.1(react@18.2.0)':
     dependencies:
       '@react-types/shared': 3.24.1(react@18.2.0)
       react: 18.2.0
