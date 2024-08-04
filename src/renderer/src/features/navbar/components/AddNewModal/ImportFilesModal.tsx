@@ -1,6 +1,7 @@
 import { Stats } from "fs";
 import { IAudioMetadata } from "music-metadata";
 import { forwardRef, useCallback, useEffect, useState } from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import { Button } from "@/components/common";
 import { AccordionItem, AccordionRoot } from "@/components/common/Accordion";
@@ -30,6 +31,7 @@ export type FileData = {
 export const ImportFilesModal = forwardRef<ModalRef, ImportFilesModalProps>(
    ({ data, handleDismiss }, ref) => {
       const [filesRead, setFilesRead] = useState<FileData[]>([]);
+      const { formatMessage } = useIntl();
       useEffect(() => {
          if (data.type !== "file") {
             setFilesRead([]);
@@ -92,10 +94,10 @@ export const ImportFilesModal = forwardRef<ModalRef, ImportFilesModalProps>(
             onDismiss={handleDismiss}
             contentClassName="flex flex-col gap-2 w-[32rem]"
             rightButton={{
-               label: "Import",
+               label: formatMessage({ id: "common.buttons.import" }),
             }}
             leftButton={{
-               label: "Cancel",
+               label: formatMessage({ id: "common.buttons.cancel" }),
                onClick: handleDismiss,
                appearance: "outlineGray",
             }}
@@ -107,7 +109,7 @@ export const ImportFilesModal = forwardRef<ModalRef, ImportFilesModalProps>(
                   onClick={selectAll}
                   icon="ph:check-square"
                >
-                  Select all
+                  <FormattedMessage id="common.buttons.selectAll" />
                </Button>
                <Button
                   appearance="outlineGray"
@@ -115,7 +117,7 @@ export const ImportFilesModal = forwardRef<ModalRef, ImportFilesModalProps>(
                   onClick={deselectAll}
                   icon="ph:square"
                >
-                  Deselect all
+                  <FormattedMessage id="common.buttons.deselectAll" />
                </Button>
             </div>
 
@@ -126,15 +128,23 @@ export const ImportFilesModal = forwardRef<ModalRef, ImportFilesModalProps>(
             </div>
 
             <AccordionRoot options={{ allowMultipleExpanded: true }}>
-               <AccordionItem label="Advanced options">
+               <AccordionItem
+                  label={formatMessage({
+                     id: "navbar.addNew.advancedOptions.label",
+                  })}
+               >
                   <Checkbox
-                     label="One book"
+                     label={formatMessage({
+                        id: "navbar.addNew.advancedOptions.oneBook.label",
+                     })}
                      isSelected={advancedOptions.oneBook}
                      onChange={(value) =>
                         setAdvancedOptions({ oneBook: value })
                      }
                      descriptionAsTooltip
-                     description="If checked all selected files are treated as parts of one book"
+                     description={formatMessage({
+                        id: "navbar.addNew.advancedOptions.oneBook.description",
+                     })}
                   />
                </AccordionItem>
             </AccordionRoot>

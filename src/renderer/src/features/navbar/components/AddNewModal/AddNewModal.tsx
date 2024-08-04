@@ -5,6 +5,7 @@ import {
    useRef,
    useState,
 } from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import { Modal, ModalRef } from "@/components/common/Modal";
 import { MethodButton } from "@/features/navbar/components/AddNewModal/MethodButton";
@@ -23,6 +24,7 @@ export type AddNewModalData = {
 };
 
 export const AddNewModal = forwardRef<AddNewModalRef>((_, ref) => {
+   const { formatMessage } = useIntl();
    const importMethodModalRef = useRef<ModalRef>(null);
    const importFileModalRef = useRef<ModalRef>(null);
 
@@ -101,14 +103,14 @@ export const AddNewModal = forwardRef<AddNewModalRef>((_, ref) => {
          <Modal
             ref={importMethodModalRef}
             contentClassName="flex gap-5"
-            title="Import new"
+            title={formatMessage({ id: "navbar.addNew.importAudiobooks" })}
             onDismiss={handleDismiss}
          >
             <MethodButton icon="ph:file-bold" onClick={selectFile}>
-               File
+               <FormattedMessage id="navbar.addNew.selectFile" />
             </MethodButton>
             <MethodButton icon="ph:folder-open-bold" onClick={selectFolder}>
-               Folder
+               <FormattedMessage id="navbar.addNew.selectFolder" />
             </MethodButton>
          </Modal>
          <ImportFilesModal

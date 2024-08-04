@@ -1,5 +1,14 @@
 {
    "aaa": {
       "test": "test pl-PL"
+   },
+   "buttons": {
+      "cancel": "Anuluj",
+      "deselectAll": "Odznacz wszystkie",
+      "import": "Import",
+      "selectAll": "Zaznacz wszystko"
+   },
+   "dropdown": {
+      "select": "Wybierz..."
    }
 }

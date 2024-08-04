@@ -1,1 +1,20 @@
-{}
+{
+   "addNew": {
+      "advancedOptions": {
+         "label": "Advanced options",
+         "oneBook": {
+            "description": "If checked all selected files are treated as parts of one book",
+            "label": "One book"
+         }
+      },
+      "importAudiobooks": "Import audiobooks",
+      "selectFile": "File",
+      "selectFolder": "Folder"
+   },
+   "buttons": {
+      "addNew": "Add new",
+      "dashboard": "Dashboard",
+      "library": "Library",
+      "settings": "Settings"
+   }
+}

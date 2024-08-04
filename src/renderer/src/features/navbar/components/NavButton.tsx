@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { cls } from "@/utils/styleUtils";
@@ -7,7 +7,7 @@ import { cls } from "@/utils/styleUtils";
 export type NavButtonProps = {
    icon: string;
    isCollapsed?: boolean;
-   children: string;
+   children: ReactNode;
 } & (
    | {
         navigateTo?: string;

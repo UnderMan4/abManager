@@ -9,6 +9,7 @@ import {
    useFocusRing,
    useSelect,
 } from "react-aria";
+import { FormattedMessage } from "react-intl";
 import { useSelectState } from "react-stately";
 
 import { ListBox, Popover } from "@/components/common";
@@ -74,7 +75,11 @@ export const Dropdown = <T extends object>(props: DropdownProps<T>) => {
                   }
                )}
             >
-               {state.selectedItem ? state.selectedItem.rendered : "Select..."}
+               {state.selectedItem ? (
+                  state.selectedItem.rendered
+               ) : (
+                  <FormattedMessage id="common.dropdown.select" />
+               )}
             </span>
             <m.div
                variants={chevronVariants}

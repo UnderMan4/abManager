@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react";
 import { FC } from "react";
+import { FormattedMessage } from "react-intl";
 
 import { Dropdown } from "@/components/common";
 import { ListBoxItem } from "@/components/common/ListBox";
@@ -11,22 +12,27 @@ export type LocaleSwitcherProps = {
 };
 
 export const LocaleSwitcher: FC<LocaleSwitcherProps> = ({ className }) => {
-   const { setLocale } = useSettingsStore();
+   const { setLocale, locale } = useSettingsStore();
    return (
       <Dropdown
          className={className}
          onSelectionChange={(key) => setLocale(key.toString() as Locale)}
+         defaultSelectedKey={locale}
       >
-         <ListBoxItem key="pl-PL">
-            <div className="flex items-center gap-2">
-               <Icon icon="flagpack:pl" />
-               <span>Polish</span>
-            </div>
-         </ListBoxItem>
          <ListBoxItem key="en-US">
             <div className="flex items-center gap-2">
                <Icon icon="flagpack:us" />
-               <span>English</span>
+               <span>
+                  <FormattedMessage id="settings.locales.en-US" />
+               </span>
+            </div>
+         </ListBoxItem>
+         <ListBoxItem key="pl-PL">
+            <div className="flex items-center gap-2">
+               <Icon icon="flagpack:pl" />
+               <span>
+                  <FormattedMessage id="settings.locales.pl-PL" />
+               </span>
             </div>
          </ListBoxItem>
       </Dropdown>

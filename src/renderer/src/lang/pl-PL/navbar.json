@@ -1,1 +1,20 @@
-{}
+{
+   "addNew": {
+      "advancedOptions": {
+         "label": "Opcje zaawansowane",
+         "oneBook": {
+            "description": "Jeśli zaznaczone, wszystkie zaznaczone pliki będą traktowane jako części jednej książki",
+            "label": "Jedna książka"
+         }
+      },
+      "importAudiobooks": "Importuj audiobooki",
+      "selectFile": "Plik",
+      "selectFolder": "Folder"
+   },
+   "buttons": {
+      "addNew": "Dodaj nowy",
+      "dashboard": "Panel",
+      "library": "Biblioteka",
+      "settings": "Ustawienia"
+   }
+}

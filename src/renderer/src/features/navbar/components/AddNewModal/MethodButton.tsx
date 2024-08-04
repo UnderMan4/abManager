@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { useFocusRing } from "react-aria";
 
 import { cls } from "@/utils/styleUtils";
@@ -7,7 +7,7 @@ import { cls } from "@/utils/styleUtils";
 export type MethodButtonProps = {
    icon: string;
    onClick: () => void;
-   children: string;
+   children: ReactNode;
 };
 
 export const MethodButton: FC<MethodButtonProps> = ({

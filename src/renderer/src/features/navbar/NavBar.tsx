@@ -1,4 +1,5 @@
 import { FC, useRef } from "react";
+import { FormattedMessage } from "react-intl";
 
 import {
    AddNewModal,
@@ -12,13 +13,13 @@ export const NavBar: FC = () => {
       <div className="bg-radix-gray-a200 rounded-r-3xl p-3 pl-0 flex justify-between flex-col min-w-52">
          <div className="flex flex-col gap-2">
             <NavButton icon="ph:house-bold" navigateTo="/">
-               Dashboard
+               <FormattedMessage id="navbar.buttons.dashboard" />
             </NavButton>
             <NavButton icon="ph:books-bold" navigateTo="/library">
-               Library
+               <FormattedMessage id="navbar.buttons.library" />
             </NavButton>
             <NavButton icon="ph:gear-six-bold" navigateTo="/settings">
-               Settings
+               <FormattedMessage id="navbar.buttons.settings" />
             </NavButton>
             {process.env.NODE_ENV === "development" && (
                <NavButton icon="ph:cheers-bold" navigateTo="/playground">
@@ -30,7 +31,7 @@ export const NavBar: FC = () => {
             icon="ph:plus-bold"
             onClick={() => modalRef.current?.open()}
          >
-            Add new
+            <FormattedMessage id="navbar.buttons.addNew" />
          </NavButton>
          <AddNewModal ref={modalRef} />
       </div>
