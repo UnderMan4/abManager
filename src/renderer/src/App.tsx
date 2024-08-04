@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 
 import { FirstSetup } from "@/features/firstSetup";
+import { I18n } from "@/features/i18n";
 import { appRouter } from "@/routes";
 import { useSettingsStore } from "@/stores";
 
@@ -29,9 +30,15 @@ function App(): JSX.Element {
    }, [realTheme]);
 
    return (
-      <LazyMotion features={domAnimation} strict>
-         {libraryPath ? <RouterProvider router={appRouter} /> : <FirstSetup />}
-      </LazyMotion>
+      <I18n>
+         <LazyMotion features={domAnimation} strict>
+            {libraryPath ? (
+               <RouterProvider router={appRouter} />
+            ) : (
+               <FirstSetup />
+            )}
+         </LazyMotion>
+      </I18n>
    );
 }
 
