@@ -3,11 +3,11 @@ import { FC } from "react";
 
 import { cls } from "@/utils/styleUtils";
 
-export type FullScreenLoaderProps = {
+export type FullscreenLoaderProps = {
    className?: string;
 };
 
-export const FullScreenLoader: FC<FullScreenLoaderProps> = ({ className }) => {
+export const FullscreenLoader: FC<FullscreenLoaderProps> = ({ className }) => {
    return (
       <div
          className={cls(

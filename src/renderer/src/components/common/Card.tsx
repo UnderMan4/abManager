@@ -1,6 +1,6 @@
 import { FC, HTMLAttributes, RefObject } from "react";
 
-import { Button, ButtonProps } from "@/components/common/Button";
+import { Button, ButtonProps } from "@/components/forms/Button";
 import { cls } from "@/utils/styleUtils";
 
 import { Heading } from "./Heading";

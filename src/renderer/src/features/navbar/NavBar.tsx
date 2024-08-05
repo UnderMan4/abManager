@@ -1,11 +1,9 @@
-import { FC, useRef } from "react";
+import { FC } from "react";
 import { FormattedMessage } from "react-intl";
 
-import { AddNewModalRef } from "@/features/navbar/components/AddNewModal";
 import { NavButton } from "@/features/navbar/components/NavButton";
 
 export const NavBar: FC = () => {
-   const modalRef = useRef<AddNewModalRef>(null);
    return (
       <div className="bg-radix-gray-a200 rounded-r-3xl p-3 pl-0 flex justify-between flex-col min-w-52">
          <div className="flex flex-col gap-2">
@@ -24,13 +22,9 @@ export const NavBar: FC = () => {
                </NavButton>
             )}
          </div>
-         <NavButton
-            icon="ph:plus-bold"
-            onClick={() => modalRef.current?.open()}
-         >
+         <NavButton icon="ph:plus-bold" navigateTo="/import-new/method">
             <FormattedMessage id="navbar.buttons.addNew" />
          </NavButton>
-         {/* <AddNewModal ref={modalRef} /> */}
       </div>
    );
 };

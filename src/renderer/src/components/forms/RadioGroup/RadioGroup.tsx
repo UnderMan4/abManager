@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from "react";
 import { AriaRadioGroupProps, useRadioGroup } from "react-aria";
 import { RadioGroupState, useRadioGroupState } from "react-stately";
 
-import { RadioButton } from "@/components/common/RadioGroup/RadioButton";
+import { RadioButton } from "@/components/forms/RadioGroup/RadioButton";
 
 export type RadioGroupProps = AriaRadioGroupProps & {
    className?: string;

@@ -2,7 +2,7 @@ import { FC, PropsWithChildren, useState } from "react";
 import { IntlProvider } from "react-intl";
 import useAsyncEffect from "use-async-effect";
 
-import { FullScreenLoader } from "@/components/common/FullScreenLoader";
+import { FullscreenLoader } from "@/components/common/FullscreenLoader";
 import { defaultLocale, namespaces } from "@/features/i18n/i18n-config.js";
 import { useSettingsStore } from "@/stores";
 import { flattenObject } from "@/utils/objectUtils";
@@ -41,6 +41,6 @@ export const I18n: FC<PropsWithChildren> = ({ children }) => {
          {children}
       </IntlProvider>
    ) : (
-      <FullScreenLoader />
+      <FullscreenLoader />
    );
 };

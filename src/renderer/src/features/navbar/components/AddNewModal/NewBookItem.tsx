@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { ArrayCover } from "@/components/common/ArrayCover";
-import { Checkbox } from "@/components/common/Checkbox";
+import { Checkbox } from "@/components/forms/Checkbox";
 import { FileData } from "@/features/navbar/components/AddNewModal/ImportFilesModal";
 
 export type NewBookItemProps = FileData & {

@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Item, Section } from "react-stately";
 
+import { Modal, useModalState } from "@/components/common/Modal";
 import {
    Button,
    Checkbox,
@@ -8,8 +9,7 @@ import {
    Dropdown,
    RadioButton,
    RadioGroup,
-} from "@/components/common";
-import { Modal, useModalState } from "@/components/common/Modal";
+} from "@/components/forms";
 import { cls } from "@/utils/styleUtils";
 
 type FlexboxProps = {

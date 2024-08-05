@@ -5,8 +5,8 @@ import { FormattedMessage, useIntl } from "react-intl";
 
 import { Button } from "@/components/common";
 import { AccordionItem, AccordionRoot } from "@/components/common/Accordion";
-import { Checkbox } from "@/components/common/Checkbox";
 import { OldModal, OldModalRef } from "@/components/common/OldModal";
+import { Checkbox } from "@/components/forms/Checkbox";
 import { AddNewModalData } from "@/features/navbar/components/AddNewModal/AddNewModal";
 import { NewBookItem } from "@/features/navbar/components/AddNewModal/NewBookItem";
 import { useObjectState } from "@/hooks";

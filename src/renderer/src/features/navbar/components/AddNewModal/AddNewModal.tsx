@@ -8,7 +8,7 @@ import {
 import { FormattedMessage, useIntl } from "react-intl";
 
 import { OldModal, OldModalRef } from "@/components/common/OldModal";
-import { MethodButton } from "@/features/navbar/components/AddNewModal/MethodButton";
+import { MethodButton } from "@/features/importNew/components/MethodButton";
 import { useObjectState } from "@/hooks";
 
 import { ImportFilesModal } from "./ImportFilesModal";

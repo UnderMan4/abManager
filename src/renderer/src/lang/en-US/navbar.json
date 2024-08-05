@@ -12,7 +12,7 @@
       "selectFolder": "Folder"
    },
    "buttons": {
-      "addNew": "Add new",
+      "addNew": "Import new",
       "dashboard": "Dashboard",
       "library": "Library",
       "settings": "Settings"

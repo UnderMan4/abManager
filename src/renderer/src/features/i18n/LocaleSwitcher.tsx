@@ -2,8 +2,8 @@ import { Icon } from "@iconify/react";
 import { FC } from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Dropdown } from "@/components/common";
 import { ListBoxItem } from "@/components/common/ListBox";
+import { Dropdown } from "@/components/forms";
 import { Locale } from "@/features/i18n/i18n-config";
 import { useSettingsStore } from "@/stores";
 

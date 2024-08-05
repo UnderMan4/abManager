@@ -1,6 +1,6 @@
 import { FC, useRef, useState } from "react";
 
-import { Button } from "@/components/common";
+import { Button } from "@/components/forms";
 import { FirstSetupCard } from "@/features/firstSetup/components/FirstSetupCard";
 import { ConfirmItem } from "@/features/firstSetup/components/cards/FinishCard/ConfirmItem";
 import { useFirstSetupContext } from "@/hooks/contexts/useFirstSetupContext";

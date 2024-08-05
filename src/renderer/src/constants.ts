@@ -7,3 +7,5 @@ export const isMac = window.api.getPlatform() === "darwin";
 export const pathRegex = isWindows
    ? /^([a-zA-Z]:[/\\])([^<>:"/\\|?*]+[/\\]?)*$/
    : /./;
+
+export const HOME_PATHS = ["/", "/library", "/settings", "/playground"];

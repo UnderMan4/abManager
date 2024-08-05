@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import { RadioGroup } from "@/components/common/RadioGroup";
-import { RadioButton } from "@/components/common/RadioGroup/RadioButton";
+import { RadioGroup } from "@/components/forms/RadioGroup";
+import { RadioButton } from "@/components/forms/RadioGroup/RadioButton";
 import { FirstSetupCard } from "@/features/firstSetup/components/FirstSetupCard";
 import { useFirstSetupContext } from "@/hooks/contexts/useFirstSetupContext";
 import { SaveType } from "@/types/common";

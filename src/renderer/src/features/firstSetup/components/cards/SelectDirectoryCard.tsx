@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 
-import { FolderSelector } from "@/components/common";
+import { FolderSelector } from "@/components/forms";
 import { LIBRARY_DIRECTORY_NAME } from "@/constants";
 import { FirstSetupCard } from "@/features/firstSetup/components/FirstSetupCard";
 import { useFirstSetupContext } from "@/hooks/contexts/useFirstSetupContext";

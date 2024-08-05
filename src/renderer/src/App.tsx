@@ -2,6 +2,7 @@ import { LazyMotion, domAnimation } from "framer-motion";
 import { useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 
+import { HistoryProvider } from "@/contexts";
 import { FirstSetup } from "@/features/firstSetup";
 import { I18n } from "@/features/i18n";
 import { appRouter } from "@/routes";
@@ -31,13 +32,15 @@ function App(): JSX.Element {
 
    return (
       <I18n>
-         <LazyMotion features={domAnimation} strict>
-            {libraryPath ? (
-               <RouterProvider router={appRouter} />
-            ) : (
-               <FirstSetup />
-            )}
-         </LazyMotion>
+         <HistoryProvider>
+            <LazyMotion features={domAnimation} strict>
+               {libraryPath ? (
+                  <RouterProvider router={appRouter} />
+               ) : (
+                  <FirstSetup />
+               )}
+            </LazyMotion>
+         </HistoryProvider>
       </I18n>
    );
 }

@@ -1,7 +1,8 @@
 import { Icon } from "@iconify/react";
 import { FC, ReactNode } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
+import { useAppNavigate } from "@/hooks";
 import { cls } from "@/utils/styleUtils";
 
 export type NavButtonProps = {
@@ -27,7 +28,7 @@ export const NavButton: FC<NavButtonProps> = ({
    onClick,
 }) => {
    const { pathname } = useLocation();
-   const navigate = useNavigate();
+   const navigate = useAppNavigate();
 
    const handleClick = () => {
       if (navigateTo) {
