@@ -9,7 +9,6 @@ import {
    RadioButton,
    RadioGroup,
 } from "@/components/common";
-import { Dialog } from "@/components/common/Dialog";
 import { Modal, useModalState } from "@/components/common/Modal";
 import { cls } from "@/utils/styleUtils";
 

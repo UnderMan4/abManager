@@ -1,10 +1,7 @@
 import { FC, useRef } from "react";
 import { FormattedMessage } from "react-intl";
 
-import {
-   AddNewModal,
-   AddNewModalRef,
-} from "@/features/navbar/components/AddNewModal";
+import { AddNewModalRef } from "@/features/navbar/components/AddNewModal";
 import { NavButton } from "@/features/navbar/components/NavButton";
 
 export const NavBar: FC = () => {
