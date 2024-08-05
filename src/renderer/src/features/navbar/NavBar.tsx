@@ -33,7 +33,7 @@ export const NavBar: FC = () => {
          >
             <FormattedMessage id="navbar.buttons.addNew" />
          </NavButton>
-         <AddNewModal ref={modalRef} />
+         {/* <AddNewModal ref={modalRef} /> */}
       </div>
    );
 };

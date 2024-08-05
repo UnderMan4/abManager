@@ -11,6 +11,16 @@ export type LocaleSwitcherProps = {
    className?: string;
 };
 
+type LocaleElement = {
+   keyLong: Locale;
+   keyShort: string;
+};
+
+const locales: LocaleElement[] = [
+   { keyLong: "en-US", keyShort: "us" },
+   { keyLong: "pl-PL", keyShort: "pl" },
+];
+
 export const LocaleSwitcher: FC<LocaleSwitcherProps> = ({ className }) => {
    const { setLocale, locale } = useSettingsStore();
    return (
@@ -19,22 +29,16 @@ export const LocaleSwitcher: FC<LocaleSwitcherProps> = ({ className }) => {
          onSelectionChange={(key) => setLocale(key.toString() as Locale)}
          defaultSelectedKey={locale}
       >
-         <ListBoxItem key="en-US">
-            <div className="flex items-center gap-2">
-               <Icon icon="flagpack:us" />
-               <span>
-                  <FormattedMessage id="settings.locales.en-US" />
-               </span>
-            </div>
-         </ListBoxItem>
-         <ListBoxItem key="pl-PL">
-            <div className="flex items-center gap-2">
-               <Icon icon="flagpack:pl" />
-               <span>
-                  <FormattedMessage id="settings.locales.pl-PL" />
-               </span>
-            </div>
-         </ListBoxItem>
+         {locales.map(({ keyLong, keyShort }) => (
+            <ListBoxItem key={keyLong}>
+               <div className="flex items-center gap-2">
+                  <Icon icon={`flagpack:${keyShort}`} />
+                  <span>
+                     <FormattedMessage id={`settings.locales.${keyLong}`} />
+                  </span>
+               </div>
+            </ListBoxItem>
+         ))}
       </Dropdown>
    );
 };

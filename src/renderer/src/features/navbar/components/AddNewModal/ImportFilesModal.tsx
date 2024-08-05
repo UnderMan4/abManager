@@ -6,7 +6,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { Button } from "@/components/common";
 import { AccordionItem, AccordionRoot } from "@/components/common/Accordion";
 import { Checkbox } from "@/components/common/Checkbox";
-import { Modal, ModalRef } from "@/components/common/Modal";
+import { OldModal, OldModalRef } from "@/components/common/OldModal";
 import { AddNewModalData } from "@/features/navbar/components/AddNewModal/AddNewModal";
 import { NewBookItem } from "@/features/navbar/components/AddNewModal/NewBookItem";
 import { useObjectState } from "@/hooks";
@@ -28,7 +28,7 @@ export type FileData = {
    isSelected: boolean;
 };
 
-export const ImportFilesModal = forwardRef<ModalRef, ImportFilesModalProps>(
+export const ImportFilesModal = forwardRef<OldModalRef, ImportFilesModalProps>(
    ({ data, handleDismiss }, ref) => {
       const [filesRead, setFilesRead] = useState<FileData[]>([]);
       const { formatMessage } = useIntl();
@@ -89,7 +89,7 @@ export const ImportFilesModal = forwardRef<ModalRef, ImportFilesModalProps>(
          });
 
       return (
-         <Modal
+         <OldModal
             ref={ref}
             onDismiss={handleDismiss}
             contentClassName="flex flex-col gap-2 w-[32rem]"
@@ -148,7 +148,7 @@ export const ImportFilesModal = forwardRef<ModalRef, ImportFilesModalProps>(
                   />
                </AccordionItem>
             </AccordionRoot>
-         </Modal>
+         </OldModal>
       );
    }
 );

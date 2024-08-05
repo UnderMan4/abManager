@@ -11,6 +11,7 @@ export type CardButtonProps = Omit<ButtonProps, "children"> & {
 
 export type CardProps = HTMLAttributes<HTMLDivElement> & {
    title?: string;
+   titleId?: string;
    contentClassName?: string;
    leftButton?: CardButtonProps;
    rightButton?: CardButtonProps;
@@ -25,6 +26,7 @@ export const Card: FC<CardProps> = ({
    leftButton,
    rightButton,
    contentRef,
+   titleId,
    ...props
 }) => {
    return (
@@ -36,7 +38,7 @@ export const Card: FC<CardProps> = ({
          {...props}
       >
          {title && (
-            <Heading className="" as="h3">
+            <Heading as="h3" id={titleId}>
                {title}
             </Heading>
          )}

@@ -7,13 +7,13 @@ import {
 } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { Modal, ModalRef } from "@/components/common/Modal";
+import { OldModal, OldModalRef } from "@/components/common/OldModal";
 import { MethodButton } from "@/features/navbar/components/AddNewModal/MethodButton";
 import { useObjectState } from "@/hooks";
 
 import { ImportFilesModal } from "./ImportFilesModal";
 
-export type AddNewModalRef = ModalRef & {
+export type AddNewModalRef = OldModalRef & {
    data: AddNewModalData;
 };
 
@@ -25,8 +25,8 @@ export type AddNewModalData = {
 
 export const AddNewModal = forwardRef<AddNewModalRef>((_, ref) => {
    const { formatMessage } = useIntl();
-   const importMethodModalRef = useRef<ModalRef>(null);
-   const importFileModalRef = useRef<ModalRef>(null);
+   const importMethodModalRef = useRef<OldModalRef>(null);
+   const importFileModalRef = useRef<OldModalRef>(null);
 
    const [canOpenDialog, setCanOpenDialog] = useState(true);
 
@@ -100,7 +100,7 @@ export const AddNewModal = forwardRef<AddNewModalRef>((_, ref) => {
 
    return (
       <>
-         <Modal
+         <OldModal
             ref={importMethodModalRef}
             contentClassName="flex gap-5"
             title={formatMessage({ id: "navbar.addNew.importAudiobooks" })}
@@ -112,7 +112,7 @@ export const AddNewModal = forwardRef<AddNewModalRef>((_, ref) => {
             <MethodButton icon="ph:folder-open-bold" onClick={selectFolder}>
                <FormattedMessage id="navbar.addNew.selectFolder" />
             </MethodButton>
-         </Modal>
+         </OldModal>
          <ImportFilesModal
             handleDismiss={handleDismiss}
             data={data}

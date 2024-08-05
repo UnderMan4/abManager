@@ -9,6 +9,8 @@ import {
    RadioButton,
    RadioGroup,
 } from "@/components/common";
+import { Dialog } from "@/components/common/Dialog";
+import { Modal, useModalState } from "@/components/common/Modal";
 import { cls } from "@/utils/styleUtils";
 
 type FlexboxProps = {
@@ -34,6 +36,7 @@ const Flexbox: FC<FlexboxProps> = ({ children, className, column }) => {
 };
 
 export const Playground: FC = () => {
+   const modalState = useModalState({});
    return (
       <Flexbox column>
          <Flexbox>
@@ -100,6 +103,15 @@ export const Playground: FC = () => {
                <Item>jjj</Item>
             </Section>
          </ComboBox>
+
+         <Button onClick={modalState.open}>Open modal</Button>
+         <Modal state={modalState} isDismissable>
+            <p>
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. At, iste
+               quaerat? Debitis assumenda iste ex non impedit neque voluptatum
+               quo.
+            </p>
+         </Modal>
       </Flexbox>
    );
 };

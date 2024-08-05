@@ -8,17 +8,17 @@ import { cls } from "@/utils/styleUtils";
 
 import { Card, CardProps } from "./Card";
 
-export type ModalProps = CardProps & {
+export type OldModalProps = CardProps & {
    onDismiss?: () => void;
 };
 
-export type ModalRef = {
+export type OldModalRef = {
    open: () => void;
    close: () => void;
    isOpen: boolean;
 };
 
-export const Modal = forwardRef<ModalRef, ModalProps>(
+export const OldModal = forwardRef<OldModalRef, OldModalProps>(
    ({ onDismiss, ...cardProps }, ref) => {
       const [isOpen, setIsOpen] = useState(false);
 
