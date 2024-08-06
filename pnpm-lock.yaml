@@ -73,6 +73,9 @@ importers:
       react-stately:
         specifier: 3.30.1
         version: 3.30.1(react@18.2.0)
+      sonner:
+        specifier: ^1.5.0
+        version: 1.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       tailwind-merge:
         specifier: ^2.2.1
         version: 2.2.1
@@ -180,7 +183,7 @@ importers:
         specifier: ^3.4.1
         version: 3.4.1
       typescript:
-        specifier: ^5.3.3
+        specifier: 5.3.3
         version: 5.3.3
       vite:
         specifier: ^5.0.12
@@ -3077,6 +3080,12 @@ packages:
   smart-buffer@4.2.0:
     resolution: {integrity: sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==}
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
+
+  sonner@1.5.0:
+    resolution: {integrity: sha512-FBjhG/gnnbN6FY0jaNnqZOMmB73R+5IiyYAw8yBj7L54ER7HB3fOSE5OFiQiE2iXWxeXKvg6fIP4LtVppHEdJA==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
 
   source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
@@ -7020,6 +7029,11 @@ snapshots:
 
   smart-buffer@4.2.0:
     optional: true
+
+  sonner@1.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
 
   source-map-js@1.0.2: {}
 

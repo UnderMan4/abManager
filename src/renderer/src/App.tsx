@@ -1,6 +1,7 @@
 import { LazyMotion, domAnimation } from "framer-motion";
 import { useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
+import { Toaster } from "sonner";
 
 import { HistoryProvider } from "@/contexts";
 import { FirstSetup } from "@/features/firstSetup";
@@ -40,6 +41,7 @@ function App(): JSX.Element {
                   <FirstSetup />
                )}
             </LazyMotion>
+            <Toaster richColors theme="dark" visibleToasts={5} />
          </HistoryProvider>
       </I18n>
    );

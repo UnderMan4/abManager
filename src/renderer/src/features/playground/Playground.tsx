@@ -11,6 +11,7 @@ import {
    RadioGroup,
 } from "@/components/forms";
 import { cls } from "@/utils/styleUtils";
+import { prepareToast } from "@/utils/toastUtils";
 
 type FlexboxProps = {
    className?: string;
@@ -43,7 +44,6 @@ export const Playground: FC = () => {
             <Button appearance="outlineColor">Button</Button>
             <Button appearance="outlineGray">Button</Button>
          </Flexbox>
-
          <Flexbox>
             <RadioGroup className="flex flex-col gap-3 max-w-md">
                <RadioButton value="option1" label="Option" />
@@ -72,7 +72,6 @@ export const Playground: FC = () => {
                />
             </Flexbox>
          </Flexbox>
-
          <Dropdown disabledKeys={["bbb"]} label="Dropdown">
             <Item key="aaa">aaa</Item>
             <Item key="bbb">bbb</Item>
@@ -87,7 +86,6 @@ export const Playground: FC = () => {
                <Item>jjj</Item>
             </Section>
          </Dropdown>
-
          <ComboBox label="Combo box">
             <Item key="aaa">aaa</Item>
             <Item key="bbb">bbb</Item>
@@ -102,7 +100,6 @@ export const Playground: FC = () => {
                <Item>jjj</Item>
             </Section>
          </ComboBox>
-
          <Button onClick={modalState.open}>Open modal</Button>
          <Modal state={modalState} isDismissable>
             <p>
@@ -111,6 +108,54 @@ export const Playground: FC = () => {
                quo.
             </p>
          </Modal>
+         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur,
+         numquam.
+         <div className="flex gap-2">
+            <Button
+               icon="ph:x-circle-bold"
+               onClick={() =>
+                  prepareToast.error(
+                     "Error",
+                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, numquam."
+                  )
+               }
+            >
+               Error
+            </Button>
+            <Button
+               icon="ph:check-circle-bold"
+               onClick={() =>
+                  prepareToast.success(
+                     "Success",
+                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, numquam."
+                  )
+               }
+            >
+               Success
+            </Button>
+            <Button
+               icon="ph:info-bold"
+               onClick={() =>
+                  prepareToast.info(
+                     "Info",
+                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, numquam."
+                  )
+               }
+            >
+               Info
+            </Button>
+            <Button
+               icon="ph:warning-bold"
+               onClick={() =>
+                  prepareToast.warning(
+                     "Warning",
+                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, numquam."
+                  )
+               }
+            >
+               Warning
+            </Button>
+         </div>
       </Flexbox>
    );
 };
