@@ -11,7 +11,7 @@ export type HistoryContextValue = {
 const HistoryContext = createContext<HistoryContextValue | null>(null);
 
 const HistoryProvider: React.FC<PropsWithChildren> = ({ children }) => {
-   const [history, setHistory] = useState<string[]>([]);
+   const [history, setHistory] = useState<string[]>(["/"]);
 
    const addToHistory = (item: string) => {
       setHistory((prevHistory) => [...prevHistory, item]);

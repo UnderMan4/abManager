@@ -1,0 +1,6 @@
+{
+   "importFileRead": {
+      "description": "Verify if files are not corrupted.",
+      "title": "Error while reading files' metadata."
+   }
+}

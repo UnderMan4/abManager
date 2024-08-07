@@ -5,7 +5,7 @@ import { cls } from "@/utils/styleUtils";
 
 export type ToastProps = {
    title: string;
-   subtitle?: string;
+   description?: string;
    variant: ToastVariant;
 };
 
@@ -44,7 +44,7 @@ const variantMap: Record<ToastVariant, ToastVariantStyles> = {
    },
 };
 
-export const Toast: FC<ToastProps> = ({ title, variant, subtitle }) => {
+export const Toast: FC<ToastProps> = ({ title, variant, description }) => {
    const { className, icon, iconClassName } = variantMap[variant];
 
    return (
@@ -59,7 +59,7 @@ export const Toast: FC<ToastProps> = ({ title, variant, subtitle }) => {
          </div>
          <div>
             <span className="font-semibold">{title}</span>
-            {subtitle && <p className="text-sm">{subtitle}</p>}
+            {description && <p className="text-sm">{description}</p>}
          </div>
       </div>
    );

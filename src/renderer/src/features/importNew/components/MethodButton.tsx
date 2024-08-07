@@ -14,6 +14,7 @@ export type MethodButtonProps = {
 
 const ICON_SCALE = 0.4;
 const FONT_SCALE = 0.07;
+const BORDER_RADIUS_SCALE = 0.1;
 const ASPECT_RATIO = 10 / 14;
 
 export const MethodButton = forwardRef<HTMLButtonElement, MethodButtonProps>(
@@ -36,7 +37,7 @@ export const MethodButton = forwardRef<HTMLButtonElement, MethodButtonProps>(
          <button
             onClick={onClick}
             className={cls(
-               "bg-radix-gray-400 p-5 rounded-2xl  flex flex-col items-center justify-center gap-7 transition-colors duration-200 shrink-0",
+               "bg-radix-gray-400 p-5 flex flex-col items-center justify-center gap-7 transition-colors duration-200 shrink-0",
                "group outline-none",
                "hover:bg-radix-gray-500",
                {
@@ -46,7 +47,11 @@ export const MethodButton = forwardRef<HTMLButtonElement, MethodButtonProps>(
             )}
             {...focusProps}
             ref={ref}
-            style={{ width: `${width}rem`, height: `${height}rem` }}
+            style={{
+               width: `${width}rem`,
+               height: `${height}rem`,
+               borderRadius: `${width * BORDER_RADIUS_SCALE}rem`,
+            }}
          >
             <div
                className="relative"

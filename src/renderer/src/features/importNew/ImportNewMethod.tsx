@@ -1,14 +1,17 @@
-import { FC, useEffect, useRef, useState } from "react";
-import { FormattedMessage } from "react-intl";
+import { FC, useCallback, useEffect, useRef, useState } from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import { useAppNavigate } from "@/hooks";
 
+import { FullscreenLoader } from "../../components/common/FullscreenLoader";
 import { MethodButton } from "./components/MethodButton";
 
 const MAX_BUTTON_HEIGHT = 32;
 const MAX_BUTTON_WIDTH = 22;
 export const ImportNewMethod: FC = () => {
    const navigate = useAppNavigate();
+
+   const { formatMessage } = useIntl();
 
    const ref = useRef<HTMLDivElement>(null);
 
@@ -41,11 +44,49 @@ export const ImportNewMethod: FC = () => {
       return () => window.removeEventListener("resize", handleResize);
    }, []);
 
+   const [canOpenDialog, setCanOpenDialog] = useState(true);
+
+   const selectFile = useCallback(async () => {
+      if (!canOpenDialog) return;
+
+      setCanOpenDialog(false);
+      const result = await window.api.showOpenDialog({
+         properties: ["multiSelections", "openFile"],
+      });
+      setCanOpenDialog(true);
+      if (!result || result.canceled) return;
+      const paths = result.filePaths;
+      navigate("/import-new/file", { state: { paths } });
+   }, [navigate]);
+
+   const selectFolder = useCallback(async () => {
+      if (!canOpenDialog) return;
+
+      setCanOpenDialog(false);
+      const result = await window.api.showOpenDialog({
+         properties: ["openDirectory"],
+      });
+      setCanOpenDialog(true);
+
+      if (!result || result.canceled) return;
+
+      const paths = result.filePaths;
+      navigate("/import-new/folder", { state: { paths } });
+   }, [navigate]);
+
+   if (!canOpenDialog) {
+      return (
+         <FullscreenLoader
+            translucent
+            description={formatMessage({ id: "importNew.selectFiles" })}
+         />
+      );
+   }
    return (
       <div className="center h-full gap-16" ref={ref}>
          <MethodButton
             icon="ph:file-bold"
-            onClick={() => navigate("/import-new/file")}
+            onClick={selectFile}
             maxHeight={buttonHeight}
             maxWidth={buttonWidth}
          >
@@ -53,7 +94,7 @@ export const ImportNewMethod: FC = () => {
          </MethodButton>
          <MethodButton
             icon="ph:folder-open-bold"
-            onClick={() => navigate("/import-new/folder")}
+            onClick={selectFolder}
             maxHeight={buttonHeight}
             maxWidth={buttonWidth}
          >

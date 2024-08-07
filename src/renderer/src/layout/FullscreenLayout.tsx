@@ -33,7 +33,7 @@ export const FullscreenLayout: FC = () => {
    }, [history]);
 
    const handleNavigate = () => {
-      if (stepsToHome === -1) {
+      if (stepsToHome <= 0) {
          navigate("/");
       } else {
          navigate(-stepsToHome);
