@@ -37,17 +37,18 @@ export const appRouter: ReturnType<typeof createMemoryRouter> =
       },
       {
          element: <FullscreenLayout />,
+         path: "/import-new",
          children: [
             {
-               path: "/import-new/method",
+               path: "method",
                element: <ImportNewMethod />,
             },
             {
-               path: "/import-new/folder",
+               path: "folder",
                element: <ImportNewFolder />,
             },
             {
-               path: "/import-new/file",
+               path: "file",
                element: <ImportNewFile />,
             },
          ],

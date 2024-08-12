@@ -1,7 +1,9 @@
-import { AnimatePresence, Variants, m } from "framer-motion";
+import { AnimatePresence, Variants, motion } from "framer-motion";
 import { FC, useMemo } from "react";
-import { Outlet } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
+import { Outlet, useLocation } from "react-router-dom";
 
+import { Heading } from "@/components/common";
 import { IconButton } from "@/components/forms";
 import { HOME_PATHS } from "@/constants";
 import { useAppNavigate, useHistory } from "@/hooks";
@@ -17,8 +19,16 @@ const backButtonVariants: Variants = {
       },
    },
 };
+
+const titles = {
+   "/import-new/method": "importNew.pages.importMethod",
+   "/import-new/file": "importNew.pages.importFiles",
+   "/import-new/folder": "importNew.pages.importFolder",
+};
 export const FullscreenLayout: FC = () => {
    const navigate = useAppNavigate();
+
+   const { pathname } = useLocation();
 
    const history = useHistory();
 
@@ -41,12 +51,15 @@ export const FullscreenLayout: FC = () => {
    };
 
    return (
-      <div className="h-screen max-h-screen w-screen flex flex-col">
-         <div className="p-3 flex shrink-0 justify-end gap-2">
+      <div className="flex flex-col h-screen">
+         <header className="py-3 pl-5 pr-3 flex shrink-0 justify-between gap-2 row-start-1 row-end-2 h-[var(--fullscreen-header-height)]">
+            <Heading as="h2" className="font-bold">
+               <FormattedMessage id={titles[pathname] ?? ""} />
+            </Heading>
             <div className="flex relative">
                <AnimatePresence>
                   {stepsToHome > 1 && (
-                     <m.div
+                     <motion.div
                         className="flex absolute"
                         variants={backButtonVariants}
                         initial="hidden"
@@ -58,7 +71,7 @@ export const FullscreenLayout: FC = () => {
                            icon="ph:arrow-left-bold"
                            onClick={() => navigate(-1)}
                         />
-                     </m.div>
+                     </motion.div>
                   )}
                </AnimatePresence>
                <IconButton
@@ -67,8 +80,8 @@ export const FullscreenLayout: FC = () => {
                   className="z-10"
                />
             </div>
-         </div>
-         <div className="grow overflow-auto">
+         </header>
+         <div className="grow shrink row-start-2 row-end-3 h-[calc(100%-var(--fullscreen-header-height)]">
             <Outlet />
          </div>
       </div>

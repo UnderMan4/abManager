@@ -13,7 +13,7 @@ import {
    useInteractions,
    useRole,
 } from "@floating-ui/react";
-import { AnimatePresence, Variants, m } from "framer-motion";
+import { AnimatePresence, Variants, motion } from "framer-motion";
 import { FC, MouseEventHandler, ReactNode, useRef, useState } from "react";
 import { useFocusRing } from "react-aria";
 import { twMerge } from "tailwind-merge";
@@ -99,7 +99,7 @@ export const Tooltip: FC<TooltipProps> = ({
          <Portal portalId="tooltip">
             <AnimatePresence>
                {isOpen && (
-                  <m.div
+                  <motion.div
                      initial="hidden"
                      animate="visible"
                      variants={tooltipVariants}
@@ -115,7 +115,7 @@ export const Tooltip: FC<TooltipProps> = ({
                         ref={arrowRef}
                         context={context}
                      />
-                  </m.div>
+                  </motion.div>
                )}
             </AnimatePresence>
          </Portal>

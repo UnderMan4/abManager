@@ -34,7 +34,7 @@ function App(): JSX.Element {
    return (
       <I18n>
          <HistoryProvider>
-            <LazyMotion features={domAnimation} strict>
+            <LazyMotion features={domAnimation}>
                {libraryPath ? (
                   <RouterProvider router={appRouter} />
                ) : (

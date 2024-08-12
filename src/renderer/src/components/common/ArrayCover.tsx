@@ -15,6 +15,7 @@ const sizeMap = {
    md: 6,
    lg: 8,
    xl: 10,
+   "2xl": 12,
 };
 
 export const ArrayCover: FC<ArrayCoverProps> = ({
@@ -44,7 +45,12 @@ export const ArrayCover: FC<ArrayCoverProps> = ({
       >
          {data?.data ? (
             imgSrc ? (
-               <img src={imgSrc} className="object-contain w-full h-full" />
+               <div className="relative overflow-hidden size-full">
+                  <img src={imgSrc} className="object-fill size-full" />
+                  <div className="absolute inset-0 backdrop-blur-xl">
+                     <img src={imgSrc} className="object-contain size-full" />
+                  </div>
+               </div>
             ) : (
                <Icon
                   icon="svg-spinners:180-ring"

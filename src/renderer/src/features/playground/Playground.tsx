@@ -114,10 +114,11 @@ export const Playground: FC = () => {
             <Button
                icon="ph:x-circle-bold"
                onClick={() =>
-                  prepareToast.error(
-                     "Error",
-                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, numquam."
-                  )
+                  prepareToast.error({
+                     title: "Error",
+                     description:
+                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, numquam.",
+                  })
                }
             >
                Error
@@ -125,10 +126,11 @@ export const Playground: FC = () => {
             <Button
                icon="ph:check-circle-bold"
                onClick={() =>
-                  prepareToast.success(
-                     "Success",
-                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, numquam."
-                  )
+                  prepareToast.success({
+                     title: "Success",
+                     description:
+                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, numquam.",
+                  })
                }
             >
                Success
@@ -136,10 +138,11 @@ export const Playground: FC = () => {
             <Button
                icon="ph:info-bold"
                onClick={() =>
-                  prepareToast.info(
-                     "Info",
-                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, numquam."
-                  )
+                  prepareToast.info({
+                     title: "Info",
+                     description:
+                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, numquam.",
+                  })
                }
             >
                Info
@@ -147,10 +150,11 @@ export const Playground: FC = () => {
             <Button
                icon="ph:warning-bold"
                onClick={() =>
-                  prepareToast.warning(
-                     "Warning",
-                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, numquam."
-                  )
+                  prepareToast.warning({
+                     title: "Warning",
+                     description:
+                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, numquam.",
+                  })
                }
             >
                Warning

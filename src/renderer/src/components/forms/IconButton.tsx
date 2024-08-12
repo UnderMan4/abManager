@@ -34,7 +34,7 @@ export const IconButton: FC<IconButtonProps> = ({
          {...props}
       >
          <div className="center size-[1.3rem]">
-            <Icon icon={icon} className="" height="43rem" />
+            <Icon icon={icon} className="" height="100%" />
          </div>
       </button>
    );

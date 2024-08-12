@@ -99,7 +99,7 @@ export const Button: FC<ButtonProps> = ({
             {
                "ring-2 ring-radix-gray-1200": isFocusVisible,
                "px-4 py-2 rounded-xl gap-2": !mini,
-               "px-1 rounded-md gap-1": mini,
+               "px-2 rounded-md gap-1": mini,
             },
             className
          )}

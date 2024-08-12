@@ -19,7 +19,7 @@ export const FullscreenLoader: FC<FullscreenLoaderProps> = ({
          className={cls(
             "absolute inset-0 flex flex-col items-center justify-center z-20 gap-4",
             {
-               "bg-black/20 backdrop-blur-sm": translucent,
+               "bg-black/60 backdrop-blur-sm": translucent,
             },
             className
          )}

@@ -49,6 +49,9 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
+      luxon:
+        specifier: ^3.5.0
+        version: 3.5.0
       music-metadata:
         specifier: ^7.14.0
         version: 7.14.0
@@ -122,14 +125,17 @@ importers:
       '@types/lodash':
         specifier: ^4.17.5
         version: 4.17.5
+      '@types/luxon':
+        specifier: ^3.4.2
+        version: 3.4.2
       '@types/node':
-        specifier: ^18.19.9
+        specifier: ^18.19.15
         version: 18.19.15
       '@types/react':
-        specifier: ^18.2.48
+        specifier: ^18.2.55
         version: 18.2.55
       '@types/react-dom':
-        specifier: ^18.2.18
+        specifier: ^18.2.19
         version: 18.2.19
       '@vitejs/plugin-react':
         specifier: ^4.2.1
@@ -138,7 +144,7 @@ importers:
         specifier: ^10.4.17
         version: 10.4.17(postcss@8.4.35)
       electron:
-        specifier: ^28.2.0
+        specifier: ^28.2.2
         version: 28.2.2
       electron-builder:
         specifier: ^24.9.1
@@ -168,7 +174,7 @@ importers:
         specifier: ^8.4.35
         version: 8.4.35
       prettier:
-        specifier: ^3.2.4
+        specifier: ^3.2.5
         version: 3.2.5
       prettier-plugin-tailwindcss:
         specifier: ^0.5.11
@@ -186,7 +192,7 @@ importers:
         specifier: 5.3.3
         version: 5.3.3
       vite:
-        specifier: ^5.0.12
+        specifier: ^5.1.1
         version: 5.1.1(@types/node@18.19.15)
       vite-tsconfig-paths:
         specifier: ^4.3.1
@@ -1318,6 +1324,9 @@ packages:
   '@types/lodash@4.17.5':
     resolution: {integrity: sha512-MBIOHVZqVqgfro1euRDWX7OO0fBVUUMrN6Pwm8LQsz8cWhEpihlvR70ENj3f40j58TNxZaWv2ndSkInykNBBJw==}
 
+  '@types/luxon@3.4.2':
+    resolution: {integrity: sha512-TifLZlFudklWlMBfhubvgqTXRzLDI5pCbGa4P8a3wPyUQSW+1xQ5eDsreP9DWHX3tjq1ke96uYG/nwundroWcA==}
+
   '@types/ms@0.7.34':
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
 
@@ -1625,8 +1634,8 @@ packages:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
     engines: {node: '>= 6'}
 
-  caniuse-lite@1.0.30001585:
-    resolution: {integrity: sha512-yr2BWR1yLXQ8fMpdS/4ZZXpseBgE7o4g41x3a6AJOqZuOi+iE/WdJYAuZ6Y95i4Ohd2Y+9MzIWRR+uGABH4s3Q==}
+  caniuse-lite@1.0.30001650:
+    resolution: {integrity: sha512-fgEc7hP/LB7iicdXHUI9VsBsMZmUmlVJeQP2qqQW+3lkqVhbmjEU8zp+h5stWeilX+G7uXuIUIIlWlDw9jdt8g==}
 
   chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -2511,6 +2520,10 @@ packages:
   lru-cache@6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
     engines: {node: '>=10'}
+
+  luxon@3.5.0:
+    resolution: {integrity: sha512-rh+Zjr6DNfUYR3bPwJEnuwDdqMbxZW7LOQfUN4B54+Cl+0o5zaU9RJ6bcidfDtC1cWCZXQ+nvX8bf6bAji37QQ==}
+    engines: {node: '>=12'}
 
   magic-string@0.30.7:
     resolution: {integrity: sha512-8vBuFF/I/+OSLRmdf2wwFCJCz+nSn0m6DPvGH1fS/KiQoSaR+sETbov0eIk9KhEKy8CYqIkIAnbohxT/4H0kuA==}
@@ -4984,6 +4997,8 @@ snapshots:
 
   '@types/lodash@4.17.5': {}
 
+  '@types/luxon@3.4.2': {}
+
   '@types/ms@0.7.34': {}
 
   '@types/node@18.19.15':
@@ -5277,7 +5292,7 @@ snapshots:
   autoprefixer@10.4.17(postcss@8.4.35):
     dependencies:
       browserslist: 4.22.3
-      caniuse-lite: 1.0.30001585
+      caniuse-lite: 1.0.30001650
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -5316,7 +5331,7 @@ snapshots:
 
   browserslist@4.22.3:
     dependencies:
-      caniuse-lite: 1.0.30001585
+      caniuse-lite: 1.0.30001650
       electron-to-chromium: 1.4.665
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.3)
@@ -5386,7 +5401,7 @@ snapshots:
 
   camelcase-css@2.0.1: {}
 
-  caniuse-lite@1.0.30001585: {}
+  caniuse-lite@1.0.30001650: {}
 
   chalk@2.4.2:
     dependencies:
@@ -6442,6 +6457,8 @@ snapshots:
   lru-cache@6.0.0:
     dependencies:
       yallist: 4.0.0
+
+  luxon@3.5.0: {}
 
   magic-string@0.30.7:
     dependencies:

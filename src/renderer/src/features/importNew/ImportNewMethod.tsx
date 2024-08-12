@@ -1,7 +1,9 @@
 import { FC, useCallback, useEffect, useRef, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
+import { AUDIO_FILES_EXTENSIONS } from "@/constants";
 import { useAppNavigate } from "@/hooks";
+import { prepareToast } from "@/utils/toastUtils";
 
 import { FullscreenLoader } from "../../components/common/FullscreenLoader";
 import { MethodButton } from "./components/MethodButton";
@@ -52,6 +54,18 @@ export const ImportNewMethod: FC = () => {
       setCanOpenDialog(false);
       const result = await window.api.showOpenDialog({
          properties: ["multiSelections", "openFile"],
+         title: formatMessage({ id: "importNew.selectFilesWindow.title" }),
+         buttonLabel: formatMessage({
+            id: "importNew.selectFilesWindow.button",
+         }),
+         filters: [
+            {
+               name: formatMessage({
+                  id: "importNew.selectFilesWindow.filterName",
+               }),
+               extensions: AUDIO_FILES_EXTENSIONS,
+            },
+         ],
       });
       setCanOpenDialog(true);
       if (!result || result.canceled) return;
@@ -60,6 +74,16 @@ export const ImportNewMethod: FC = () => {
    }, [navigate]);
 
    const selectFolder = useCallback(async () => {
+      prepareToast.info({
+         title: formatMessage({ id: "toasts.info.comingSoon.title" }),
+         description: formatMessage({
+            id: "toasts.info.comingSoon.description",
+         }),
+         id: "comingSoon",
+      });
+
+      return;
+
       if (!canOpenDialog) return;
 
       setCanOpenDialog(false);
@@ -78,28 +102,38 @@ export const ImportNewMethod: FC = () => {
       return (
          <FullscreenLoader
             translucent
-            description={formatMessage({ id: "importNew.selectFiles" })}
+            description={formatMessage({ id: "importNew.selectFilesMessage" })}
          />
       );
    }
    return (
-      <div className="center h-full gap-16" ref={ref}>
-         <MethodButton
-            icon="ph:file-bold"
-            onClick={selectFile}
-            maxHeight={buttonHeight}
-            maxWidth={buttonWidth}
-         >
-            <FormattedMessage id="navbar.addNew.selectFile" />
-         </MethodButton>
-         <MethodButton
-            icon="ph:folder-open-bold"
-            onClick={selectFolder}
-            maxHeight={buttonHeight}
-            maxWidth={buttonWidth}
-         >
-            <FormattedMessage id="navbar.addNew.selectFolder" />
-         </MethodButton>
-      </div>
+      <>
+         {!canOpenDialog && (
+            <FullscreenLoader
+               translucent
+               description={formatMessage({
+                  id: "importNew.selectFilesMessage",
+               })}
+            />
+         )}
+         <div className="center h-full gap-16" ref={ref}>
+            <MethodButton
+               icon="ph:file-bold"
+               onClick={selectFile}
+               maxHeight={buttonHeight}
+               maxWidth={buttonWidth}
+            >
+               <FormattedMessage id="navbar.addNew.selectFile" />
+            </MethodButton>
+            <MethodButton
+               icon="ph:folder-open-bold"
+               onClick={selectFolder}
+               maxHeight={buttonHeight}
+               maxWidth={buttonWidth}
+            >
+               <FormattedMessage id="navbar.addNew.selectFolder" />
+            </MethodButton>
+         </div>
+      </>
    );
 };

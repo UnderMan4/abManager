@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import { Variants, m } from "framer-motion";
+import { Variants, motion } from "framer-motion";
 import { FC, ReactNode, useRef } from "react";
 import { AriaRadioProps, useRadio, useVisuallyHidden } from "react-aria";
 
@@ -60,7 +60,7 @@ export const RadioButton: FC<RadioButtonProps> = ({
                   }
                )}
             >
-               <m.div
+               <motion.div
                   variants={dotVariants}
                   initial="unchecked"
                   animate={

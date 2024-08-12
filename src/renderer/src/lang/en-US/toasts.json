@@ -1,6 +1,14 @@
 {
-   "importFileRead": {
-      "description": "Verify if files are not corrupted.",
-      "title": "Error while reading files' metadata."
+   "error": {
+      "importFileRead": {
+         "description": "Verify if files are not corrupted.",
+         "title": "Error while reading files' metadata."
+      }
+   },
+   "info": {
+      "comingSoon": {
+         "description": "This feature will be available in the future.",
+         "title": "Coming soon"
+      }
    }
 }

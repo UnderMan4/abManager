@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import { Variants, m } from "framer-motion";
+import { Variants, motion } from "framer-motion";
 import { useMemo, useRef } from "react";
 import {
    AriaSelectProps,
@@ -81,7 +81,7 @@ export const Dropdown = <T extends object>(props: DropdownProps<T>) => {
                   <FormattedMessage id="common.dropdown.select" />
                )}
             </span>
-            <m.div
+            <motion.div
                variants={chevronVariants}
                animate={state.isOpen ? "open" : "closed"}
                initial="closed"
@@ -94,7 +94,7 @@ export const Dropdown = <T extends object>(props: DropdownProps<T>) => {
                      "text-radix-gray-1000": isDisabled,
                   })}
                />
-            </m.div>
+            </motion.div>
          </button>
          {/* TODO: Fix high of the dropdown when it does not fit on the screen */}
          {state.isOpen && (

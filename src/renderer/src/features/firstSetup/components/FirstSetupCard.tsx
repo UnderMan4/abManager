@@ -1,4 +1,4 @@
-import { AnimatePresence, Variants, m } from "framer-motion";
+import { AnimatePresence, Variants, motion } from "framer-motion";
 import React, { FC, RefObject } from "react";
 
 import { AbsoluteCenter, Card } from "@/components/common";
@@ -67,7 +67,7 @@ export const FirstSetupCard: FC<FirstSetupCardProps> = ({
       <AbsoluteCenter className="max-w-lg">
          <AnimatePresence>
             {currentStep === cardNumber && (
-               <m.div
+               <motion.div
                   variants={variants}
                   initial={isBack ? "initialBack" : "initial"}
                   animate="animate"
@@ -113,7 +113,7 @@ export const FirstSetupCard: FC<FirstSetupCardProps> = ({
                   >
                      {children}
                   </Card>
-               </m.div>
+               </motion.div>
             )}
          </AnimatePresence>
       </AbsoluteCenter>

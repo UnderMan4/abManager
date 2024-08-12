@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 import type { ComboBoxProps as ComboBoxPropsAria } from "@react-types/combobox";
-import { Variants, m } from "framer-motion";
+import { Variants, motion } from "framer-motion";
 import { useMemo, useRef } from "react";
 import {
    mergeProps,
@@ -87,14 +87,14 @@ export const ComboBox = <T extends object>(props: ComboBoxProps<T>) => {
                ref={buttonRef}
                className="flex items-center justify-center shrink-0 p-3"
             >
-               <m.div
+               <motion.div
                   variants={chevronVariants}
                   animate={state.isOpen ? "open" : "closed"}
                   initial="closed"
                   className="flex items-center justify-center h-full w-full shrink-0"
                >
                   <Icon height="1rem" icon="ph:caret-down-bold" />
-               </m.div>
+               </motion.div>
             </button>
          </div>
          {state.isOpen && (

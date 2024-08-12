@@ -1,4 +1,36 @@
 {
+   "clickDetailsButton": "Kliknij przycisk {icon}, aby zobaczyć szczegóły pliku.",
+   "details": {
+      "bitrate": "Szybkość transmisji",
+      "description": "Opis",
+      "duration": "Czas trwania",
+      "fileSize": "Rozmiar pliku",
+      "filename": "Nazwa pliku",
+      "series": "Seria",
+      "year": "Rok"
+   },
+   "options": {
+      "oneBook": {
+         "description": "Jeśli zaznaczone, wszystkie pliki będą traktowane jako części jednej książki. Metadane całego audiobooka pobierane są z pierwszego pliku.",
+         "label": "Jedna książka"
+      },
+      "sort": {
+         "byFilename": "Według nazwy pliku",
+         "byTitle": "Według tytułu",
+         "byTrackNumber": "Według numeru utworu",
+         "label": "Posortuj pliki:"
+      }
+   },
+   "pages": {
+      "importFiles": "Importuj pliki",
+      "importFolder": "Importuj folder",
+      "importMethod": "Wybierz metodę importu"
+   },
    "readingMetadata": "Czytanie plików...",
-   "selectFiles": "Użyj okna wyboru plików, aby wybrać pliki, które chcesz zaimportować."
+   "selectFilesMessage": "Użyj okna wyboru plików, aby wybrać pliki, które chcesz zaimportować.",
+   "selectFilesWindow": {
+      "button": "Import",
+      "filterName": "Pliki dźwiękowe",
+      "title": "Importuj pliki"
+   }
 }

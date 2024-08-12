@@ -1,6 +1,14 @@
 {
-   "importFileRead": {
-      "description": "Sprawdź, czy pliki nie są uszkodzone.",
-      "title": "Błąd podczas odczytu metadanych plików."
+   "error": {
+      "importFileRead": {
+         "description": "Sprawdź, czy pliki nie są uszkodzone.",
+         "title": "Błąd podczas odczytu metadanych plików."
+      }
+   },
+   "info": {
+      "comingSoon": {
+         "description": "Ta funkcja będzie dostępna w przyszłości.",
+         "title": "Już wkrótce"
+      }
    }
 }

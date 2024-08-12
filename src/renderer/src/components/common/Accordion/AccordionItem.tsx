@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import { Variants, m } from "framer-motion";
+import { Variants, motion } from "framer-motion";
 import { FC, HTMLAttributes, useEffect, useState } from "react";
 import { useFocusRing, useId } from "react-aria";
 import { twMerge } from "tailwind-merge";
@@ -49,21 +49,21 @@ export const AccordionItem: FC<AccordionItemProps> = ({
             {...focusProps}
          >
             <span className="grow text-left text-lg font-bold">{label}</span>
-            <m.div
+            <motion.div
                variants={chevronVariants}
                animate={isOpen ? "open" : "closed"}
                initial="closed"
             >
                <Icon icon="ph:caret-down-bold" />
-            </m.div>
+            </motion.div>
          </button>
-         <m.div
+         <motion.div
             className="overflow-hidden"
             initial={false}
             animate={{ height: isOpen ? "auto" : 0 }}
          >
             <div className="p-2">{props.children}</div>
-         </m.div>
+         </motion.div>
       </div>
    );
 };
