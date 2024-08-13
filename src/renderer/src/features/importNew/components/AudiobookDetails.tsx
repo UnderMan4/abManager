@@ -51,6 +51,7 @@ export const AudiobookDetails: FC<AudiobookDetailsProps> = ({ className }) => {
                   ? `${series}${seriesPart ? ` [${seriesPart}]` : ""}`
                   : undefined
             }
+            description={formatMessage({ id: "importNew.details.seriesDesc" })}
          />
          <AudiobookDetailsElement
             label={formatMessage({ id: "importNew.details.duration" })}
@@ -72,6 +73,9 @@ export const AudiobookDetails: FC<AudiobookDetailsProps> = ({ className }) => {
          <AudiobookDetailsElement
             label={formatMessage({ id: "importNew.details.description" })}
             value={description}
+            description={formatMessage({
+               id: "importNew.details.descriptionDesc",
+            })}
          />
          <AudiobookDetailsElement
             label={formatMessage({ id: "importNew.details.bitrate" })}

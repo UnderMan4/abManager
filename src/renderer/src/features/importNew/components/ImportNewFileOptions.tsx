@@ -51,13 +51,13 @@ export const ImportNewFileOptions: FC = () => {
          <AnimatePresence>
             {options.oneBook && (
                <motion.div
-                  className="overflow-hidden"
+                  className="overflow-hidden py-2 flex flex-col gap-1"
                   variants={sortVariants}
                   initial="hidden"
                   animate="visible"
                   exit="hidden"
                >
-                  <p>
+                  <p className="">
                      <FormattedMessage id="importNew.options.sort.label" />
                   </p>
                   <div className="flex flex-wrap gap-3">

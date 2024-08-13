@@ -14,6 +14,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { useLocation } from "react-router-dom";
 
 import { FullscreenLoader } from "@/components/common";
+import { Button } from "@/components/forms";
 import { AudiobookDetails } from "@/features/importNew/components/AudiobookDetails";
 import { FileImportElement } from "@/features/importNew/components/FileImportElement";
 import { ImportNewFileOptions } from "@/features/importNew/components/ImportNewFileOptions";
@@ -113,17 +114,24 @@ export const ImportNewFile: FC = () => {
          }}
       >
          <div className="grid-cols-[17rem_minmax(35rem,_3fr)_minmax(20rem,_2fr)] max-xl:grid-cols-[17rem_minmax(35rem,_2fr)_auto] grid grid-row-[1fr] max-h-full h-full p-4 gap-2">
-            <div
-               className={
-                  "col-span-1 flex flex-col p-4 pr-2 bg-radix-gray-a200 rounded-3xl h-[calc(100vh-var(--fullscreen-header-height)-2rem)]"
-               }
-            >
+            <div className="flex flex-col gap-2 h-[calc(100vh-var(--fullscreen-header-height)-2rem)]">
                <div
-                  className={cls(
-                     " overflow-y-auto custom-scrollbar light-scrollbar"
-                  )}
+                  className={
+                     "col-span-1 flex flex-col p-4 pr-2 bg-radix-gray-a200 rounded-3xl flex-1"
+                  }
                >
-                  <ImportNewFileOptions />
+                  <div
+                     className={cls(
+                        " overflow-y-auto custom-scrollbar light-scrollbar"
+                     )}
+                  >
+                     <ImportNewFileOptions />
+                  </div>
+               </div>
+               <div className="bg-radix-gray-a200 rounded-3xl p-4 flex flex-col">
+                  <Button>
+                     <FormattedMessage id="importNew.import" />
+                  </Button>
                </div>
             </div>
 

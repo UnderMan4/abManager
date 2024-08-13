@@ -3,12 +3,15 @@
    "details": {
       "bitrate": "Bitrate",
       "description": "Description",
+      "descriptionDesc": "Derived from 'description' or 'comment' metadata fields, based on availability.",
       "duration": "Duration",
       "fileSize": "File size",
       "filename": "File name",
       "series": "Series",
+      "seriesDesc": "Derived from the 'album' and 'track' metadata fields.",
       "year": "Year"
    },
+   "import": "Import",
    "options": {
       "oneBook": {
          "description": "If checked all files are treated as parts of one book. Metadata for whole audiobook are taken from the first file.",

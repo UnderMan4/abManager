@@ -3,12 +3,15 @@
    "details": {
       "bitrate": "Szybkość transmisji",
       "description": "Opis",
+      "descriptionDesc": "Pochodzi z pól metadanych „Opis” lub „Komentarze”, w zależności od dostępności.",
       "duration": "Czas trwania",
       "fileSize": "Rozmiar pliku",
       "filename": "Nazwa pliku",
       "series": "Seria",
+      "seriesDesc": "Pochodzi z pól metadanych „Album” i „Nr utworu”.",
       "year": "Rok"
    },
+   "import": "Importuj",
    "options": {
       "oneBook": {
          "description": "Jeśli zaznaczone, wszystkie pliki będą traktowane jako części jednej książki. Metadane całego audiobooka pobierane są z pierwszego pliku.",
