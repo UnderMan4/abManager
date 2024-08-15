@@ -13,6 +13,7 @@ import os from "os";
 import path from "path";
 
 import icon from "../../resources/icon.png?asset";
+import { importFiles } from "./import";
 import { readFileMetadata } from "./utils";
 
 function createWindow(): void {
@@ -28,6 +29,7 @@ function createWindow(): void {
       webPreferences: {
          preload: path.join(__dirname, "../preload/index.js"),
          sandbox: false,
+         nodeIntegrationInWorker: true,
       },
    });
 
@@ -115,6 +117,10 @@ const apiHandling = () => {
 
    ipcMain.on("get-platform", (event) => {
       event.returnValue = os.platform();
+   });
+
+   ipcMain.on("add-to-import-queue", (_, data) => {
+      importFiles(data);
    });
 };
 

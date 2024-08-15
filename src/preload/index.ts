@@ -20,6 +20,15 @@ const api = {
       return () => ipcRenderer.removeListener("system-theme-changed", callback);
    },
    getPlatform: (): NodeJS.Platform => ipcRenderer.sendSync("get-platform"),
+   import: {
+      importFiles: (path: string[], options: unknown) => {
+         ipcRenderer.sendSync("add-to-import-queue", path, options);
+      },
+      onMessage: (callback: (event: unknown, data: unknown) => void) => {
+         ipcRenderer.addListener("import-message", callback);
+         return () => ipcRenderer.removeListener("import-message", callback);
+      },
+   },
 };
 
 const fs = {

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Item, Section } from "react-stately";
 
 import { Modal, useModalState } from "@/components/common/Modal";
@@ -37,6 +37,18 @@ const Flexbox: FC<FlexboxProps> = ({ children, className, column }) => {
 
 export const Playground: FC = () => {
    const modalState = useModalState({});
+
+   useEffect(() => {
+      const removeImportListener = window.api.import.onMessage(
+         (event, data) => {
+            console.log(event, data);
+         }
+      );
+
+      return () => {
+         removeImportListener();
+      };
+   }, []);
    return (
       <Flexbox column>
          <Flexbox>
@@ -160,6 +172,19 @@ export const Playground: FC = () => {
                Warning
             </Button>
          </div>
+         <Button
+            onClick={() =>
+               window.api.import.importFiles({
+                  id: "123",
+                  paths: ["C:\\Users\\filip\\Downloads\\SYSOP.mp3"],
+                  options: {
+                     isOneBook: false,
+                  },
+               })
+            }
+         >
+            Import
+         </Button>
       </Flexbox>
    );
 };
