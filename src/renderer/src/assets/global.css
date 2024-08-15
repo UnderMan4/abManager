@@ -40,7 +40,7 @@ body {
       --sb-track-color: theme("colors.radix.gray.300");
       --sb-thumb-color: theme("colors.radix.gray.800");
       --sb-size: 1rem;
-      scrollbar-gutter: stable;
+      @apply gutter-stable;
    }
 
    .custom-scrollbar.light-scrollbar {

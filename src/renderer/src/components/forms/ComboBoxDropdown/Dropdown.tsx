@@ -102,7 +102,7 @@ export const Dropdown = <T extends object>(props: DropdownProps<T>) => {
                state={state}
                triggerRef={ref}
                placement="bottom start"
-               className="mt-1 max-h-80 overflow-y-auto custom-scrollbar light-scrollbar"
+               className="mt-1 max-h-80 overflow-y-auto custom-scrollbar light-scrollbar gutter-auto"
                style={{ width: elementWidth }}
             >
                <ListBox

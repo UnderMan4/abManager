@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, Variants, motion } from "framer-motion";
 import _ from "lodash";
 import { FC } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -7,12 +7,14 @@ import { Button, Checkbox } from "@/components/forms";
 import { useImportNewFileContext } from "@/hooks/contexts/useImportNewFileContext";
 import { cls } from "@/utils/styleUtils";
 
-const sortVariants = {
+const sortVariants: Variants = {
    hidden: {
       height: 0,
+      paddingBlock: 0,
    },
    visible: {
       height: "auto",
+      paddingBlock: "0.5rem",
    },
 };
 
@@ -51,7 +53,7 @@ export const ImportNewFileOptions: FC = () => {
          <AnimatePresence>
             {options.oneBook && (
                <motion.div
-                  className="overflow-hidden py-2 flex flex-col gap-1"
+                  className="overflow-hidden flex flex-col gap-1"
                   variants={sortVariants}
                   initial="hidden"
                   animate="visible"

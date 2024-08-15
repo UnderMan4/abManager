@@ -107,6 +107,12 @@ module.exports = {
                "align-items": "center",
                "justify-content": "center",
             },
+            ".gutter-stable": {
+               "scrollbar-gutter": "stable",
+            },
+            ".gutter-auto": {
+               "scrollbar-gutter": "auto",
+            },
          });
          addComponents({
             ".focus-ring": {

@@ -105,7 +105,7 @@ export const ComboBox = <T extends object>(props: ComboBoxProps<T>) => {
                isNonModal
                placement="bottom start"
                style={{ width: elementWidth }}
-               className="mt-1 max-h-80 overflow-y-auto custom-scrollbar light-scrollbar"
+               className="mt-1 max-h-80 overflow-y-auto custom-scrollbar light-scrollbar gutter-auto"
             >
                <ListBox
                   {...listBoxProps}

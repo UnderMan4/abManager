@@ -86,7 +86,7 @@ export const FileImportElement: FC<FileImportElementProps> = ({ file }) => {
          </div>
          <div className="flex flex-col center">
             <IconButton
-               icon="ph:info-bold"
+               icon="ph:notebook-bold"
                className="grow-0"
                appearance="outlineColor"
                onClick={() => setSelectedFile(file)}

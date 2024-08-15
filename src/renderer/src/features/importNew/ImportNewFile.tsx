@@ -174,7 +174,7 @@ export const ImportNewFile: FC = () => {
                            values={{
                               icon: (
                                  <InlineIcon
-                                    icon="ph:info-bold"
+                                    icon="ph:notebook-bold"
                                     className="inline"
                                  />
                               ),
