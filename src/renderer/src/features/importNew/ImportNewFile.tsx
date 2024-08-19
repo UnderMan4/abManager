@@ -7,6 +7,7 @@ import {
    FC,
    SetStateAction,
    createContext,
+   useCallback,
    useEffect,
    useState,
 } from "react";
@@ -19,6 +20,7 @@ import { AudiobookDetails } from "@/features/importNew/components/AudiobookDetai
 import { FileImportElement } from "@/features/importNew/components/FileImportElement";
 import { ImportNewFileOptions } from "@/features/importNew/components/ImportNewFileOptions";
 import { SetObjectState, useObjectState } from "@/hooks";
+import { useSettingsStore } from "@/stores";
 import { generateUniqueId } from "@/utils/stringUtils";
 import { cls } from "@/utils/styleUtils";
 import { prepareToast } from "@/utils/toastUtils";
@@ -31,7 +33,7 @@ export type FileData = {
 };
 
 export type ImportNewFileOptions = {
-   oneBook: boolean;
+   isOneBook: boolean;
 };
 
 export type ImportNewFileContextState = {
@@ -49,11 +51,13 @@ export const ImportNewFile: FC = () => {
    const [isLoading, setIsLoading] = useState(true);
    const { state } = useLocation();
 
+   const settings = useSettingsStore();
+
    const { formatMessage } = useIntl();
 
    const [files, setFiles] = useState<FileData[]>([]);
    const [options, setOptions] = useObjectState<ImportNewFileOptions>({
-      oneBook: false,
+      isOneBook: false,
    });
 
    const [selectedFile, setSelectedFile] = useState<FileData | null>(null);
@@ -93,6 +97,20 @@ export const ImportNewFile: FC = () => {
          });
    }, [state]);
 
+   const importAudiobooks = useCallback(async () => {
+      const paths = files.map((file) => file.path);
+      const id = generateUniqueId(paths);
+      window.api.import.importFiles({
+         id,
+         paths,
+         options,
+         userSettings: {
+            libraryPath: settings.libraryPath!,
+            saveType: settings.saveType,
+         },
+      });
+   }, [files, options]);
+
    if (isLoading) {
       return (
          <FullscreenLoader
@@ -129,7 +147,7 @@ export const ImportNewFile: FC = () => {
                   </div>
                </div>
                <div className="bg-radix-gray-a200 rounded-3xl p-4 flex flex-col">
-                  <Button>
+                  <Button onClick={importAudiobooks}>
                      <FormattedMessage id="importNew.import" />
                   </Button>
                </div>

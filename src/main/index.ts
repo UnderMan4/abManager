@@ -13,11 +13,13 @@ import os from "os";
 import path from "path";
 
 import icon from "../../resources/icon.png?asset";
+import { importFiles } from "./import";
 import { readFileMetadata } from "./utils";
 
+export let mainWindow: BrowserWindow | null = null;
 function createWindow(): void {
    // Create the browser window.
-   const mainWindow = new BrowserWindow({
+   mainWindow = new BrowserWindow({
       width: 1400,
       height: 900,
       minHeight: 600,
@@ -28,11 +30,12 @@ function createWindow(): void {
       webPreferences: {
          preload: path.join(__dirname, "../preload/index.js"),
          sandbox: false,
+         nodeIntegrationInWorker: true,
       },
    });
 
    mainWindow.on("ready-to-show", () => {
-      mainWindow.show();
+      mainWindow!.show();
    });
 
    mainWindow.webContents.setWindowOpenHandler((details) => {
@@ -109,12 +112,12 @@ const apiHandling = () => {
       (_, options: Electron.OpenDialogOptions) => dialog.showOpenDialog(options)
    );
 
-   ipcMain.on("get-system-theme", (event) => {
-      event.returnValue = nativeTheme.shouldUseDarkColors ? "dark" : "light";
-   });
-
    ipcMain.on("get-platform", (event) => {
       event.returnValue = os.platform();
+   });
+
+   ipcMain.handle("import-files", (_, data) => {
+      importFiles(data);
    });
 };
 

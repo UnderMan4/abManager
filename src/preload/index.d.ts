@@ -4,6 +4,24 @@ import Drive from "node-disk-info/dist/classes/drive";
 import { PlatformPath } from "path";
 
 declare global {
+   type ImportListenerData =
+      | { status: "fileError"; id: string; fileName: string; error: Error }
+      | { status: "done"; id: string }
+      | { status: "startingFile"; id: string; fileName: string }
+      | { status: "doneFile"; id: string; fileName: string }
+      | { status: "copying"; id: string; fileName: string; chunkLength: number }
+      | { status: "finalizingFile"; id: string; fileName: string }
+      | { status: "deleteError"; id: string; fileName: string; error: Error };
+
+   type ImportOptions = {
+      isOneBook: boolean;
+   };
+
+   type UserSettings = {
+      libraryPath: string;
+      saveType: "link" | "copy" | "move";
+   };
+
    interface Window {
       electron: ElectronAPI;
       api: {
@@ -16,8 +34,22 @@ declare global {
                event: Electron.IpcRendererEvent,
                theme: "light" | "dark"
             ) => void
-         ) => Electron.IpcRenderer;
+         ) => () => Electron.IpcRenderer;
          getPlatform: () => NodeJS.Platform;
+         import: {
+            importFiles: (data: {
+               id: string;
+               paths: string[];
+               options: ImportOptions;
+               userSettings: UserSettings;
+            }) => void;
+            onMessage: (
+               callback: (
+                  event: Electron.IpcRendererEvent,
+                  data: ImportListenerData
+               ) => void
+            ) => () => Electron.IpcRenderer;
+         };
       };
       fs: {
          listDirectory: (

@@ -52,7 +52,7 @@ export const FileImportElement: FC<FileImportElementProps> = ({ file }) => {
          key={file.path}
       >
          <AnimatePresence>
-            {options.oneBook && (
+            {options.isOneBook && (
                <motion.div
                   className="flex flex-col center select-none justify-between overflow-hidden cursor-grab"
                   variants={handleVariants}

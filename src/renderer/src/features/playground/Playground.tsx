@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import { nanoid } from "nanoid";
+import React, { FC, useEffect } from "react";
 import { Item, Section } from "react-stately";
 
 import { Modal, useModalState } from "@/components/common/Modal";
@@ -10,6 +11,7 @@ import {
    RadioButton,
    RadioGroup,
 } from "@/components/forms";
+import { useSettingsStore } from "@/stores";
 import { cls } from "@/utils/styleUtils";
 import { prepareToast } from "@/utils/toastUtils";
 
@@ -18,6 +20,12 @@ type FlexboxProps = {
    children?: React.ReactNode | React.ReactNode[];
    column?: boolean;
 };
+
+const paths = Array.from(
+   { length: 9 },
+   (_, i) =>
+      `C:\\Users\\filip\\Downloads\\samples\\0${i + 1} - www.mfiles.co.uk - Ludwig van Beethoven - Title ${i + 1}.mp3`
+);
 
 const Flexbox: FC<FlexboxProps> = ({ children, className, column }) => {
    return (
@@ -37,6 +45,20 @@ const Flexbox: FC<FlexboxProps> = ({ children, className, column }) => {
 
 export const Playground: FC = () => {
    const modalState = useModalState({});
+
+   const settings = useSettingsStore();
+
+   useEffect(() => {
+      const removeImportListener = window.api.import.onMessage(
+         (event, data) => {
+            console.info(event, data);
+         }
+      );
+
+      return () => {
+         removeImportListener();
+      };
+   }, []);
    return (
       <Flexbox column>
          <Flexbox>
@@ -160,6 +182,23 @@ export const Playground: FC = () => {
                Warning
             </Button>
          </div>
+         <Button
+            onClick={() =>
+               window.api.import.importFiles({
+                  id: nanoid(),
+                  paths,
+                  options: {
+                     isOneBook: true,
+                  },
+                  userSettings: {
+                     libraryPath: settings.libraryPath!,
+                     saveType: settings.saveType,
+                  },
+               })
+            }
+         >
+            Import
+         </Button>
       </Flexbox>
    );
 };

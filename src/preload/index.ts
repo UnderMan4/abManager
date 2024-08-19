@@ -20,6 +20,17 @@ const api = {
       return () => ipcRenderer.removeListener("system-theme-changed", callback);
    },
    getPlatform: (): NodeJS.Platform => ipcRenderer.sendSync("get-platform"),
+   import: {
+      importFiles: (data: unknown) => {
+         ipcRenderer.invoke("import-files", data);
+      },
+      onMessage: (
+         callback: (event: Electron.IpcRendererEvent, data: unknown) => void
+      ) => {
+         ipcRenderer.addListener("import-message", callback);
+         return () => ipcRenderer.removeListener("import-message", callback);
+      },
+   },
 };
 
 const fs = {
