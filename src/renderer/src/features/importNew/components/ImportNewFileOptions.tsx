@@ -47,11 +47,11 @@ export const ImportNewFileOptions: FC = () => {
                id: "importNew.options.oneBook.description",
             })}
             descriptionAsTooltip
-            isSelected={options.oneBook}
-            onChange={(value) => setOptions({ oneBook: value })}
+            isSelected={options.isOneBook}
+            onChange={(value) => setOptions({ isOneBook: value })}
          />
          <AnimatePresence>
-            {options.oneBook && (
+            {options.isOneBook && (
                <motion.div
                   className="overflow-hidden flex flex-col gap-1"
                   variants={sortVariants}

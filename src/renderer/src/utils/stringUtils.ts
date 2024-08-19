@@ -11,8 +11,8 @@ export const getFileSizeFormatter = <T = string>(
    });
 };
 
-export const generateUniqueId = (strings: string[]): string => {
-   const concatenedString = strings.join("");
+export const generateUniqueId = (strings: string[] | string): string => {
+   const concatenedString = Array.isArray(strings) ? strings.join("") : strings;
    return SHA256.hash(concatenedString);
 };
 

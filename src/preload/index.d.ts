@@ -4,31 +4,24 @@ import Drive from "node-disk-info/dist/classes/drive";
 import { PlatformPath } from "path";
 
 declare global {
-   type ImportListenerData<T extends ImportListenerEvent> = {
-      id: string;
-   } & (T extends "progress"
-      ? { fileName: string; chunkLength: number }
-      : T extends "done"
-        ? Record<string, never>
-        : T extends "error"
-          ? { fileName: string; error: Error }
-          : T extends "fileDone"
-            ? { fileName: string }
-            : T extends "fileStart"
-              ? { fileName: string }
-              : never);
+   type ImportListenerData =
+      | { status: "fileError"; id: string; fileName: string; error: Error }
+      | { status: "done"; id: string }
+      | { status: "startingFile"; id: string; fileName: string }
+      | { status: "doneFile"; id: string; fileName: string }
+      | { status: "copying"; id: string; fileName: string; chunkLength: number }
+      | { status: "finalizingFile"; id: string; fileName: string }
+      | { status: "deleteError"; id: string; fileName: string; error: Error };
 
-   type ImportListenerEvent =
-      | "progress"
-      | "done"
-      | "error"
-      | "fileDone"
-      | "fileStart";
+   type ImportOptions = {
+      isOneBook: boolean;
+   };
 
-   type ImportListenerCallback<T extends ImportListenerCallback> = (
-      event: T,
-      data: ImportListenerData<T>
-   ) => void;
+   type UserSettings = {
+      libraryPath: string;
+      saveType: "link" | "copy" | "move";
+   };
+
    interface Window {
       electron: ElectronAPI;
       api: {
@@ -41,18 +34,20 @@ declare global {
                event: Electron.IpcRendererEvent,
                theme: "light" | "dark"
             ) => void
-         ) => Electron.IpcRenderer;
+         ) => () => Electron.IpcRenderer;
          getPlatform: () => NodeJS.Platform;
          import: {
             importFiles: (data: {
                id: string;
                paths: string[];
-               options: {
-                  isOneBook: boolean;
-               };
+               options: ImportOptions;
+               userSettings: UserSettings;
             }) => void;
             onMessage: (
-               callback: ImportListenerCallback<ImportListenerEvent>
+               callback: (
+                  event: Electron.IpcRendererEvent,
+                  data: ImportListenerData
+               ) => void
             ) => () => Electron.IpcRenderer;
          };
       };

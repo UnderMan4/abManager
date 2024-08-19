@@ -21,10 +21,12 @@ const api = {
    },
    getPlatform: (): NodeJS.Platform => ipcRenderer.sendSync("get-platform"),
    import: {
-      importFiles: (path: string[], options: unknown) => {
-         ipcRenderer.sendSync("add-to-import-queue", path, options);
+      importFiles: (data: unknown) => {
+         ipcRenderer.invoke("import-files", data);
       },
-      onMessage: (callback: (event: unknown, data: unknown) => void) => {
+      onMessage: (
+         callback: (event: Electron.IpcRendererEvent, data: unknown) => void
+      ) => {
          ipcRenderer.addListener("import-message", callback);
          return () => ipcRenderer.removeListener("import-message", callback);
       },

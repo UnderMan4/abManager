@@ -2,10 +2,16 @@ type ImportOptions = {
    isOneBook: boolean;
 };
 
+type UserSettings = {
+   libraryPath: string;
+   saveType: "link" | "copy" | "move";
+};
+
 type ImportData = {
    paths: string[];
    id: string;
    options: ImportOptions;
+   userSettings: UserSettings;
 };
 
 type ImportWorkerMessage =
