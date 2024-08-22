@@ -11,7 +11,7 @@
       "seriesDesc": "Pochodzi z pól metadanych „Album” i „Nr utworu”.",
       "year": "Rok"
    },
-   "import": "Importuj",
+   "importBtn": "Importuj",
    "options": {
       "oneBook": {
          "description": "Jeśli zaznaczone, wszystkie pliki będą traktowane jako części jednej książki. Metadane całego audiobooka pobierane są z pierwszego pliku.",

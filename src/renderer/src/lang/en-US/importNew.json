@@ -11,7 +11,7 @@
       "seriesDesc": "Derived from the 'album' and 'track' metadata fields.",
       "year": "Year"
    },
-   "import": "Import",
+   "importBtn": "Import",
    "options": {
       "oneBook": {
          "description": "If checked all files are treated as parts of one book. Metadata for whole audiobook are taken from the first file.",

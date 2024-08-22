@@ -151,7 +151,7 @@ export const ImportNewFile: FC = () => {
                </div>
                <div className="bg-radix-gray-a200 rounded-3xl p-4 flex flex-col">
                   <Button onClick={importAudiobooks}>
-                     <FormattedMessage id="importNew.import" />
+                     <FormattedMessage id="importNew.importBtn" />
                   </Button>
                </div>
             </div>

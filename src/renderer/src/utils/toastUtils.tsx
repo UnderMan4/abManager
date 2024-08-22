@@ -58,8 +58,10 @@ const progress = ({
          <ProgressToast
             title={title}
             description={description}
-            progress={progress}
-            secondaryProgress={secondaryProgress}
+            progress={{ ...progress }}
+            secondaryProgress={
+               secondaryProgress ? { ...secondaryProgress } : undefined
+            }
          />
       ),
       {
