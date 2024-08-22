@@ -1,6 +1,11 @@
 import { toast } from "sonner";
 
-import { Toast, ToastVariant } from "@/components/common";
+import {
+   ProgressBarProps,
+   ProgressToast,
+   Toast,
+   ToastVariant,
+} from "@/components/common";
 
 export type ToasterProgramParams = {
    title: string;
@@ -8,8 +13,19 @@ export type ToasterProgramParams = {
    id?: string;
 };
 
+export type ProgressToastParams = {
+   title: string;
+   description?: string;
+   progress: ProgressBarProps;
+   secondaryProgress?: ProgressBarProps;
+   id: string;
+};
+
 export type ToasterProgram = (params: ToasterProgramParams) => void;
-export type PrepareToast = Record<ToastVariant, ToasterProgram>;
+export type ToasterProgressProgram = (params: ProgressToastParams) => void;
+export type PrepareToast = Record<ToastVariant, ToasterProgram> & {
+   progress: ToasterProgressProgram;
+};
 
 const createToasterProgram = (variant: ToastVariant): ToasterProgram => {
    return ({ title, description, id }) => {
@@ -24,10 +40,38 @@ const createToasterProgram = (variant: ToastVariant): ToasterProgram => {
    };
 };
 
-//TODO: add show more for error toasts
+//TODO: add show more button for error toasts
 const error = createToasterProgram("error");
 const success = createToasterProgram("success");
 const info = createToasterProgram("info");
 const warning = createToasterProgram("warning");
 
-export const prepareToast: PrepareToast = { error, success, info, warning };
+const progress = ({
+   title,
+   description,
+   progress,
+   secondaryProgress,
+   id,
+}: ProgressToastParams) => {
+   toast.custom(
+      () => (
+         <ProgressToast
+            title={title}
+            description={description}
+            progress={progress}
+            secondaryProgress={secondaryProgress}
+         />
+      ),
+      {
+         id,
+      }
+   );
+};
+
+export const prepareToast: PrepareToast = {
+   error,
+   success,
+   info,
+   warning,
+   progress,
+};

@@ -1,11 +1,10 @@
 import { AnimatePresence, Variants, motion } from "framer-motion";
-import { FC, useMemo } from "react";
+import { FC } from "react";
 import { FormattedMessage } from "react-intl";
 import { Outlet, useLocation } from "react-router-dom";
 
 import { Heading } from "@/components/common";
 import { IconButton } from "@/components/forms";
-import { HOME_PATHS } from "@/constants";
 import { useAppNavigate, useHistory } from "@/hooks";
 
 const backButtonVariants: Variants = {
@@ -30,25 +29,7 @@ export const FullscreenLayout: FC = () => {
 
    const { pathname } = useLocation();
 
-   const history = useHistory();
-
-   const stepsToHome = useMemo(() => {
-      const historyLength = history.length;
-      for (let i = historyLength - 1; i >= 0; i--) {
-         if (HOME_PATHS.includes(history[i]!)) {
-            return historyLength - 1 - i;
-         }
-      }
-      return -1; // Indicating no home path found
-   }, [history]);
-
-   const handleNavigate = () => {
-      if (stepsToHome <= 0) {
-         navigate("/");
-      } else {
-         navigate(-stepsToHome);
-      }
-   };
+   const { navigateToHome, stepsToHome } = useHistory();
 
    return (
       <div className="flex flex-col h-screen">
@@ -76,7 +57,7 @@ export const FullscreenLayout: FC = () => {
                </AnimatePresence>
                <IconButton
                   icon="ph:x-bold"
-                  onClick={handleNavigate}
+                  onClick={navigateToHome}
                   className="z-10"
                />
             </div>

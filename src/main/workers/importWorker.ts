@@ -15,20 +15,46 @@ const fileQueue = [...paths];
 
 let dirIfIsOneBook: string | null = null;
 
+const combinedSize = paths.reduce(
+   (acc, path) => acc + fs.statSync(path).size,
+   0
+);
+
 const getDirectoryName = async (path: string): Promise<string> => {
    const { nanoid } = await import("nanoid");
 
    const metadata = await mm.parseFile(path);
-   const { artist, album } = metadata.common;
+   const { artist, title } = metadata.common;
 
-   if (!artist || !album) {
+   if (!artist && !title) {
       return `${p.parse(p.basename(path)).name.replace(/\s/g, "_")}_${nanoid()}`;
    }
 
-   return `${artist.replace(/\s/g, "_")}_${album.replace(/\s/g, "_")}_${nanoid()}`;
+   let dirName = "";
+
+   if (artist) {
+      dirName += artist.replace(/\s/g, "_");
+      dirName += "_";
+   }
+
+   if (title) {
+      dirName += title.replace(/\s/g, "_");
+      dirName += "_";
+   }
+
+   dirName += nanoid();
+
+   return dirName;
 };
 
 const processFiles = () => {
+   parentPort!.postMessage({
+      status: "starting",
+      id,
+      totalFiles: paths.length,
+      totalSize: combinedSize,
+   });
+
    switch (saveType) {
       case "copy":
       case "move":
@@ -50,6 +76,10 @@ const processCopyMove = async () => {
    const fileName = p.basename(path);
    const readStream = fs.createReadStream(path);
 
+   const fileSize = fs.statSync(path).size;
+
+   const fileNo = paths.length - fileQueue.length;
+
    const importDir = options.isOneBook
       ? dirIfIsOneBook ?? p.join(libraryPath, await getDirectoryName(paths[0]))
       : p.join(libraryPath, await getDirectoryName(path));
@@ -61,12 +91,16 @@ const processCopyMove = async () => {
       fs.mkdirSync(importDir, { recursive: true });
    }
 
-   const writeStream = fs.createWriteStream(p.join(importDir, fileName));
+   const targetPath = p.join(importDir, fileName);
+
+   const writeStream = fs.createWriteStream(targetPath);
 
    parentPort!.postMessage({
       status: "startingFile",
       id,
       fileName,
+      fileSize,
+      fileNo,
    });
 
    readStream.on("data", (chunk) => {
@@ -99,6 +133,7 @@ const processCopyMove = async () => {
                   status: "doneFile",
                   id,
                   fileName,
+                  filePath: targetPath,
                });
             }
          });
@@ -107,6 +142,7 @@ const processCopyMove = async () => {
             status: "doneFile",
             id,
             fileName,
+            filePath: targetPath,
          });
       }
 

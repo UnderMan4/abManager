@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Item, Section } from "react-stately";
 
 import { Modal, useModalState } from "@/components/common/Modal";
@@ -14,6 +14,8 @@ import {
 import { useSettingsStore } from "@/stores";
 import { cls } from "@/utils/styleUtils";
 import { prepareToast } from "@/utils/toastUtils";
+
+import { ProgressBar } from "../../components/common/ProgressBar";
 
 type FlexboxProps = {
    className?: string;
@@ -47,6 +49,19 @@ export const Playground: FC = () => {
    const modalState = useModalState({});
 
    const settings = useSettingsStore();
+
+   const [progress, setProgress] = useState(0);
+
+   useEffect(() => {
+      const interval = setInterval(() => {
+         const random = Math.random() * 7 + 1;
+         setProgress((prevProgress) =>
+            prevProgress + random > 100 ? 0 : prevProgress + random
+         );
+      }, 500);
+
+      return () => clearInterval(interval);
+   }, []);
 
    useEffect(() => {
       const removeImportListener = window.api.import.onMessage(
@@ -199,6 +214,24 @@ export const Playground: FC = () => {
          >
             Import
          </Button>
+         <ProgressBar
+            max={100}
+            value={50}
+            mode="indeterminate"
+            className="w-11/12"
+            displayValueOnHover
+            displayPending="Lorem ipsum"
+         />
+         <ProgressBar
+            max={100}
+            value={progress}
+            mode="determinate"
+            className="w-11/12"
+            displayValueOnHover
+            displayMode="percent"
+            displayMaxValue
+            displayUnit="megabyte"
+         />
       </Flexbox>
    );
 };

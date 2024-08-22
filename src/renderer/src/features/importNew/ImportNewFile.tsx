@@ -19,7 +19,7 @@ import { Button } from "@/components/forms";
 import { AudiobookDetails } from "@/features/importNew/components/AudiobookDetails";
 import { FileImportElement } from "@/features/importNew/components/FileImportElement";
 import { ImportNewFileOptions } from "@/features/importNew/components/ImportNewFileOptions";
-import { SetObjectState, useObjectState } from "@/hooks";
+import { SetObjectState, useHistory, useObjectState } from "@/hooks";
 import { useSettingsStore } from "@/stores";
 import { generateUniqueId } from "@/utils/stringUtils";
 import { cls } from "@/utils/styleUtils";
@@ -50,6 +50,8 @@ export const ImportNewFileContext =
 export const ImportNewFile: FC = () => {
    const [isLoading, setIsLoading] = useState(true);
    const { state } = useLocation();
+
+   const { navigateToHome } = useHistory();
 
    const settings = useSettingsStore();
 
@@ -109,6 +111,7 @@ export const ImportNewFile: FC = () => {
             saveType: settings.saveType,
          },
       });
+      navigateToHome();
    }, [files, options]);
 
    if (isLoading) {

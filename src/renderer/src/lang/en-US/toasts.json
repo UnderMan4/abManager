@@ -1,5 +1,15 @@
 {
    "error": {
+      "singleFileImport": {
+         "title": "An error occurred while importing the file."
+      },
+      "fileImport": {
+         "title": "None of the files were imported.",
+         "description": "0 files imported successfully.\n {failedFiles} files failed to import."
+      },
+      "fileImportDelete": {
+         "title": "An error occured while deleting original file after import."
+      },
       "importFileRead": {
          "description": "Verify if files are not corrupted.",
          "title": "Error while reading files' metadata."
@@ -9,6 +19,21 @@
       "comingSoon": {
          "description": "This feature will be available in the future.",
          "title": "Coming soon"
+      }
+   },
+   "progress": {
+      "fileImport": {
+         "copyingDescription": "Copying file {fileName}\n{fileNo} of {totalFiles}",
+         "doneFileDescription": "File {fileName} imported successfully.",
+         "finalizingDescription": "Finalizing import {fileName}\n{fileNo} of {totalFiles}",
+         "startingDescription": "Total files: {totalFiles}",
+         "title": "Importing audiobooks"
+      }
+   },
+   "success": {
+      "fileImport": {
+         "title": "Import finished",
+         "description": "{totalFiles} files imported successfully.\n {failedFiles} files failed to import."
       }
    }
 }

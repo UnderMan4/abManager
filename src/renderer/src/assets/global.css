@@ -72,4 +72,30 @@ body {
    .disable-scrollbars {
       scrollbar-width: none;
    }
+
+   .progress-pending-bg {
+      --progress-color-1: theme("colors.radix.indigo.600");
+      --progress-color-2: theme("colors.transparent");
+      background-image: linear-gradient(
+         45deg,
+         var(--progress-color-1) 25%,
+         var(--progress-color-2) 25%,
+         var(--progress-color-2) 50%,
+         var(--progress-color-1) 50%,
+         var(--progress-color-1) 75%,
+         var(--progress-color-2) 75%,
+         var(--progress-color-2)
+      );
+      background-size: 4rem 4rem;
+      animation: slide 800ms linear infinite;
+   }
+
+   @keyframes slide {
+      0% {
+         background-position: 0 0;
+      }
+      100% {
+         background-position: 4rem 0;
+      }
+   }
 }

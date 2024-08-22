@@ -11,3 +11,5 @@ export * from "./Modal";
 export * from "./Portal";
 export * from "./Toast";
 export * from "./Tooltip";
+export * from "./ProgressBar";
+export * from "./ProgressToast";
