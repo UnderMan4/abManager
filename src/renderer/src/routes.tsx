@@ -11,45 +11,51 @@ import { Playground } from "@/features/playground";
 import { Settings } from "@/features/settings";
 import { FullscreenLayout } from "@/layout/FullscreenLayout";
 import { MainLayout } from "@/layout/MainLayout";
+import { TitleBarLayout } from "@/layout/TitleBarLayout";
 
 export const appRouter: ReturnType<typeof createMemoryRouter> =
    createMemoryRouter([
       {
-         element: <MainLayout />,
+         element: <TitleBarLayout />,
          children: [
             {
-               path: "/",
-               element: <Dashboard />,
+               element: <MainLayout />,
+               children: [
+                  {
+                     path: "/",
+                     element: <Dashboard />,
+                  },
+                  {
+                     path: "/library",
+                     element: <Library />,
+                  },
+                  {
+                     path: "/settings",
+                     element: <Settings />,
+                  },
+                  {
+                     path: "/playground",
+                     element: <Playground />,
+                  },
+               ],
             },
             {
-               path: "/library",
-               element: <Library />,
-            },
-            {
-               path: "/settings",
-               element: <Settings />,
-            },
-            {
-               path: "/playground",
-               element: <Playground />,
-            },
-         ],
-      },
-      {
-         element: <FullscreenLayout />,
-         path: "/import-new",
-         children: [
-            {
-               path: "method",
-               element: <ImportNewMethod />,
-            },
-            {
-               path: "folder",
-               element: <ImportNewFolder />,
-            },
-            {
-               path: "file",
-               element: <ImportNewFile />,
+               element: <FullscreenLayout />,
+               path: "/import-new",
+               children: [
+                  {
+                     path: "method",
+                     element: <ImportNewMethod />,
+                  },
+                  {
+                     path: "folder",
+                     element: <ImportNewFolder />,
+                  },
+                  {
+                     path: "file",
+                     element: <ImportNewFile />,
+                  },
+               ],
             },
          ],
       },

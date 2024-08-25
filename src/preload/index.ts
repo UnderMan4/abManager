@@ -50,6 +50,13 @@ const fs = {
    },
 };
 
+const mainWindow = {
+   minimize: () => ipcRenderer.send("minimize-window"),
+   maximize: () => ipcRenderer.send("maximize-window"),
+   close: () => ipcRenderer.send("close-window"),
+   isMaximized: () => ipcRenderer.sendSync("is-window-maximized"),
+};
+
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
 // just add to the DOM global.
@@ -59,6 +66,7 @@ if (process.contextIsolated) {
       contextBridge.exposeInMainWorld("api", api);
       contextBridge.exposeInMainWorld("fs", fs);
       contextBridge.exposeInMainWorld("path", path);
+      contextBridge.exposeInMainWorld("mainWindow", mainWindow);
    } catch (error) {
       console.error(error);
    }
@@ -71,4 +79,6 @@ if (process.contextIsolated) {
    window.fs = fs;
    // @ts-expect-error (defined in dts)
    window.path = path;
+   // @ts-expect-error (defined in dts)
+   window.mainWindow = mainWindow;
 }

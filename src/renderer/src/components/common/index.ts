@@ -13,3 +13,4 @@ export * from "./Toast";
 export * from "./Tooltip";
 export * from "./ProgressBar";
 export * from "./ProgressToast";
+export * from "./RoundProgressBar";

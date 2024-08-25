@@ -26,6 +26,7 @@ function createWindow(): void {
       minWidth: 1100,
       show: false,
       autoHideMenuBar: false,
+      frame: false,
       ...(process.platform === "linux" ? { icon } : {}),
       webPreferences: {
          preload: path.join(__dirname, "../preload/index.js"),
@@ -82,6 +83,8 @@ app.whenReady().then(() => {
    fsHandling();
 
    createWindow();
+
+   mainWindowHandling();
 
    app.on("activate", function () {
       // On macOS it's common to re-create a window in the app when the
@@ -176,5 +179,27 @@ const fsHandling = () => {
       const result = await readFileMetadata(filePath);
 
       return result;
+   });
+};
+
+const mainWindowHandling = () => {
+   ipcMain.on("minimize-window", () => {
+      mainWindow?.minimize();
+   });
+
+   ipcMain.on("maximize-window", () => {
+      if (mainWindow?.isMaximized()) {
+         mainWindow?.unmaximize();
+      } else {
+         mainWindow?.maximize();
+      }
+   });
+
+   ipcMain.on("close-window", () => {
+      mainWindow?.close();
+   });
+
+   ipcMain.on("is-window-maximized", (event) => {
+      event.returnValue = mainWindow?.isMaximized();
    });
 };

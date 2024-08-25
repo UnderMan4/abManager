@@ -98,4 +98,13 @@ body {
          background-position: 4rem 0;
       }
    }
+
+   .window-drag {
+      -webkit-app-region: drag;
+      -webkit-user-select: none;
+   }
+
+   .window-drag button {
+      -webkit-app-region: no-drag;
+   }
 }

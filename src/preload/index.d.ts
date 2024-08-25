@@ -128,5 +128,11 @@ declare global {
          >;
       };
       path: PlatformPath;
+      mainWindow: {
+         minimize: () => void;
+         maximize: () => void;
+         close: () => void;
+         isMaximized: () => boolean;
+      };
    }
 }

@@ -5,7 +5,7 @@ import { NavBar } from "@/features/navbar";
 
 export const MainLayout: FC = () => {
    return (
-      <div className="flex h-screen w-full py-2 gap-2">
+      <div className="flex w-full gap-2">
          <NavBar />
          <Outlet />
       </div>
