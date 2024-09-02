@@ -8,6 +8,7 @@
 
 :root {
    --fullscreen-header-height: 4rem;
+   --titlebar-height: 3rem;
 }
 
 body {
@@ -104,7 +105,11 @@ body {
       -webkit-user-select: none;
    }
 
-   .window-drag button {
+   .window-drag .no-drag,
+   button,
+   input,
+   textarea,
+   label {
       -webkit-app-region: no-drag;
    }
 }

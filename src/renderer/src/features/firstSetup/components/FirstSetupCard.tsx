@@ -3,6 +3,7 @@ import React, { FC, RefObject } from "react";
 
 import { AbsoluteCenter, Card } from "@/components/common";
 import { useFirstSetupContext } from "@/hooks/contexts/useFirstSetupContext";
+import { cls } from "@/utils/styleUtils";
 
 export type FirstSetupCardProps = {
    cardNumber: number;
@@ -74,7 +75,7 @@ export const FirstSetupCard: FC<FirstSetupCardProps> = ({
                   exit={isBack ? "exitBack" : "exit"}
                >
                   <Card
-                     className={cardClassName}
+                     className={cls(cardClassName, "no-drag")}
                      title={title}
                      contentRef={contentRef}
                      leftButton={

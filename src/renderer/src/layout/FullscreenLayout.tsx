@@ -32,7 +32,7 @@ export const FullscreenLayout: FC = () => {
    const { navigateToHome, stepsToHome } = useHistory();
 
    return (
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-screen bg-radix-gray-200">
          <header className="py-3 pl-5 pr-3 flex shrink-0 justify-between gap-2 row-start-1 row-end-2 h-[var(--fullscreen-header-height)]">
             <Heading as="h2" className="font-bold">
                <FormattedMessage id={titles[pathname] ?? ""} />
@@ -62,7 +62,7 @@ export const FullscreenLayout: FC = () => {
                />
             </div>
          </header>
-         <div className="grow shrink row-start-2 row-end-3 h-[calc(100%-var(--fullscreen-header-height)]">
+         <div className="grow shrink row-start-2 row-end-3 h-[calc(100%-var(--fullscreen-header-height)-var(--titlebar-height))]">
             <Outlet />
          </div>
       </div>

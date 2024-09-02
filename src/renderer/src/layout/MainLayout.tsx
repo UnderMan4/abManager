@@ -5,9 +5,11 @@ import { NavBar } from "@/features/navbar";
 
 export const MainLayout: FC = () => {
    return (
-      <div className="flex w-full gap-2">
+      <div className="flex w-full bg-radix-gray-300">
          <NavBar />
-         <Outlet />
+         <div className="bg-radix-gray-200 p-4 rounded-tl-2xl grow">
+            <Outlet />
+         </div>
       </div>
    );
 };

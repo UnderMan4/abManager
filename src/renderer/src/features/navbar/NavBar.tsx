@@ -5,7 +5,7 @@ import { NavButton } from "@/features/navbar/components/NavButton";
 
 export const NavBar: FC = () => {
    return (
-      <div className="bg-radix-gray-a200 p-3 pl-0 flex justify-between flex-col min-w-52">
+      <div className="p-3 pl-0 flex justify-between flex-col min-w-52">
          <div className="flex flex-col gap-2">
             <NavButton icon="ph:house-bold" navigateTo="/">
                <FormattedMessage id="navbar.buttons.dashboard" />

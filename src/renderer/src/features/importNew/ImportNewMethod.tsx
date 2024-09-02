@@ -1,11 +1,11 @@
 import { FC, useCallback, useEffect, useRef, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
+import { FullscreenLoader } from "@/components/common";
 import { AUDIO_FILES_EXTENSIONS } from "@/constants";
 import { useAppNavigate } from "@/hooks";
 import { prepareToast } from "@/utils/toastUtils";
 
-import { FullscreenLoader } from "../../components/common/FullscreenLoader";
 import { MethodButton } from "./components/MethodButton";
 
 const MAX_BUTTON_HEIGHT = 32;
