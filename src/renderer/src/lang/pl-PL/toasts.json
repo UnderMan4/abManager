@@ -1,20 +1,39 @@
 {
-   "error": {
-      "fileImport": {
-         "title": "Wystąpił błąd podczas importowania pliku."
-      },
-      "fileImportDelete": {
-         "title": "Wystąpił błąd podczas usuwania oryginalnego pliku po imporcie."
-      },
-      "importFileRead": {
-         "description": "Sprawdź, czy pliki nie są uszkodzone.",
-         "title": "Błąd podczas odczytu metadanych plików."
-      }
-   },
-   "info": {
-      "comingSoon": {
-         "description": "Ta funkcja będzie dostępna w przyszłości.",
-         "title": "Już wkrótce"
-      }
-   }
+    "error": {
+        "fileImport": {
+            "description": "",
+            "title": "Wystąpił błąd podczas importowania pliku."
+        },
+        "fileImportDelete": {
+            "title": "Wystąpił błąd podczas usuwania oryginalnego pliku po imporcie."
+        },
+        "importFileRead": {
+            "description": "Sprawdź, czy pliki nie są uszkodzone.",
+            "title": "Błąd podczas odczytu metadanych plików."
+        },
+        "singleFileImport": {
+            "title": ""
+        }
+    },
+    "info": {
+        "comingSoon": {
+            "description": "Ta funkcja będzie dostępna w przyszłości.",
+            "title": "Już wkrótce"
+        }
+    },
+    "progress": {
+        "fileImport": {
+            "copyingDescription": "",
+            "doneFileDescription": "",
+            "finalizingDescription": "",
+            "startingDescription": "",
+            "title": ""
+        }
+    },
+    "success": {
+        "fileImport": {
+            "description": "",
+            "title": ""
+        }
+    }
 }

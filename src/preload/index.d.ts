@@ -36,6 +36,7 @@ declare global {
                id: string;
                fileName: string;
                chunkLength: number;
+               messageId: string;
             }
           : T extends "finalizingFile"
             ? {

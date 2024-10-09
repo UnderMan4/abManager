@@ -6,6 +6,7 @@ export type CurrentFile = {
    fileSize: number;
    progress: number;
    status: "starting" | "importing" | "finalizing" | "done";
+   messages: string[];
 };
 export type QueueItem = {
    currentFile: CurrentFile | null;
@@ -82,10 +83,12 @@ export const useImportQueue = () => {
                   fileSize: data.fileSize,
                   progress: 0,
                   status: "starting",
+                  messages: [],
                };
                item.status = "importing";
+               return newQueue;
             }
-            return newQueue;
+            return prevQueue;
          });
       },
       [setImportQueue]
@@ -97,14 +100,20 @@ export const useImportQueue = () => {
             const newQueue = new Map(prevQueue);
             const item = newQueue.get(data.id);
             if (item) {
+               if (item.currentFile?.messages.includes(data.messageId)) {
+                  return prevQueue;
+               }
+
                item.currentFile = {
                   ...item.currentFile!,
                   progress: item.currentFile!.progress + data.chunkLength,
                   status: "importing",
+                  messages: [data.messageId, ...item.currentFile!.messages],
                };
                item.progress = item.progress + data.chunkLength;
+               return newQueue;
             }
-            return newQueue;
+            return prevQueue;
          });
       },
       [setImportQueue]
@@ -120,8 +129,9 @@ export const useImportQueue = () => {
                   ...item.currentFile!,
                   status: "finalizing",
                };
+               return newQueue;
             }
-            return newQueue;
+            return prevQueue;
          });
       },
       [setImportQueue]
@@ -153,8 +163,9 @@ export const useImportQueue = () => {
             if (item) {
                item.status = "done";
                item.progress = item.totalSize;
+               return newQueue;
             }
-            return newQueue;
+            return prevQueue;
          });
       },
       [setImportQueue]
@@ -167,8 +178,9 @@ export const useImportQueue = () => {
             const item = newQueue.get(data.id);
             if (item) {
                item.outcome.errors++;
+               return newQueue;
             }
-            return newQueue;
+            return prevQueue;
          });
       },
       [setImportQueue]
@@ -181,8 +193,9 @@ export const useImportQueue = () => {
             const item = newQueue.get(data.id);
             if (item) {
                item.outcome.warnings++;
+               return newQueue;
             }
-            return newQueue;
+            return prevQueue;
          });
       },
       [setImportQueue]
@@ -199,8 +212,9 @@ export const useImportQueue = () => {
                ["done", "error"].includes(itemToRemove.status)
             ) {
                newQueue.delete(id);
+               return newQueue;
             }
-            return newQueue;
+            return prevQueue;
          });
       },
       [setImportQueue]

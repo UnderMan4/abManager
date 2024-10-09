@@ -14,3 +14,4 @@ export * from "./Tooltip";
 export * from "./ProgressBar";
 export * from "./ProgressToast";
 export * from "./RoundProgressBar";
+export * from "./Spinner";

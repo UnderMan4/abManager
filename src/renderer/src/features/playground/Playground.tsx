@@ -2,6 +2,7 @@ import { nanoid } from "nanoid";
 import React, { FC, useEffect, useState } from "react";
 import { Item, Section } from "react-stately";
 
+import { ProgressBar, Spinner } from "@/components/common";
 import { Modal, useModalState } from "@/components/common/Modal";
 import {
    Button,
@@ -14,8 +15,6 @@ import {
 import { useSettingsStore } from "@/stores";
 import { cls } from "@/utils/styleUtils";
 import { prepareToast } from "@/utils/toastUtils";
-
-import { ProgressBar } from "../../components/common/ProgressBar";
 
 type FlexboxProps = {
    className?: string;
@@ -214,24 +213,42 @@ export const Playground: FC = () => {
          >
             Import
          </Button>
-         <ProgressBar
-            max={100}
-            value={50}
-            mode="indeterminate"
-            className="w-11/12"
-            displayValueOnHover
-            displayPending="Lorem ipsum"
-         />
-         <ProgressBar
-            max={100}
-            value={progress}
-            mode="determinate"
-            className="w-11/12"
-            displayValueOnHover
-            displayMode="percent"
-            displayMaxValue
-            displayUnit="megabyte"
-         />
+         <div className="flex flex-col gap-8 mb-5">
+            <ProgressBar
+               max={100}
+               value={50}
+               label="Lorem ipsum"
+               status="success"
+            />
+            <ProgressBar
+               max={100}
+               value={50}
+               label="Lorem ipsum"
+               errorMessage="Lorem ipsum dolor sit emet"
+               status="error"
+            />
+            <ProgressBar
+               max={100}
+               value={50}
+               label="Lorem ipsum"
+               status="pending"
+            />
+            <ProgressBar
+               max={100}
+               value={progress}
+               label="Lorem ipsum"
+               displayFormatOptions={{
+                  style: "unit",
+                  unit: "megabyte",
+               }}
+               timeRemaining={2000 - (2000 * progress) / 100}
+            />
+         </div>
+         <div className="flex gap-4">
+            <Spinner size="lg" />
+            <Spinner size="md" />
+            <Spinner size="sm" />
+         </div>
       </Flexbox>
    );
 };

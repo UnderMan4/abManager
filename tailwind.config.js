@@ -113,6 +113,15 @@ module.exports = {
             ".gutter-auto": {
                "scrollbar-gutter": "auto",
             },
+            ".stroke-linecap-round": {
+               "stroke-linecap": "round",
+            },
+            ".stroke-linecap-square": {
+               "stroke-linecap": "square",
+            },
+            ".stroke-linecap-butt": {
+               "stroke-linecap": "butt",
+            },
          });
          addComponents({
             ".focus-ring": {

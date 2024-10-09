@@ -12,7 +12,7 @@ export const TitleBar: FC = () => {
       >
          <div>menu</div>
          <div className="flex gap-8">
-            <div className="p-1 flex">
+            <div className="flex p-1 gap-1">
                <ImportButton />
             </div>
             <div className="flex p-1 gap-1">

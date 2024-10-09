@@ -11,5 +11,9 @@
    },
    "dropdown": {
       "select": "Select..."
+   },
+   "progress": {
+      "values": "{progress} of {max}",
+      "remaining": "{remaining} remaining"
    }
 }

@@ -33,12 +33,12 @@ const getDirectoryName = async (path: string): Promise<string> => {
    let dirName = "";
 
    if (artist) {
-      dirName += artist.replace(/\s/g, "_");
+      dirName += artist.replace(/\s/g, "_").replace(/[<>:"/\\|?*]/g, "");
       dirName += "_";
    }
 
    if (title) {
-      dirName += title.replace(/\s/g, "_");
+      dirName += title.replace(/\s/g, "_").replace(/[<>:"/\\|?*]/g, "");
       dirName += "_";
    }
 
@@ -67,6 +67,7 @@ const processFiles = () => {
 };
 
 const processCopyMove = async () => {
+   const { nanoid } = await import("nanoid");
    if (fileQueue.length === 0) {
       parentPort!.postMessage({ status: "done", id });
       return;
@@ -109,6 +110,7 @@ const processCopyMove = async () => {
          id,
          fileName,
          chunkLength: chunk.length,
+         messageId: nanoid(10),
       });
    });
 

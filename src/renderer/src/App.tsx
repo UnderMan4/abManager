@@ -8,6 +8,7 @@ import { FirstSetup } from "@/features/firstSetup";
 import { withI18n } from "@/hocs";
 import { appRouter } from "@/routes";
 import { useSettingsStore } from "@/stores";
+import "@/utils/stringExtensions";
 
 function App(): JSX.Element {
    const { theme, realTheme } = useSettingsStore();
