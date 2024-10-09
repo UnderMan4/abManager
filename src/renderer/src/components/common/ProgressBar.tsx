@@ -1,4 +1,10 @@
-import { CheckCircle, Dot, DotOutline, XCircle } from "@phosphor-icons/react";
+import {
+   CheckCircle,
+   Dot,
+   DotOutline,
+   X,
+   XCircle,
+} from "@phosphor-icons/react";
 import * as Progress from "@radix-ui/react-progress";
 import { Variants, motion } from "framer-motion";
 import { FC, ReactNode, useId, useMemo } from "react";
@@ -129,7 +135,23 @@ export const ProgressBar: FC<ProgressBarProps> = ({
                      })}
                   </span>
                )}
-               {icons[status]}
+               <div className="group">
+                  {onCanceled && (
+                     <button
+                        className="hidden group-hover:block"
+                        onClick={onCanceled}
+                     >
+                        <X size={iconSize} weight="bold" />
+                     </button>
+                  )}
+                  <span
+                     className={cls({
+                        "group-hover:hidden": onCanceled,
+                     })}
+                  >
+                     {icons[status]}
+                  </span>
+               </div>
             </div>
          </div>
          <Progress.Root
@@ -155,7 +177,7 @@ export const ProgressBar: FC<ProgressBarProps> = ({
          {status.is("error") && errorMessage && (
             <span className="text-red-500 text-sm">{errorMessage}</span>
          )}
-         {!status.is("error", "pending") && (
+         {status.is("progress") && (
             <div className="flex gap-3 items-center">
                <span className="text-sm">
                   <FormattedMessage

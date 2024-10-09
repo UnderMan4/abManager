@@ -226,12 +226,14 @@ export const Playground: FC = () => {
                label="Lorem ipsum"
                errorMessage="Lorem ipsum dolor sit emet"
                status="error"
+               onCanceled={() => console.log("Canceled")}
             />
             <ProgressBar
                max={100}
                value={50}
                label="Lorem ipsum"
                status="pending"
+               onCanceled={() => console.log("Canceled")}
             />
             <ProgressBar
                max={100}
