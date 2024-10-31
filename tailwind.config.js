@@ -127,6 +127,10 @@ module.exports = {
             ".focus-ring": {
                "@apply ring-2 ring-radix-gray-1200 outline-none": {},
             },
+            ".absolute-center": {
+               "@apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2":
+                  {},
+            },
          });
       }),
    ],

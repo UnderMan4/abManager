@@ -134,9 +134,9 @@ export const ImportNewFile: FC = () => {
             setOptions,
          }}
       >
-         <div className="grid-cols-[17rem_minmax(35rem,_3fr)_minmax(20rem,_2fr)] max-xl:grid-cols-[17rem_minmax(35rem,_2fr)_auto] grid grid-row-[1fr] max-h-full h-full p-4 gap-2">
-            <div className="flex flex-col gap-2 h-[calc(100vh-var(--fullscreen-header-height)-2rem)]">
-               <div
+         <div className="grid-cols-[17rem_minmax(35rem,_3fr)_minmax(20rem,_2fr)] max-xl:grid-cols-[17rem_minmax(35rem,_2fr)_auto] grid p-4 gap-2 min-h-0 shrink">
+            <div className="flex flex-col gap-2 overflow-y-auto">
+               {/* <div
                   className={
                      "col-span-1 flex flex-col p-4 pr-2 bg-radix-gray-a200 rounded-3xl flex-1"
                   }
@@ -153,33 +153,29 @@ export const ImportNewFile: FC = () => {
                   <Button onClick={importAudiobooks}>
                      <FormattedMessage id="importNew.importBtn" />
                   </Button>
-               </div>
+               </div> */}
+            </div>
+
+            <div className={"col-span-1 flex flex-col min-h-0 overflow-y-auto"}>
+               {/* <div className={cls("overflow-y-auto custom-scrollbar")}> */}
+               <Reorder.Group
+                  values={files}
+                  onReorder={setFiles}
+                  className="flex flex-col gap-2"
+               >
+                  {files.map((file) => (
+                     <FileImportElement file={file} key={file.path} />
+                  ))}
+               </Reorder.Group>
+               {/* </div> */}
             </div>
 
             <div
                className={
-                  "col-span-1 flex flex-col h-[calc(100vh-var(--fullscreen-header-height)-2rem)]"
+                  "col-span-1 flex flex-col p-4 pr-2 bg-radix-gray-a200 rounded-3xl overflow-y-auto min-h-0"
                }
             >
-               <div className={cls("overflow-y-auto custom-scrollbar")}>
-                  <Reorder.Group
-                     values={files}
-                     onReorder={setFiles}
-                     className="flex flex-col gap-2"
-                  >
-                     {files.map((file) => (
-                        <FileImportElement file={file} key={file.path} />
-                     ))}
-                  </Reorder.Group>
-               </div>
-            </div>
-
-            <div
-               className={
-                  "col-span-1 flex flex-col p-4 pr-2 bg-radix-gray-a200 rounded-3xl h-[calc(100vh-var(--fullscreen-header-height)-2rem)]"
-               }
-            >
-               {selectedFile ? (
+               {/* {selectedFile ? (
                   <div
                      className={cls(
                         "overflow-y-auto custom-scrollbar light-scrollbar"
@@ -203,7 +199,7 @@ export const ImportNewFile: FC = () => {
                         />
                      </p>
                   </div>
-               )}
+               )} */}
             </div>
          </div>
       </ImportNewFileContext.Provider>

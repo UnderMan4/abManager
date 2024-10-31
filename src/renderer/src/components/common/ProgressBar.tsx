@@ -27,13 +27,6 @@ export type ProgressBarProps = {
    timeRemaining?: number;
    onCanceled?: () => void;
    displayFormatOptions?: FormatNumberOptions & { unit?: Unit };
-   // mode?: "indeterminate" | "determinate";
-   // displayValueOnHover?: boolean;
-   // displayMaxValue?: boolean;
-   // displayMode?: "percent" | "value" | "unit";
-   // displayUnit?: string;
-   // displayCustomValue?: (value: number, max: number) => string;
-   // displayPending?: string;
 };
 
 const iconSize = 20;
@@ -49,14 +42,6 @@ export const ProgressBar: FC<ProgressBarProps> = ({
    timeRemaining,
    displayFormatOptions,
    errorMessage,
-   // mode = "determinate",
-   // displayCustomValue,
-   // displayMaxValue,
-   // displayMode = "percent",
-   // displayUnit,
-   // displayValueOnHover,
-   // displayFormatOptions = {},
-   // displayPending,
 }) => {
    const icons: Record<ProgressStatus, ReactNode> = {
       error: (

@@ -5,7 +5,7 @@ import { TitleBar } from "@/features/titleBar";
 
 export const TitleBarLayout: FC = () => {
    return (
-      <div className="h-screen w-screen grid grid-rows-[var(--titlebar-height)_1fr]">
+      <div className="h-screen min-h-0 flex flex-col">
          <TitleBar />
          <Outlet />
       </div>

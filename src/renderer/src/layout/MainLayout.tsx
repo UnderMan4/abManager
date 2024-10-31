@@ -5,11 +5,11 @@ import { NavBar } from "@/features/navbar";
 
 export const MainLayout: FC = () => {
    return (
-      <div className="flex w-full bg-radix-gray-300">
+      <div className="flex grow min-h-0">
          <NavBar />
-         <div className="bg-radix-gray-200 p-4 rounded-tl-2xl grow">
+         <main className="bg-radix-gray-200 rounded-tl-2xl min-h-0 overflow-x-auto width-0 grow">
             <Outlet />
-         </div>
+         </main>
       </div>
    );
 };
