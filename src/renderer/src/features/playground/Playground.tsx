@@ -1,16 +1,30 @@
+/* eslint-disable no-console */
+import { Cat } from "@phosphor-icons/react";
+import { VariantProps } from "class-variance-authority";
 import { nanoid } from "nanoid";
 import React, { FC, useEffect, useState } from "react";
 import { Item, Section } from "react-stately";
 
-import { Modal, ProgressBar, ScrollArea, Spinner } from "@/components/common";
+import { Modal, ProgressBar, Spinner } from "@/components/common";
 import {
-   Button,
    Checkbox,
    ComboBox,
    Dropdown,
+   Button as OldButton,
    RadioButton,
    RadioGroup,
 } from "@/components/forms";
+import {
+   Button,
+   Dialog,
+   DialogClose,
+   DialogContent,
+   DialogDescription,
+   DialogFooter,
+   DialogHeader,
+   DialogTitle,
+   DialogTrigger,
+} from "@/components/ui";
 import { useSettingsStore } from "@/stores";
 import { cls } from "@/utils/styleUtils";
 import { prepareToast } from "@/utils/toastUtils";
@@ -79,10 +93,53 @@ export const Playground: FC = () => {
       <div className="p-4">
          <div className="flex flex-col gap-3">
             <Flexbox>
-               <Button>Button</Button>
-               <Button appearance="outlineColor">Button</Button>
-               <Button appearance="outlineGray">Button</Button>
+               <OldButton>Button</OldButton>
+               <OldButton appearance="outlineColor">Button</OldButton>
+               <OldButton appearance="outlineGray">Button</OldButton>
             </Flexbox>
+
+            {(["default", "sm", "lg"] as const).map((size) => (
+               <Flexbox>
+                  <Button size={size}>Button</Button>
+                  <Button size={size} variant="secondary">
+                     Button
+                  </Button>
+                  <Button size={size} variant="ghost">
+                     Button
+                  </Button>
+                  <Button size={size} variant="outline">
+                     Button
+                  </Button>
+                  <Button size={size} variant="destructive">
+                     Button
+                  </Button>
+                  <Button size={size} variant="link">
+                     Button
+                  </Button>
+               </Flexbox>
+            ))}
+
+            <Flexbox>
+               <Button size="icon">
+                  <Cat size={36} weight="bold" />
+               </Button>
+               <Button size="icon" variant="secondary">
+                  <Cat size={36} weight="bold" />
+               </Button>
+               <Button size="icon" variant="ghost">
+                  <Cat size={36} weight="bold" />
+               </Button>
+               <Button size="icon" variant="outline">
+                  <Cat size={36} weight="bold" />
+               </Button>
+               <Button size="icon" variant="destructive">
+                  <Cat size={36} weight="bold" />
+               </Button>
+               <Button size="icon" variant="link">
+                  <Cat size={36} weight="bold" />
+               </Button>
+            </Flexbox>
+
             <Flexbox>
                <RadioGroup className="flex flex-col gap-3 max-w-md">
                   <RadioButton value="option1" label="Option" />
@@ -147,7 +204,7 @@ export const Playground: FC = () => {
                   voluptatum quo.
                </p>
             </Modal> */}
-            <Modal
+            {/* <Modal
                renderTrigger={<Button>Open modal</Button>}
                title="Lorem ipsum dolor sit amet"
             >
@@ -157,11 +214,13 @@ export const Playground: FC = () => {
                at voluptas perspiciatis sed sint. Illo sit eius aliquam odit
                voluptatibus ea delectus quidem incidunt facere. Commodi nisi
                repellat explicabo?`.repeat(3)}
-            </Modal>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Consequatur, numquam.
+            </Modal> */}
+            <Dialog>
+               <DialogTrigger>AAA</DialogTrigger>
+               <DialogContent></DialogContent>
+            </Dialog>
             <div className="flex gap-2">
-               <Button
+               <OldButton
                   icon="ph:x-circle-bold"
                   onClick={() =>
                      prepareToast.error({
@@ -172,8 +231,8 @@ export const Playground: FC = () => {
                   }
                >
                   Error
-               </Button>
-               <Button
+               </OldButton>
+               <OldButton
                   icon="ph:check-circle-bold"
                   onClick={() =>
                      prepareToast.success({
@@ -184,8 +243,8 @@ export const Playground: FC = () => {
                   }
                >
                   Success
-               </Button>
-               <Button
+               </OldButton>
+               <OldButton
                   icon="ph:info-bold"
                   onClick={() =>
                      prepareToast.info({
@@ -196,8 +255,8 @@ export const Playground: FC = () => {
                   }
                >
                   Info
-               </Button>
-               <Button
+               </OldButton>
+               <OldButton
                   icon="ph:warning-bold"
                   onClick={() =>
                      prepareToast.warning({
@@ -208,9 +267,9 @@ export const Playground: FC = () => {
                   }
                >
                   Warning
-               </Button>
+               </OldButton>
             </div>
-            <Button
+            <OldButton
                onClick={() =>
                   window.api.import.importFiles({
                      id: nanoid(),
@@ -226,7 +285,7 @@ export const Playground: FC = () => {
                }
             >
                Import
-            </Button>
+            </OldButton>
             <div className="flex flex-col gap-8 mb-5">
                <ProgressBar
                   max={100}

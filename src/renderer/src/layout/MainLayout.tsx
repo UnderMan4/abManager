@@ -7,7 +7,7 @@ export const MainLayout: FC = () => {
    return (
       <div className="flex grow min-h-0">
          <NavBar />
-         <main className="bg-radix-gray-200 rounded-tl-2xl min-h-0 overflow-x-auto width-0 grow">
+         <main className="bg-background rounded-tl-2xl min-h-0 overflow-x-auto width-0 grow">
             <Outlet />
          </main>
       </div>
