@@ -1,6 +1,5 @@
 import { X } from "@phosphor-icons/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { AnimatePresence } from "framer-motion";
 import { FC, ReactNode } from "react";
 
 import { ScrollArea } from "@/components/common";

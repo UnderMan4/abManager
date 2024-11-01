@@ -1,5 +1,3 @@
-import { Icon } from "@iconify/react";
-import { motion } from "framer-motion";
 import { FC, ReactNode } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -7,7 +5,7 @@ import { useAppNavigate } from "@/hooks";
 import { cls } from "@/utils/styleUtils";
 
 export type NavButtonProps = {
-   icon: string;
+   icon: ReactNode;
    isCollapsed?: boolean;
    children: ReactNode;
 } & (
@@ -43,19 +41,17 @@ export const NavButton: FC<NavButtonProps> = ({
       <button
          onClick={handleClick}
          className={cls(
-            "flex gap-3 p-2 pr-5 pl-6 rounded-r-2xl items-center transition-colors duration-200 select-none relative",
-            "hover:bg-radix-gray-a400"
+            "flex gap-3 p-2 pr-5 pl-6 rounded-r-2xl items-center transition-colors duration-300 select-none relative text-primary-950 font-semibold",
+            "hover:bg-primary/25",
+            {
+               "bg-primary text-primary-50 hover:bg-primary/85":
+                  pathname === navigateTo,
+            }
          )}
       >
-         <Icon className="z-10" height="2rem" icon={icon} />
+         {icon}
+         {/* <Icon className="z-10" height="2rem" icon={icon} /> */}
          {!isCollapsed && <span className="z-10">{children}</span>}
-         {pathname === navigateTo && (
-            <motion.div
-               layoutId="navButton"
-               transition={{ duration: 0.2 }}
-               className="absolute inset-0 transition-colors duration-200 bg-radix-indigo-400 hover:bg-radix-indigo-500 rounded-r-2xl"
-            />
-         )}
       </button>
    );
 };

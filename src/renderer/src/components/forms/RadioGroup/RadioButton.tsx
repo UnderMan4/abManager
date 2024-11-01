@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react";
+import { Info } from "@phosphor-icons/react";
 import { Variants, motion } from "framer-motion";
 import { FC, ReactNode, useRef } from "react";
 import { AriaRadioProps, useRadio, useVisuallyHidden } from "react-aria";
@@ -44,6 +44,7 @@ export const RadioButton: FC<RadioButtonProps> = ({
       <label className="flex flex-col gap-1 select-none">
          <input
             type="radio"
+            aria-label={label}
             {...visuallyHiddenProps}
             {...inputProps}
             ref={inputRef}
@@ -51,12 +52,10 @@ export const RadioButton: FC<RadioButtonProps> = ({
          <div className="flex gap-3">
             <div
                className={cls(
-                  "size-6 rounded-full center duration-100 transition-colors",
+                  "size-6 rounded-full center duration-200 transition-colors",
                   {
-                     "bg-radix-indigo-1000":
-                        state.selectedValue === radioProps.value,
-                     "bg-radix-gray-800 dark:bg-radix-gray-600":
-                        state.selectedValue !== radioProps.value,
+                     "bg-primary": state.selectedValue === radioProps.value,
+                     "bg-primary/25": state.selectedValue !== radioProps.value,
                   }
                )}
             >
@@ -79,7 +78,7 @@ export const RadioButton: FC<RadioButtonProps> = ({
                <span>{label}</span>
                {description && descriptionAsTooltip ? (
                   <Tooltip content={description}>
-                     <Icon icon="ph:info-bold" />
+                     <Info weight="bold" />
                   </Tooltip>
                ) : null}
             </div>

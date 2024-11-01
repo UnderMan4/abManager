@@ -1,6 +1,7 @@
+import { ArrowRight } from "@phosphor-icons/react";
 import { FC } from "react";
 
-import { Button } from "@/components/forms";
+import { Button } from "@/components/ui";
 import { FirstSetupCard } from "@/features/firstSetup/components/FirstSetupCard";
 import { useFirstSetupContext } from "@/hooks/contexts/useFirstSetupContext";
 
@@ -16,13 +17,9 @@ export const WelcomeCard: FC = () => {
             onClick={navigation.nextStep}
             onMouseEnter={() => navigation.setIsBack(false)}
             onFocusCapture={() => navigation.setIsBack(false)}
-            icon={{
-               name: "ph:arrow-right-bold",
-               hoverAnimation: "moveRight",
-               position: "right",
-            }}
          >
             Get started
+            <ArrowRight weight="bold" />
          </Button>
       </FirstSetupCard>
    );

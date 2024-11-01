@@ -1,6 +1,7 @@
+import { ArrowLeft, Check } from "@phosphor-icons/react";
 import { FC, useRef, useState } from "react";
 
-import { Button } from "@/components/forms";
+import { Button } from "@/components/ui";
 import { FirstSetupCard } from "@/features/firstSetup/components/FirstSetupCard";
 import { ConfirmItem } from "@/features/firstSetup/components/cards/FinishCard/ConfirmItem";
 import { useFirstSetupContext } from "@/hooks/contexts/useFirstSetupContext";
@@ -44,21 +45,12 @@ export const FinishCard: FC = () => {
                   onClick={navigation.previousStep}
                   onMouseEnter={() => navigation.setIsBack(true)}
                   onFocusCapture={() => navigation.setIsBack(true)}
-                  appearance="outlineGray"
-                  icon={{
-                     name: "ph:arrow-left-bold",
-                     hoverAnimation: "moveLeft",
-                     position: "left",
-                  }}
+                  variant="outline"
                >
+                  <ArrowLeft />
                   Back
                </Button>
                <Button
-                  icon={{
-                     name: "ph:check-bold",
-                     position: "right",
-                     hoverAnimation: "scaleRotate",
-                  }}
                   disabled={!isDataValid}
                   onClick={() => {
                      if (!isDataValid) return;
@@ -79,6 +71,7 @@ export const FinishCard: FC = () => {
                   }}
                >
                   Finish
+                  <Check />
                </Button>
             </div>
          </div>

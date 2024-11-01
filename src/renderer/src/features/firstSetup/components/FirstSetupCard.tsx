@@ -1,3 +1,4 @@
+import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import React, { FC, RefObject } from "react";
 
@@ -75,7 +76,7 @@ export const FirstSetupCard: FC<FirstSetupCardProps> = ({
                   exit={isBack ? "exitBack" : "exit"}
                >
                   <Card
-                     className={cls(cardClassName, "no-drag")}
+                     className={cls(cardClassName, "no-drag min-w-96")}
                      title={title}
                      contentRef={contentRef}
                      leftButton={
@@ -84,13 +85,10 @@ export const FirstSetupCard: FC<FirstSetupCardProps> = ({
                                 onMouseEnter: () => setIsBack(true),
                                 onFocusCapture: () => setIsBack(true),
                                 onClick: previousStep,
-                                appearance: "outlineGray",
+                                variant: "outline",
                                 label: backButtonLabel,
-                                icon: {
-                                   name: "ph:arrow-left-bold",
-                                   hoverAnimation: "moveLeft",
-                                   position: "left",
-                                },
+                                icon: <ArrowLeft weight="bold" />,
+                                iconPosition: "left",
                              }
                            : undefined
                      }
@@ -100,14 +98,11 @@ export const FirstSetupCard: FC<FirstSetupCardProps> = ({
                                 onClick: nextStep,
                                 onMouseEnter: () => setIsBack(false),
                                 onFocusCapture: () => setIsBack(false),
-                                appearance: "solid",
+
                                 label: nextButtonLabel,
-                                icon: {
-                                   name: "ph:arrow-right-bold",
-                                   hoverAnimation: "moveRight",
-                                   position: "right",
-                                },
                                 disabled: !nextButtonActive,
+                                icon: <ArrowRight weight="bold" />,
+                                iconPosition: "right",
                              }
                            : undefined
                      }

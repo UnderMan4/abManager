@@ -1,12 +1,14 @@
 import { FC, HTMLAttributes, RefObject } from "react";
 
-import { Button, ButtonProps } from "@/components/forms/Button";
+import { Button, ButtonProps } from "@/components/ui";
 import { cls } from "@/utils/styleUtils";
 
 import { Heading } from "./Heading";
 
 export type CardButtonProps = Omit<ButtonProps, "children"> & {
    label: string;
+   icon?: React.ReactNode;
+   iconPosition?: "left" | "right";
 };
 
 export type CardProps = HTMLAttributes<HTMLDivElement> & {
@@ -16,6 +18,23 @@ export type CardProps = HTMLAttributes<HTMLDivElement> & {
    leftButton?: CardButtonProps;
    rightButton?: CardButtonProps;
    contentRef?: RefObject<HTMLDivElement>;
+};
+
+const CardButton: FC<CardButtonProps> = ({
+   label,
+   icon,
+   iconPosition,
+   ...props
+}) => {
+   if (!icon) return <Button {...props}>{label}</Button>;
+
+   return (
+      <Button {...props}>
+         {iconPosition === "left" && icon}
+         {label}
+         {iconPosition !== "left" && icon}
+      </Button>
+   );
 };
 
 export const Card: FC<CardProps> = ({
@@ -32,7 +51,7 @@ export const Card: FC<CardProps> = ({
    return (
       <div
          className={cls(
-            "p-4 px-6 pb-6 bg-radix-gray-300 border border-radix-gray-700 rounded-2xl flex flex-col gap-8 overflow-hidden",
+            "p-4 px-6 pb-6 bg-background border border-primary/40 rounded-2xl flex flex-col gap-8 overflow-hidden",
             className
          )}
          {...props}
@@ -53,16 +72,8 @@ export const Card: FC<CardProps> = ({
          </div>
          {(leftButton || rightButton) && (
             <div className="flex justify-between">
-               <div>
-                  {leftButton && (
-                     <Button {...leftButton}>{leftButton.label}</Button>
-                  )}
-               </div>
-               <div>
-                  {rightButton && (
-                     <Button {...rightButton}>{rightButton.label}</Button>
-                  )}
-               </div>
+               <div>{leftButton && <CardButton {...leftButton} />}</div>
+               <div>{rightButton && <CardButton {...rightButton} />}</div>
             </div>
          )}
       </div>

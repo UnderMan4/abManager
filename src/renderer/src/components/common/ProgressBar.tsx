@@ -1,12 +1,6 @@
-import {
-   CheckCircle,
-   Dot,
-   DotOutline,
-   X,
-   XCircle,
-} from "@phosphor-icons/react";
+import { CheckCircle, X, XCircle } from "@phosphor-icons/react";
 import * as Progress from "@radix-ui/react-progress";
-import { Variants, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { FC, ReactNode, useId, useMemo } from "react";
 import { FormatNumberOptions, FormattedMessage, useIntl } from "react-intl";
 

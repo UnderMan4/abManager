@@ -15,3 +15,5 @@ export const AUDIO_FILES_EXTENSIONS: Electron.FileFilter["extensions"] = [
    "m4b",
    "wav",
 ];
+
+export const NAVBAR_ICON_SIZE = 28;

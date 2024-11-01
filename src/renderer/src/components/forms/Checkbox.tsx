@@ -1,10 +1,11 @@
-import { Icon } from "@iconify/react";
+import { Check, Info } from "@phosphor-icons/react";
 import { AriaCheckboxProps, useCheckbox } from "@react-aria/checkbox";
 import { useFocusRing } from "@react-aria/focus";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { useToggleState } from "@react-stately/toggle";
 import { Variants, m as motion } from "framer-motion";
 import { FC, ReactNode, useRef } from "react";
+import { useId } from "react-aria";
 
 import { Tooltip } from "@/components/common/Tooltip";
 import { cls } from "@/utils/styleUtils";
@@ -21,12 +22,15 @@ export const Checkbox: FC<CheckboxProps> = ({
    label,
    description,
    descriptionAsTooltip,
+   id,
    ...props
 }) => {
    const state = useToggleState(props);
    const ref = useRef(null);
    const { inputProps } = useCheckbox(props, state, ref);
    const { isFocusVisible, focusProps } = useFocusRing();
+
+   const checkboxId = useId(id);
 
    const checkboxVariants: Variants = {
       checked: {
@@ -50,14 +54,16 @@ export const Checkbox: FC<CheckboxProps> = ({
                   {...focusProps}
                   ref={ref}
                   className="-z-20"
+                  aria-label={label}
+                  id={checkboxId}
                />
             </VisuallyHidden>
             <div
                className={cls(
                   "size-6 rounded-lg transition-colors duration-75 select-none flex-shrink-0",
                   {
-                     "bg-radix-indigo-700": state.isSelected,
-                     "bg-radix-gray-700": !state.isSelected,
+                     "bg-primary": state.isSelected,
+                     "bg-primary/25": !state.isSelected,
                      "ring-2 ring-radix-gray-1200": isFocusVisible,
                   }
                )}
@@ -70,16 +76,16 @@ export const Checkbox: FC<CheckboxProps> = ({
                   animate={state.isSelected ? "checked" : "unchecked"}
                   className="flex items-center justify-center w-full h-full pointer-events-none"
                >
-                  <Icon icon="ph:check-bold" />
+                  <Check weight="bold" className="text-primary-50" />
                </motion.div>
             </div>
             {label && (
-               <div>
+               <label htmlFor={checkboxId}>
                   <div className="flex gap-2 items-center">
                      <span className="truncate">{label}</span>
                      {description && descriptionAsTooltip ? (
                         <Tooltip content={description}>
-                           <Icon icon="ph:info-bold" />
+                           <Info weight="bold" />
                         </Tooltip>
                      ) : null}
                   </div>
@@ -93,7 +99,7 @@ export const Checkbox: FC<CheckboxProps> = ({
                         description
                      )
                   ) : null}
-               </div>
+               </label>
             )}
          </label>
       </div>

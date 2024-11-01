@@ -1,15 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 /* eslint-disable no-console */
-import { Cat } from "@phosphor-icons/react";
-import { VariantProps } from "class-variance-authority";
+import {
+   Cat,
+   CheckCircle,
+   Info,
+   Warning,
+   XCircle,
+} from "@phosphor-icons/react";
 import { nanoid } from "nanoid";
 import React, { FC, useEffect, useState } from "react";
-import { Item, Section } from "react-stately";
 
-import { Modal, ProgressBar, Spinner } from "@/components/common";
+import { ProgressBar, Spinner } from "@/components/common";
 import {
    Checkbox,
-   ComboBox,
-   Dropdown,
    Button as OldButton,
    RadioButton,
    RadioGroup,
@@ -17,13 +21,16 @@ import {
 import {
    Button,
    Dialog,
-   DialogClose,
    DialogContent,
-   DialogDescription,
-   DialogFooter,
-   DialogHeader,
-   DialogTitle,
    DialogTrigger,
+   Select,
+   SelectContent,
+   SelectGroup,
+   SelectItem,
+   SelectLabel,
+   SelectSeparator,
+   SelectTrigger,
+   SelectValue,
 } from "@/components/ui";
 import { useSettingsStore } from "@/stores";
 import { cls } from "@/utils/styleUtils";
@@ -92,12 +99,6 @@ export const Playground: FC = () => {
    return (
       <div className="p-4">
          <div className="flex flex-col gap-3">
-            <Flexbox>
-               <OldButton>Button</OldButton>
-               <OldButton appearance="outlineColor">Button</OldButton>
-               <OldButton appearance="outlineGray">Button</OldButton>
-            </Flexbox>
-
             {(["default", "sm", "lg"] as const).map((size) => (
                <Flexbox>
                   <Button size={size}>Button</Button>
@@ -168,60 +169,120 @@ export const Playground: FC = () => {
                   />
                </Flexbox>
             </Flexbox>
-            <Dropdown disabledKeys={["bbb"]} label="Dropdown">
-               <Item key="aaa">aaa</Item>
-               <Item key="bbb">bbb</Item>
-               <Item>ccc</Item>
-               <Item>ddd</Item>
-               <Item>eee</Item>
-               <Section title="Title">
-                  <Item>fff</Item>
-                  <Item>ggg</Item>
-                  <Item>hhh</Item>
-                  <Item>iii</Item>
-                  <Item>jjj</Item>
-               </Section>
-            </Dropdown>
-            <ComboBox label="Combo box">
-               <Item key="aaa">aaa</Item>
-               <Item key="bbb">bbb</Item>
-               <Item>ccc</Item>
-               <Item>ddd</Item>
-               <Item>eee</Item>
-               <Section title="Title">
-                  <Item>fff</Item>
-                  <Item>ggg</Item>
-                  <Item>hhh</Item>
-                  <Item>iii</Item>
-                  <Item>jjj</Item>
-               </Section>
-            </ComboBox>
-            {/* <Button onClick={modalState.open}>Open modal</Button>
-            <Modal state={modalState} isDismissable>
-               <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
-                  iste quaerat? Debitis assumenda iste ex non impedit neque
-                  voluptatum quo.
-               </p>
-            </Modal> */}
-            {/* <Modal
-               renderTrigger={<Button>Open modal</Button>}
-               title="Lorem ipsum dolor sit amet"
-            >
-               {`Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-               iure corporis quae obcaecati quos id amet ut qui cumque dolore
-               nemo quam ab cum molestiae ipsa dolores quaerat, porro veritatis
-               at voluptas perspiciatis sed sint. Illo sit eius aliquam odit
-               voluptatibus ea delectus quidem incidunt facere. Commodi nisi
-               repellat explicabo?`.repeat(3)}
-            </Modal> */}
+
+            <Select>
+               <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Theme" />
+               </SelectTrigger>
+               <SelectContent>
+                  <SelectItem value="light">Light</SelectItem>
+                  <SelectItem value="dark">Dark</SelectItem>
+                  <SelectSeparator />
+                  <SelectItem value="system">System</SelectItem>
+                  {Array.from({ length: 30 }, (_, i) => (
+                     <SelectItem value={i + ""}>Element {i + 1}</SelectItem>
+                  ))}
+               </SelectContent>
+            </Select>
+
+            <Select>
+               <SelectTrigger className="w-[280px]">
+                  <SelectValue placeholder="Select a timezone" />
+               </SelectTrigger>
+               <SelectContent>
+                  <SelectGroup>
+                     <SelectLabel>North America</SelectLabel>
+                     <SelectItem value="est">
+                        Eastern Standard Time (EST)
+                     </SelectItem>
+                     <SelectItem value="cst">
+                        Central Standard Time (CST)
+                     </SelectItem>
+                     <SelectItem value="mst">
+                        Mountain Standard Time (MST)
+                     </SelectItem>
+                     <SelectItem value="pst">
+                        Pacific Standard Time (PST)
+                     </SelectItem>
+                     <SelectItem value="akst">
+                        Alaska Standard Time (AKST)
+                     </SelectItem>
+                     <SelectItem value="hst">
+                        Hawaii Standard Time (HST)
+                     </SelectItem>
+                  </SelectGroup>
+                  <SelectGroup>
+                     <SelectLabel>Europe & Africa</SelectLabel>
+                     <SelectItem value="gmt">
+                        Greenwich Mean Time (GMT)
+                     </SelectItem>
+                     <SelectItem value="cet">
+                        Central European Time (CET)
+                     </SelectItem>
+                     <SelectItem value="eet">
+                        Eastern European Time (EET)
+                     </SelectItem>
+                     <SelectItem value="west">
+                        Western European Summer Time (WEST)
+                     </SelectItem>
+                     <SelectItem value="cat">
+                        Central Africa Time (CAT)
+                     </SelectItem>
+                     <SelectItem value="eat">East Africa Time (EAT)</SelectItem>
+                  </SelectGroup>
+                  <SelectGroup>
+                     <SelectLabel>Asia</SelectLabel>
+                     <SelectItem value="msk">Moscow Time (MSK)</SelectItem>
+                     <SelectItem value="ist">
+                        India Standard Time (IST)
+                     </SelectItem>
+                     <SelectItem value="cst_china">
+                        China Standard Time (CST)
+                     </SelectItem>
+                     <SelectItem value="jst">
+                        Japan Standard Time (JST)
+                     </SelectItem>
+                     <SelectItem value="kst">
+                        Korea Standard Time (KST)
+                     </SelectItem>
+                     <SelectItem value="ist_indonesia">
+                        Indonesia Central Standard Time (WITA)
+                     </SelectItem>
+                  </SelectGroup>
+                  <SelectGroup>
+                     <SelectLabel>Australia & Pacific</SelectLabel>
+                     <SelectItem value="awst">
+                        Australian Western Standard Time (AWST)
+                     </SelectItem>
+                     <SelectItem value="acst">
+                        Australian Central Standard Time (ACST)
+                     </SelectItem>
+                     <SelectItem value="aest">
+                        Australian Eastern Standard Time (AEST)
+                     </SelectItem>
+                     <SelectItem value="nzst">
+                        New Zealand Standard Time (NZST)
+                     </SelectItem>
+                     <SelectItem value="fjt">Fiji Time (FJT)</SelectItem>
+                  </SelectGroup>
+                  <SelectGroup>
+                     <SelectLabel>South America</SelectLabel>
+                     <SelectItem value="art">Argentina Time (ART)</SelectItem>
+                     <SelectItem value="bot">Bolivia Time (BOT)</SelectItem>
+                     <SelectItem value="brt">Brasilia Time (BRT)</SelectItem>
+                     <SelectItem value="clt">
+                        Chile Standard Time (CLT)
+                     </SelectItem>
+                  </SelectGroup>
+               </SelectContent>
+            </Select>
+
             <Dialog>
                <DialogTrigger>AAA</DialogTrigger>
                <DialogContent></DialogContent>
             </Dialog>
             <div className="flex gap-2">
-               <OldButton
-                  icon="ph:x-circle-bold"
+               <Button
                   onClick={() =>
                      prepareToast.error({
                         title: "Error",
@@ -230,10 +291,10 @@ export const Playground: FC = () => {
                      })
                   }
                >
+                  <XCircle weight="bold" />
                   Error
-               </OldButton>
-               <OldButton
-                  icon="ph:check-circle-bold"
+               </Button>
+               <Button
                   onClick={() =>
                      prepareToast.success({
                         title: "Success",
@@ -242,10 +303,10 @@ export const Playground: FC = () => {
                      })
                   }
                >
+                  <CheckCircle weight="bold" />
                   Success
-               </OldButton>
-               <OldButton
-                  icon="ph:info-bold"
+               </Button>
+               <Button
                   onClick={() =>
                      prepareToast.info({
                         title: "Info",
@@ -254,10 +315,10 @@ export const Playground: FC = () => {
                      })
                   }
                >
+                  <Info weight="bold" />
                   Info
-               </OldButton>
-               <OldButton
-                  icon="ph:warning-bold"
+               </Button>
+               <Button
                   onClick={() =>
                      prepareToast.warning({
                         title: "Warning",
@@ -266,10 +327,11 @@ export const Playground: FC = () => {
                      })
                   }
                >
+                  <Warning weight="bold" />
                   Warning
-               </OldButton>
+               </Button>
             </div>
-            <OldButton
+            <Button
                onClick={() =>
                   window.api.import.importFiles({
                      id: nanoid(),
@@ -285,7 +347,7 @@ export const Playground: FC = () => {
                }
             >
                Import
-            </OldButton>
+            </Button>
             <div className="flex flex-col gap-8 mb-5">
                <ProgressBar
                   max={100}
