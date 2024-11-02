@@ -22,7 +22,18 @@ import {
    Button,
    Dialog,
    DialogContent,
+   DialogDescription,
+   DialogHeader,
+   DialogTitle,
    DialogTrigger,
+   Drawer,
+   DrawerClose,
+   DrawerContent,
+   DrawerDescription,
+   DrawerFooter,
+   DrawerHeader,
+   DrawerTitle,
+   DrawerTrigger,
    Select,
    SelectContent,
    SelectGroup,
@@ -277,11 +288,45 @@ export const Playground: FC = () => {
                </SelectContent>
             </Select>
 
-            <Dialog>
-               <DialogTrigger>AAA</DialogTrigger>
-               <DialogContent></DialogContent>
-            </Dialog>
-            <div className="flex gap-2">
+            <Flexbox>
+               <Dialog>
+                  <DialogTrigger asChild>
+                     <Button>Open dialog</Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                     <DialogHeader>
+                        <DialogTitle>Are you absolutely sure?</DialogTitle>
+                        <DialogDescription>
+                           This action cannot be undone. This will permanently
+                           delete your account and remove your data from our
+                           servers.
+                        </DialogDescription>
+                     </DialogHeader>
+                  </DialogContent>
+               </Dialog>
+
+               <Drawer>
+                  <DrawerTrigger asChild>
+                     <Button>Open drawer</Button>
+                  </DrawerTrigger>
+                  <DrawerContent>
+                     <DrawerHeader>
+                        <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+                        <DrawerDescription>
+                           This action cannot be undone.
+                        </DrawerDescription>
+                     </DrawerHeader>
+                     <DrawerFooter>
+                        <Button>Submit</Button>
+                        <DrawerClose>
+                           <Button variant="outline">Cancel</Button>
+                        </DrawerClose>
+                     </DrawerFooter>
+                  </DrawerContent>
+               </Drawer>
+            </Flexbox>
+
+            {/* <div className="flex gap-2">
                <Button
                   onClick={() =>
                      prepareToast.error({
@@ -385,7 +430,7 @@ export const Playground: FC = () => {
                <Spinner size="lg" />
                <Spinner size="md" />
                <Spinner size="sm" />
-            </div>
+            </div> */}
          </div>
       </div>
    );
