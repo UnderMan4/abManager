@@ -1,0 +1,12 @@
+{
+   "menu": {
+      "file": {
+         "label": "Plik",
+         "import": {
+            "label": "Importuj",
+            "directory": "Folder",
+            "files": "Pliki"
+         }
+      }
+   }
+}

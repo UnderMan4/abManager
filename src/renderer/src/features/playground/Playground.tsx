@@ -12,12 +12,7 @@ import { nanoid } from "nanoid";
 import React, { FC, useEffect, useState } from "react";
 
 import { ProgressBar, Spinner } from "@/components/common";
-import {
-   Checkbox,
-   Button as OldButton,
-   RadioButton,
-   RadioGroup,
-} from "@/components/forms";
+import { Checkbox, RadioButton, RadioGroup } from "@/components/forms";
 import {
    Button,
    Dialog,
@@ -326,7 +321,7 @@ export const Playground: FC = () => {
                </Drawer>
             </Flexbox>
 
-            {/* <div className="flex gap-2">
+            <div className="flex gap-2">
                <Button
                   onClick={() =>
                      prepareToast.error({
@@ -430,7 +425,7 @@ export const Playground: FC = () => {
                <Spinner size="lg" />
                <Spinner size="md" />
                <Spinner size="sm" />
-            </div> */}
+            </div>
          </div>
       </div>
    );

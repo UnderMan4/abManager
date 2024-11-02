@@ -1,13 +1,14 @@
 import { Icon } from "@iconify/react";
 import { FC } from "react";
 
+import { TitleBarMenu } from "./TitleBarMenu";
 import { ImportButton, WindowButton } from "./components";
 
 export const TitleBar: FC = () => {
    return (
       <header className={"window-drag select-none h-10"}>
-         <div className="flex justify-between items-strech">
-            <div>menu</div>
+         <div className="flex justify-between items-strech ml-1">
+            <TitleBarMenu />
             <div className="flex gap-8">
                <div className="flex p-1 gap-1">
                   <ImportButton />

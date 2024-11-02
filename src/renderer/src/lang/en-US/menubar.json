@@ -1,0 +1,12 @@
+{
+   "menu": {
+      "file": {
+         "label": "File",
+         "import": {
+            "label": "Import",
+            "files": "Files",
+            "directory": "Directory"
+         }
+      }
+   }
+}

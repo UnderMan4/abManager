@@ -8,4 +8,5 @@ export const namespaces = [
    "settings",
    "toasts",
    "importNew",
+   "menubar",
 ];
