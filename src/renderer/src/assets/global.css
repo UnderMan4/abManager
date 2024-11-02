@@ -22,6 +22,7 @@ body {
    -moz-box-sizing: border-box;
    -ms-box-sizing: border-box;
    -o-box-sizing: border-box;
+   @apply scrollbar-thin scrollbar-w-1 scrollbar-thumb-background-300/70 scrollbar-thumb-rounded-full;
 }
 
 @layer components {
@@ -52,7 +53,7 @@ body {
    --sb-track-color: theme("colors.radix.gray.400");
       --sb-thumb-color: theme("colors.radix.gray.900");
       } */
-   .custom-scrollbar::-webkit-scrollbar outline outline-1 {
+   /* .custom-scrollbar::-webkit-scrollbar outline outline-1 {
       width: var(--sb-size);
    }
 
@@ -75,7 +76,7 @@ body {
 
    .disable-scrollbars {
       scrollbar-width: none;
-   }
+   } */
 
    .progress-pending-bg {
       /* --progress-color-1: theme("colors.radix.indigo.600"); */

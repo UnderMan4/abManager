@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const plugin = require("tailwindcss/plugin");
+import tailwindScrollbar from "tailwind-scrollbar";
+import plugin from "tailwindcss/plugin";
 
 module.exports = {
    darkMode: "class",
@@ -103,6 +102,7 @@ module.exports = {
    },
    plugins: [
       require("@tailwindcss/forms"),
+      tailwindScrollbar({ nocompatible: true }),
       plugin(({ addUtilities, addComponents }) => {
          addUtilities({
             ".center": {

@@ -37,12 +37,12 @@ export const NavBar: FC = () => {
                </NavButton>
             )}
          </div>
-         <NavButton
+         {/* <NavButton
             icon={<Plus weight="bold" size={NAVBAR_ICON_SIZE} />}
             navigateTo="/import-new/method"
          >
             <FormattedMessage id="navbar.buttons.addNew" />
-         </NavButton>
+         </NavButton> */}
       </aside>
    );
 };
