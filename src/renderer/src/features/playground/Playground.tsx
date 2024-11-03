@@ -2,6 +2,10 @@
 
 /* eslint-disable no-console */
 import {
+   AlignBottomSimple,
+   AlignLeftSimple,
+   AlignRightSimple,
+   AlignTopSimple,
    Cat,
    CheckCircle,
    Info,
@@ -27,6 +31,7 @@ import {
    DrawerDescription,
    DrawerFooter,
    DrawerHeader,
+   DrawerPosition,
    DrawerTitle,
    DrawerTrigger,
    Select,
@@ -70,10 +75,44 @@ const Flexbox: FC<FlexboxProps> = ({ children, className, column }) => {
    );
 };
 
+type DrawerDemoProps = {
+   position: DrawerPosition;
+   hideHandle?: boolean;
+};
+
+const drawerDemoIcon: Record<DrawerPosition, React.ReactNode> = {
+   top: <AlignTopSimple weight="bold" />,
+   right: <AlignRightSimple weight="bold" />,
+   bottom: <AlignBottomSimple weight="bold" />,
+   left: <AlignLeftSimple weight="bold" />,
+};
+
+const DrawerDemo: FC<DrawerDemoProps> = ({ position, hideHandle }) => (
+   <Drawer position={position} hideHandle={hideHandle}>
+      <DrawerTrigger asChild>
+         <Button size="icon">{drawerDemoIcon[position]}</Button>
+      </DrawerTrigger>
+      <DrawerContent>
+         <DrawerHeader>
+            <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+            <DrawerDescription>This action cannot be undone.</DrawerDescription>
+         </DrawerHeader>
+         <DrawerFooter>
+            <Button>Submit</Button>
+            <DrawerClose>
+               <Button variant="outline">Cancel</Button>
+            </DrawerClose>
+         </DrawerFooter>
+      </DrawerContent>
+   </Drawer>
+);
+
 export const Playground: FC = () => {
    const settings = useSettingsStore();
 
    const [progress, setProgress] = useState(0);
+
+   const [hideDrawerHandle, setHideDrawerHandle] = useState(false);
 
    useEffect(() => {
       const interval = setInterval(() => {
@@ -299,26 +338,39 @@ export const Playground: FC = () => {
                      </DialogHeader>
                   </DialogContent>
                </Dialog>
-
-               <Drawer>
-                  <DrawerTrigger asChild>
-                     <Button>Open drawer</Button>
-                  </DrawerTrigger>
-                  <DrawerContent>
-                     <DrawerHeader>
-                        <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-                        <DrawerDescription>
-                           This action cannot be undone.
-                        </DrawerDescription>
-                     </DrawerHeader>
-                     <DrawerFooter>
-                        <Button>Submit</Button>
-                        <DrawerClose>
-                           <Button variant="outline">Cancel</Button>
-                        </DrawerClose>
-                     </DrawerFooter>
-                  </DrawerContent>
-               </Drawer>
+            </Flexbox>
+            <Flexbox column>
+               <Flexbox>
+                  <h4 className="font-bold">Open dialog:</h4>
+                  <Checkbox
+                     isSelected={hideDrawerHandle}
+                     onChange={setHideDrawerHandle}
+                     label="Hide drawer handle"
+                  />
+               </Flexbox>
+               <div className="grid grid-cols-3 grid-rows-3 w-max gap-2">
+                  <div className="col-start-2">
+                     <DrawerDemo position="top" hideHandle={hideDrawerHandle} />
+                  </div>
+                  <div className="col-start-3 row-start-2">
+                     <DrawerDemo
+                        position="right"
+                        hideHandle={hideDrawerHandle}
+                     />
+                  </div>
+                  <div className="col-start-2 row-start-3">
+                     <DrawerDemo
+                        position="bottom"
+                        hideHandle={hideDrawerHandle}
+                     />
+                  </div>
+                  <div className="row-start-2">
+                     <DrawerDemo
+                        position="left"
+                        hideHandle={hideDrawerHandle}
+                     />
+                  </div>
+               </div>
             </Flexbox>
 
             <div className="flex gap-2">

@@ -2,7 +2,6 @@ import { X } from "@phosphor-icons/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { FC, ReactNode } from "react";
 
-import { ScrollArea } from "@/components/common";
 import { cls } from "@/utils/styleUtils";
 
 export type ModalProps = {
@@ -58,7 +57,7 @@ export const Modal: FC<ModalProps> = ({
                      <div className="h-[0.2px] bg-radix-gray-700" />
                   </>
                )}
-               <ScrollArea className="p-4 min-h-0">{children}</ScrollArea>
+               <div className="p-4 min-h-0">{children}</div>
                {renderFooter && (
                   <>
                      <div className="h-[0.2px] bg-radix-gray-700" />

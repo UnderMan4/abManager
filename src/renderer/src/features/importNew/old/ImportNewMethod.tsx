@@ -6,7 +6,7 @@ import { AUDIO_FILES_EXTENSIONS } from "@/constants";
 import { useAppNavigate } from "@/hooks";
 import { prepareToast } from "@/utils/toastUtils";
 
-import { MethodButton } from "./components/MethodButton";
+import { MethodButton } from "../components/MethodButton";
 
 const MAX_BUTTON_HEIGHT = 32;
 const MAX_BUTTON_WIDTH = 22;

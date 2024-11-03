@@ -5,17 +5,19 @@ import { Drawer as DrawerPrimitive } from "vaul";
 import { useSafeContext } from "@/hooks";
 import { cls } from "@/utils/styleUtils";
 
-type DrawerPosition = "left" | "right" | "top" | "bottom";
+export type DrawerPosition = "left" | "right" | "top" | "bottom";
 
-type DrawerProps = Omit<
+export type DrawerProps = Omit<
    React.ComponentProps<typeof DrawerPrimitive.Root>,
    "direction"
 > & {
    position?: DrawerPosition;
+   hideHandle?: boolean;
 };
 
 type DrawerContextState = {
    position: DrawerPosition;
+   hideHandle?: boolean;
 };
 
 const DrawerContext = React.createContext<DrawerContextState | null>(null);
@@ -23,11 +25,13 @@ const DrawerContext = React.createContext<DrawerContextState | null>(null);
 const Drawer = ({
    shouldScaleBackground = true,
    position = "right",
+   hideHandle,
    ...props
 }: DrawerProps) => (
    <DrawerContext.Provider
       value={{
          position,
+         hideHandle,
       }}
    >
       {/* @ts-expect-error - `fadeFromIndex` is not necessary for Drawer */}
@@ -58,28 +62,25 @@ const DrawerOverlay = React.forwardRef<
 ));
 DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
 
-const drawerVariants = cva(
-   "fixed z-50 flex flex-col bg-background border-primary/40 border",
-   {
-      variants: {
-         position: {
-            left: "inset-y-0 left-0 w-auto rounded-r-2xl",
-            right: "inset-y-0 right-0 w-auto rounded-l-2xl",
-            top: "inset-x-0 top-0 h-auto rounded-b-2xl",
-            bottom: "inset-x-0 bottom-0 h-auto rounded-t-2xl",
-         },
+const drawerVariants = cva("fixed z-50 flex bg-background border", {
+   variants: {
+      position: {
+         left: "inset-y-0 left-0 w-auto rounded-r-2xl flex-row-reverse",
+         right: "inset-y-0 right-0 w-auto rounded-l-2xl flex-row",
+         top: "inset-x-0 top-0 h-auto rounded-b-2xl flex-col-reverse",
+         bottom: "inset-x-0 bottom-0 h-auto rounded-t-2xl flex-col",
       },
-      defaultVariants: {
-         position: "right",
-      },
-   }
-);
+   },
+   defaultVariants: {
+      position: "right",
+   },
+});
 
 const DrawerContent = React.forwardRef<
    React.ElementRef<typeof DrawerPrimitive.Content>,
    React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
 >(({ className, children, ...props }, ref) => {
-   const { position } = useSafeContext(
+   const { position, hideHandle } = useSafeContext(
       DrawerContext,
       "DrawerContext should be used within Drawer component"
    );
@@ -95,8 +96,19 @@ const DrawerContent = React.forwardRef<
             className={cls(drawerVariants({ position, className }))}
             {...props}
          >
-            <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted" />
-            {children}
+            {!hideHandle && (
+               <div
+                  className={cls(" h-2 w-[100px] rounded-full bg-muted", {
+                     "mt-4": position === "bottom",
+                     "mb-4": position === "top",
+                     "ml-4": position === "right",
+                     "mr-4": position === "left",
+                     "w-[100px] h-2 mx-auto": position.is("top", "bottom"),
+                     "h-[100px] w-2 my-auto": position.is("left", "right"),
+                  })}
+               />
+            )}
+            <div className="flex flex-col">{children}</div>
          </DrawerPrimitive.Content>
       </DrawerPortal>
    );

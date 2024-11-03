@@ -23,6 +23,7 @@ body {
    -ms-box-sizing: border-box;
    -o-box-sizing: border-box;
    @apply scrollbar-thin scrollbar-w-1 scrollbar-thumb-background-300/70 scrollbar-thumb-rounded-full;
+   @apply border-primary/50;
 }
 
 @layer components {
@@ -36,7 +37,7 @@ body {
    } */
 
    body {
-      @apply bg-background-100 text-text;
+      @apply text-foreground bg-background-100;
    }
 
    /* * {
@@ -120,11 +121,32 @@ body {
 
 @layer base {
    :root {
-      --text: 30, 2, 39;
+      /* --text: 30, 2, 39;
       --background: 249, 231, 254;
       --primary: 113, 6, 142;
       --secondary: 248, 89, 213;
-      --accent: 225, 9, 146;
+      --accent: 225, 9, 146; */
+
+      --text: 285, 90%, 8%;
+      --background: 287, 92%, 95%;
+      --primary: 287, 92%, 29%;
+      --secondary: 313, 92%, 66%;
+      --accent: 322, 92%, 46%;
+
+      --card: 287, 92%, 95%;
+      --card-foreground: 285, 90%, 8%;
+      --popover: 287, 92%, 95%;
+      --popover-foreground: 285, 90%, 8%;
+      --primary-foreground: 287, 92%, 95%;
+      --secondary-foreground: 285, 90%, 8%;
+      --muted: 287, 92%, 20%;
+      --muted-foreground: 285, 90%, 70%;
+      --accent-foreground: 287, 92%, 95%;
+      --destructive: 0, 85%, 60%;
+      --destructive-foreground: 285, 90%, 8%;
+      --border: 287, 92%, 20%;
+      --input: 287, 92%, 20%;
+      --ring: 322, 92%, 40%;
 
       --text-50: 248, 231, 254;
       --text-100: 241, 207, 252;
@@ -200,11 +222,32 @@ body {
       --red-1000: 100, 23, 35;
    }
    .dark {
-      --text: 244, 216, 253;
+      /* --text: 244, 216, 253;
       --background: 19, 1, 24;
       --primary: 220, 113, 249;
       --secondary: 166, 7, 132;
-      --accent: 246, 30, 166;
+      --accent: 246, 30, 166; */
+
+      --text: 285, 90%, 92%;
+      --background: 287, 92%, 5%;
+      --primary: 287, 92%, 71%;
+      --secondary: 313, 92%, 34%;
+
+      --accent: 322, 92%, 54%;
+      --card: 287, 92%, 5%;
+      --card-foreground: 285, 90%, 92%;
+      --popover: 287, 92%, 5%;
+      --popover-foreground: 285, 90%, 92%;
+      --primary-foreground: 287, 92%, 5%;
+      --secondary-foreground: 285, 90%, 92%;
+      --muted: 287, 92%, 80%;
+      --muted-foreground: 285, 90%, 82%;
+      --accent-foreground: 287, 92%, 5%;
+      --destructive: 0, 62%, 30%;
+      --destructive-foreground: 285, 88%, 10%;
+      --border: 287, 92%, 60%;
+      --input: 287, 92%, 80%;
+      --ring: 322, 92%, 60%;
 
       --text-50: 18, 1, 24;
       --text-100: 37, 3, 48;

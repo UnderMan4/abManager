@@ -14,8 +14,28 @@ module.exports = {
             400: "400ms",
          },
          colors: {
+            foreground: "hsla(var(--text), <alpha-value>)",
+            card: "hsla(var(--card), <alpha-value>)",
+            "card-foreground": "hsla(var(--card-foreground), <alpha-value>)",
+            popover: "hsla(var(--popover), <alpha-value>)",
+            "popover-foreground":
+               "hsla(var(--popover-foreground), <alpha-value>)",
+            "primary-foreground":
+               "hsla(var(--primary-foreground), <alpha-value>)",
+            "secondary-foreground":
+               "hsla(var(--secondary-foreground), <alpha-value>)",
+            muted: "hsla(var(--muted), <alpha-value>)",
+            "muted-foreground": "hsla(var(--muted-foreground), <alpha-value>)",
+            "accent-foreground":
+               "hsla(var(--accent-foreground), <alpha-value>)",
+            destructive: "hsla(var(--destructive), <alpha-value>)",
+            "destructive-foreground":
+               "hsla(var(--destructive-foreground), <alpha-value>)",
+            border: "hsla(var(--border), <alpha-value>)",
+            input: "hsla(var(--input), <alpha-value>)",
+            ring: "hsla(var(--ring), <alpha-value>)",
             text: {
-               DEFAULT: "rgba(var(--text), <alpha-value>)",
+               DEFAULT: "hsla(var(--text), <alpha-value>)",
                50: "rgba(var(--text-50), <alpha-value>)",
                100: "rgba(var(--text-100), <alpha-value>)",
                200: "rgba(var(--text-200), <alpha-value>)",
@@ -29,7 +49,7 @@ module.exports = {
                950: "rgba(var(--text-950), <alpha-value>)",
             },
             background: {
-               DEFAULT: "rgba(var(--background), <alpha-value>)",
+               DEFAULT: "hsla(var(--background), <alpha-value>)",
                50: "rgba(var(--background-50), <alpha-value>)",
                100: "rgba(var(--background-100), <alpha-value>)",
                200: "rgba(var(--background-200), <alpha-value>)",
@@ -43,7 +63,7 @@ module.exports = {
                950: "rgba(var(--background-950), <alpha-value>)",
             },
             primary: {
-               DEFAULT: "rgba(var(--primary), <alpha-value>)",
+               DEFAULT: "hsla(var(--primary), <alpha-value>)",
                50: "rgba(var(--primary-50), <alpha-value>)",
                100: "rgba(var(--primary-100), <alpha-value>)",
                200: "rgba(var(--primary-200), <alpha-value>)",
@@ -57,7 +77,7 @@ module.exports = {
                950: "rgba(var(--primary-950), <alpha-value>)",
             },
             secondary: {
-               DEFAULT: "rgba(var(--secondary), <alpha-value>)",
+               DEFAULT: "hsla(var(--secondary), <alpha-value>)",
                50: "rgba(var(--secondary-50), <alpha-value>)",
                100: "rgba(var(--secondary-100), <alpha-value>)",
                200: "rgba(var(--secondary-200), <alpha-value>)",
@@ -71,7 +91,7 @@ module.exports = {
                950: "rgba(var(--secondary-950), <alpha-value>)",
             },
             accent: {
-               DEFAULT: "rgba(var(--accent), <alpha-value>)",
+               DEFAULT: "hsla(var(--accent), <alpha-value>)",
                50: "rgba(var(--accent-50), <alpha-value>)",
                100: "rgba(var(--accent-100), <alpha-value>)",
                200: "rgba(var(--accent-200), <alpha-value>)",

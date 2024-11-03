@@ -76,7 +76,7 @@ const SelectContent = React.forwardRef<
       <SelectPrimitive.Content
          ref={ref}
          className={cls(
-            "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-xl border bg-primary-100 text-popover-foreground shadow-md",
+            "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-xl border border-input bg-popover text-popover-foreground shadow-md",
             "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
             "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
             "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
@@ -109,10 +109,7 @@ const SelectLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
    <SelectPrimitive.Label
       ref={ref}
-      className={cls(
-         "py-1.5 pl-8 pr-2 text-sm font-semibold text-primary-800/70",
-         className
-      )}
+      className={cls("py-1.5 pl-8 pr-2 text-sm font-semibold", className)}
       {...props}
    />
 ));
@@ -147,7 +144,7 @@ const SelectSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
    <SelectPrimitive.Separator
       ref={ref}
-      className={cls("-mx-1 my-1 h-px bg-primary-50/80", className)}
+      className={cls("-mx-1 my-1 h-px bg-muted", className)}
       {...props}
    />
 ));

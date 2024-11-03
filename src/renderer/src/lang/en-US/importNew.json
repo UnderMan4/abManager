@@ -1,39 +1,38 @@
 {
-   "clickDetailsButton": "Click {icon} button to see file details.",
-   "details": {
-      "bitrate": "Bitrate",
-      "description": "Description",
-      "descriptionDesc": "Derived from 'description' or 'comment' metadata fields, based on availability.",
-      "duration": "Duration",
-      "fileSize": "File size",
-      "filename": "File name",
-      "series": "Series",
-      "seriesDesc": "Derived from the 'album' and 'track' metadata fields.",
-      "year": "Year"
-   },
-   "importBtn": "Import",
-   "options": {
-      "oneBook": {
-         "description": "If checked all files are treated as parts of one book. Metadata for whole audiobook are taken from the first file.",
-         "label": "One book"
-      },
-      "sort": {
-         "byFilename": "By file name",
-         "byTitle": "By title",
-         "byTrackNumber": "By track number",
-         "label": "Sort files:"
-      }
-   },
-   "pages": {
-      "importFiles": "Import files",
-      "importFolder": "Import folder",
-      "importMethod": "Select import method"
-   },
-   "readingMetadata": "Reading files...",
-   "selectFilesMessage": "Please use the file picker window to select the files you want to import.",
-   "selectFilesWindow": {
-      "button": "Import",
-      "filterName": "Audio files",
-      "title": "Import files"
-   }
+    "clickDetailsButton": "Click {icon} button to see file details.",
+    "details": {
+        "bitrate": "Bitrate",
+        "description": "Description",
+        "descriptionDesc": "Derived from 'description' or 'comment' metadata fields, based on availability.",
+        "duration": "Duration",
+        "fileSize": "File size",
+        "filename": "File name",
+        "series": "Series",
+        "seriesDesc": "Derived from the 'album' and 'track' metadata fields.",
+        "year": "Year"
+    },
+    "importBtn": "Import",
+    "options": {
+        "oneBook": {
+            "description": "If checked all files are treated as parts of one book. Metadata for whole audiobook are taken from the first file.",
+            "label": "One book"
+        },
+        "sort": {
+            "byFilename": "By file name",
+            "byTitle": "By title",
+            "byTrackNumber": "By track number",
+            "label": "Sort files:"
+        }
+    },
+    "pages": {
+        "importFiles": "Import files",
+        "importFolder": "Import folder"
+    },
+    "readingMetadata": "Reading files...",
+    "selectFilesMessage": "Please use the file picker window to select the files you want to import.",
+    "selectFilesWindow": {
+        "button": "Import",
+        "filterName": "Audio files",
+        "title": "Import files"
+    }
 }

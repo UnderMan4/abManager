@@ -16,4 +16,3 @@ export * from "./ProgressToast";
 export * from "./RoundProgressBar";
 export * from "./Spinner";
 export * from "./Modal";
-export * from "./ScrollArea";
