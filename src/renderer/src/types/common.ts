@@ -1,5 +1,9 @@
+import { COLOR_PALETTES } from "@/constants";
+
 export type Theme = "light" | "dark" | "system";
 export type RealTheme = "light" | "dark";
+
+export type ColorPalette = (typeof COLOR_PALETTES)[number];
 
 export type SaveType = "copy" | "move" | "link";
 

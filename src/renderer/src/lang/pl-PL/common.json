@@ -1,18 +1,17 @@
 {
-   "aaa": {
-      "test": "test pl-PL"
-   },
-   "buttons": {
-      "cancel": "Anuluj",
-      "deselectAll": "Odznacz wszystkie",
-      "import": "Import",
-      "selectAll": "Zaznacz wszystko"
-   },
-   "dropdown": {
-      "select": "Wybierz..."
-   },
-   "progress": {
-      "values": "{progress} z {max}",
-      "remaining": "Pozostało {remaining}"
-   }
+    "aaa": {
+    },
+    "buttons": {
+        "cancel": "Anuluj",
+        "deselectAll": "Odznacz wszystkie",
+        "import": "Import",
+        "selectAll": "Zaznacz wszystko"
+    },
+    "dropdown": {
+        "select": "Wybierz..."
+    },
+    "progress": {
+        "remaining": "Pozostało {remaining}",
+        "values": "{progress} z {max}"
+    }
 }

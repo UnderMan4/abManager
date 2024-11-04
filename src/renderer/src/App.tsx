@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 import { Toaster } from "sonner";
 
+import { COLOR_PALETTES } from "@/constants";
 import { HistoryProvider } from "@/contexts";
 import { FirstSetup } from "@/features/firstSetup";
 import { withI18n } from "@/hocs";
@@ -11,7 +12,7 @@ import { useSettingsStore } from "@/stores";
 import "@/utils/stringExtensions";
 
 function App(): JSX.Element {
-   const { theme, realTheme } = useSettingsStore();
+   const { theme, realTheme, colorPalette, libraryPath } = useSettingsStore();
 
    useEffect(() => {
       const unsubscribe = window.api.onSystemThemeChange((_, newTheme) => {
@@ -24,12 +25,15 @@ function App(): JSX.Element {
       };
    }, []);
 
-   const { libraryPath } = useSettingsStore();
-
    useEffect(() => {
       document.body.classList.remove("light", "dark");
       document.body.classList.add(realTheme);
    }, [realTheme]);
+
+   useEffect(() => {
+      document.body.classList.remove(...COLOR_PALETTES);
+      document.body.classList.add(colorPalette);
+   }, [colorPalette]);
 
    return (
       <HistoryProvider>

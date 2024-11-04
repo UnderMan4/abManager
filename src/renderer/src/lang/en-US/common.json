@@ -1,19 +1,18 @@
 {
-   "aaa": {
-      "test": "test en-US",
-      "test2": null
-   },
-   "buttons": {
-      "cancel": "Cancel",
-      "deselectAll": "Deselect all",
-      "import": "Import",
-      "selectAll": "Select all"
-   },
-   "dropdown": {
-      "select": "Select..."
-   },
-   "progress": {
-      "values": "{progress} of {max}",
-      "remaining": "{remaining} remaining"
-   }
+    "aaa": {
+        "test2": null
+    },
+    "buttons": {
+        "cancel": "Cancel",
+        "deselectAll": "Deselect all",
+        "import": "Import",
+        "selectAll": "Select all"
+    },
+    "dropdown": {
+        "select": "Select..."
+    },
+    "progress": {
+        "remaining": "{remaining} remaining",
+        "values": "{progress} of {max}"
+    }
 }

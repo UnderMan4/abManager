@@ -3,6 +3,7 @@ import { FormattedMessage } from "react-intl";
 import { twMerge } from "tailwind-merge";
 
 import { LocaleSwitcher } from "@/features/i18n";
+import { ColorPaletteSelector } from "@/features/settings/components";
 
 export type DashboardProps = {
    className?: string;
@@ -10,9 +11,9 @@ export type DashboardProps = {
 
 export const Dashboard: FC<DashboardProps> = ({ className }) => {
    return (
-      <div className={twMerge("", className)}>
-         <FormattedMessage id="common.aaa.test" />
+      <div className={twMerge("flex flex-col gap-2 p-4", className)}>
          <LocaleSwitcher />
+         <ColorPaletteSelector />
       </div>
    );
 };

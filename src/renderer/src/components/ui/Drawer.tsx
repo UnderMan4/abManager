@@ -65,10 +65,10 @@ DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
 const drawerVariants = cva("fixed z-50 flex bg-background border", {
    variants: {
       position: {
-         left: "inset-y-0 left-0 w-auto rounded-r-2xl flex-row-reverse",
-         right: "inset-y-0 right-0 w-auto rounded-l-2xl flex-row",
-         top: "inset-x-0 top-0 h-auto rounded-b-2xl flex-col-reverse",
-         bottom: "inset-x-0 bottom-0 h-auto rounded-t-2xl flex-col",
+         left: "inset-y-0 left-0 w-auto my-6 rounded-r-2xl flex-row-reverse",
+         right: "inset-y-0 right-0 w-auto my-6 rounded-l-2xl flex-row",
+         top: "inset-x-0 top-0 mx-6 h-auto rounded-b-2xl flex-col-reverse",
+         bottom: "inset-x-0 bottom-0 mx-6 h-auto rounded-t-2xl flex-col",
       },
    },
    defaultVariants: {
@@ -89,10 +89,6 @@ const DrawerContent = React.forwardRef<
          <DrawerOverlay />
          <DrawerPrimitive.Content
             ref={ref}
-            // className={cls(
-            //    "fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-2xl border bg-background border-primary/40",
-            //    className
-            // )}
             className={cls(drawerVariants({ position, className }))}
             {...props}
          >

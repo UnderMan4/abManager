@@ -17,3 +17,5 @@ export const AUDIO_FILES_EXTENSIONS: Electron.FileFilter["extensions"] = [
 ];
 
 export const NAVBAR_ICON_SIZE = 28;
+
+export const COLOR_PALETTES = ["default", "purple", "green"] as const;

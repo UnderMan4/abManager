@@ -1,0 +1,168 @@
+@tailwind base;
+
+@layer base {
+   .purple {
+      --text: 285, 90%, 8%;
+      --background: 287, 92%, 95%;
+      --primary: 287, 92%, 29%;
+      --secondary: 313, 92%, 66%;
+      --accent: 322, 92%, 46%;
+
+      --card: 287, 92%, 95%;
+      --card-foreground: 285, 90%, 8%;
+      --popover: 287, 92%, 95%;
+      --popover-foreground: 285, 90%, 8%;
+      --primary-foreground: 287, 92%, 95%;
+      --secondary-foreground: 285, 90%, 8%;
+      --muted: 287, 92%, 20%;
+      --muted-foreground: 285, 90%, 70%;
+      --accent-foreground: 287, 92%, 95%;
+      --destructive: 0, 85%, 60%;
+      --destructive-foreground: 285, 90%, 8%;
+      --border: 287, 92%, 20%;
+      --input: 287, 92%, 20%;
+      --ring: 322, 92%, 40%;
+
+      --text-50: 284, 92%, 95%;
+      --text-100: 285, 88%, 90%;
+      --text-200: 285, 90%, 80%;
+      --text-300: 285, 90%, 70%;
+      --text-400: 285, 90%, 60%;
+      --text-500: 285, 90%, 50%;
+      --text-600: 285, 90%, 40%;
+      --text-700: 285, 90%, 30%;
+      --text-800: 285, 90%, 20%;
+      --text-900: 285, 88%, 10%;
+      --text-950: 284, 92%, 5%;
+
+      --background-50: 287, 92%, 95%;
+      --background-100: 287, 92%, 90%;
+      --background-200: 287, 92%, 80%;
+      --background-300: 287, 92%, 70%;
+      --background-400: 287, 92%, 60%;
+      --background-500: 287, 92%, 50%;
+      --background-600: 287, 92%, 40%;
+      --background-700: 287, 92%, 30%;
+      --background-800: 287, 92%, 20%;
+      --background-900: 287, 92%, 10%;
+      --background-950: 287, 92%, 5%;
+
+      --primary-50: 287, 92%, 95%;
+      --primary-100: 287, 92%, 90%;
+      --primary-200: 287, 92%, 80%;
+      --primary-300: 287, 92%, 70%;
+      --primary-400: 287, 92%, 60%;
+      --primary-500: 287, 92%, 50%;
+      --primary-600: 287, 92%, 40%;
+      --primary-700: 287, 92%, 30%;
+      --primary-800: 287, 92%, 20%;
+      --primary-900: 287, 92%, 10%;
+      --primary-950: 287, 92%, 5%;
+
+      --secondary-50: 313, 92%, 95%;
+      --secondary-100: 313, 92%, 90%;
+      --secondary-200: 313, 92%, 80%;
+      --secondary-300: 313, 92%, 70%;
+      --secondary-400: 313, 92%, 60%;
+      --secondary-500: 313, 92%, 50%;
+      --secondary-600: 313, 92%, 40%;
+      --secondary-700: 313, 92%, 30%;
+      --secondary-800: 313, 92%, 20%;
+      --secondary-900: 313, 92%, 10%;
+      --secondary-950: 313, 92%, 5%;
+
+      --accent-50: 323, 92%, 95%;
+      --accent-100: 322, 92%, 90%;
+      --accent-200: 322, 92%, 80%;
+      --accent-300: 322, 92%, 70%;
+      --accent-400: 322, 92%, 60%;
+      --accent-500: 322, 92%, 50%;
+      --accent-600: 322, 92%, 40%;
+      --accent-700: 322, 92%, 30%;
+      --accent-800: 322, 92%, 20%;
+      --accent-900: 322, 92%, 10%;
+      --accent-950: 321, 92%, 5%;
+   }
+   .purple.dark {
+      --text: 285, 90%, 92%;
+      --background: 287, 92%, 5%;
+      --primary: 287, 92%, 71%;
+      --secondary: 313, 92%, 34%;
+
+      --accent: 322, 92%, 54%;
+      --card: 287, 92%, 5%;
+      --card-foreground: 285, 90%, 92%;
+      --popover: 287, 92%, 5%;
+      --popover-foreground: 285, 90%, 92%;
+      --primary-foreground: 287, 92%, 5%;
+      --secondary-foreground: 285, 90%, 92%;
+      --muted: 287, 92%, 80%;
+      --muted-foreground: 285, 90%, 82%;
+      --accent-foreground: 287, 92%, 5%;
+      --destructive: 0, 62%, 30%;
+      --destructive-foreground: 285, 88%, 10%;
+      --border: 287, 92%, 60%;
+      --input: 287, 92%, 80%;
+      --ring: 322, 92%, 60%;
+
+      --text-50: 284, 92%, 5%;
+      --text-100: 285, 88%, 10%;
+      --text-200: 285, 90%, 20%;
+      --text-300: 285, 90%, 30%;
+      --text-400: 285, 90%, 40%;
+      --text-500: 285, 90%, 50%;
+      --text-600: 285, 90%, 60%;
+      --text-700: 285, 90%, 70%;
+      --text-800: 285, 90%, 80%;
+      --text-900: 285, 88%, 90%;
+      --text-950: 284, 92%, 95%;
+
+      --background-50: 287, 92%, 5%;
+      --background-100: 287, 92%, 10%;
+      --background-200: 287, 92%, 20%;
+      --background-300: 287, 92%, 30%;
+      --background-400: 287, 92%, 40%;
+      --background-500: 287, 92%, 50%;
+      --background-600: 287, 92%, 60%;
+      --background-700: 287, 92%, 70%;
+      --background-800: 287, 92%, 80%;
+      --background-900: 287, 92%, 90%;
+      --background-950: 287, 92%, 95%;
+
+      --primary-50: 287, 92%, 5%;
+      --primary-100: 287, 92%, 10%;
+      --primary-200: 287, 92%, 20%;
+      --primary-300: 287, 92%, 30%;
+      --primary-400: 287, 92%, 40%;
+      --primary-500: 287, 92%, 50%;
+      --primary-600: 287, 92%, 60%;
+      --primary-700: 287, 92%, 70%;
+      --primary-800: 287, 92%, 80%;
+      --primary-900: 287, 92%, 90%;
+      --primary-950: 287, 92%, 95%;
+
+      --secondary-50: 313, 92%, 5%;
+      --secondary-100: 313, 92%, 10%;
+      --secondary-200: 313, 92%, 20%;
+      --secondary-300: 313, 92%, 30%;
+      --secondary-400: 313, 92%, 40%;
+      --secondary-500: 313, 92%, 50%;
+      --secondary-600: 313, 92%, 60%;
+      --secondary-700: 313, 92%, 70%;
+      --secondary-800: 313, 92%, 80%;
+      --secondary-900: 313, 92%, 90%;
+      --secondary-950: 313, 92%, 95%;
+
+      --accent-50: 321, 92%, 5%;
+      --accent-100: 322, 92%, 10%;
+      --accent-200: 322, 92%, 20%;
+      --accent-300: 322, 92%, 30%;
+      --accent-400: 322, 92%, 40%;
+      --accent-500: 322, 92%, 50%;
+      --accent-600: 322, 92%, 60%;
+      --accent-700: 322, 92%, 70%;
+      --accent-800: 322, 92%, 80%;
+      --accent-900: 322, 92%, 90%;
+      --accent-950: 323, 92%, 95%;
+   }
+}

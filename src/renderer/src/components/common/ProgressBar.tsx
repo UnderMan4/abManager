@@ -2,7 +2,12 @@ import { CheckCircle, X, XCircle } from "@phosphor-icons/react";
 import * as Progress from "@radix-ui/react-progress";
 import { motion } from "framer-motion";
 import { FC, ReactNode, useId, useMemo } from "react";
-import { FormatNumberOptions, FormattedMessage, useIntl } from "react-intl";
+import {
+   FormatNumberOptions,
+   FormattedMessage,
+   FormattedNumber,
+   useIntl,
+} from "react-intl";
 
 import { Spinner } from "@/components/common";
 import { Unit } from "@/types/common";
