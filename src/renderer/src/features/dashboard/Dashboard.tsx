@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { FormattedMessage } from "react-intl";
 import { twMerge } from "tailwind-merge";
 
 import { LocaleSwitcher } from "@/features/i18n";

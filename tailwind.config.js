@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import tailwindForms from "@tailwindcss/forms";
 import tailwindScrollbar from "tailwind-scrollbar";
 import plugin from "tailwindcss/plugin";
 
@@ -123,7 +122,7 @@ module.exports = {
       },
    },
    plugins: [
-      tailwindForms(),
+      require("@tailwindcss/forms"),
       tailwindScrollbar({ nocompatible: true }),
       plugin(({ addUtilities, addComponents }) => {
          addUtilities({
