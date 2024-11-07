@@ -43,9 +43,7 @@ const drawerDemoIcon: Record<DrawerPosition, React.ReactNode> = {
 const DrawerDemo: FC<DrawerDemoProps> = ({ position, hideHandle }) => (
    <Drawer position={position} hideHandle={hideHandle}>
       <DrawerTrigger asChild>
-         <Button size="icon">
-            {drawerDemoIcon[position]}
-         </Button>
+         <Button size="icon">{drawerDemoIcon[position]}</Button>
       </DrawerTrigger>
       <DrawerContent>
          <DrawerHeader>

@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react";
+import { Minus, Square, X } from "@phosphor-icons/react";
 import { FC } from "react";
 
 import { TitleBarMenu } from "./TitleBarMenu";
@@ -15,16 +15,16 @@ export const TitleBar: FC = () => {
                </div>
                <div className="flex p-1 gap-1">
                   <WindowButton onClick={window.mainWindow.minimize}>
-                     <Icon icon="ph:minus-bold" />
+                     <Minus weight="bold" />
                   </WindowButton>
                   <WindowButton onClick={window.mainWindow.maximize}>
-                     <Icon icon="ph:square-bold" />
+                     <Square weight="bold" />
                   </WindowButton>
                   <WindowButton
                      onClick={window.mainWindow.close}
                      className="hover:bg-red-500"
                   >
-                     <Icon icon="ph:x-bold" />
+                     <X weight="bold" />
                   </WindowButton>
                </div>
             </div>

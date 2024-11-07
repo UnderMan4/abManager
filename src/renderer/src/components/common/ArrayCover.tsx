@@ -1,7 +1,9 @@
 import { Icon } from "@iconify/react";
+import { ImageBroken } from "@phosphor-icons/react";
 import { IPicture } from "music-metadata";
 import { FC, useEffect, useState } from "react";
 
+import { Spinner } from "@/components/common/Spinner";
 import { cls } from "@/utils/styleUtils";
 
 export type ArrayCoverProps = {
@@ -16,13 +18,14 @@ const sizeMap = {
    lg: 8,
    xl: 10,
    "2xl": 12,
-};
+} as const;
 
 export const ArrayCover: FC<ArrayCoverProps> = ({
    className,
    data,
    size = "md",
 }) => {
+   console.log("🚀 ~ data:", data);
    const [imgSrc, setImgSrc] = useState<string | null>(null);
 
    useEffect(() => {
@@ -38,7 +41,7 @@ export const ArrayCover: FC<ArrayCoverProps> = ({
    return (
       <div
          className={cls(
-            "bg-radix-gray-500 rounded-xl overflow-hidden flex items-center justify-center aspect-square shrink-0",
+            "bg-background-200/70 rounded-xl overflow-hidden flex items-center justify-center aspect-square shrink-0",
             className
          )}
          style={{ width: `${sizeMap[size]}rem` }}
@@ -52,17 +55,13 @@ export const ArrayCover: FC<ArrayCoverProps> = ({
                   </div>
                </div>
             ) : (
-               <Icon
-                  icon="svg-spinners:180-ring"
-                  className="text-radix-gray-900"
-                  height={`${sizeMap[size] * 0.5}rem`}
-               />
+               <Spinner size="lg" />
             )
          ) : (
-            <Icon
-               icon="ph:image-broken-bold"
-               className="text-radix-gray-900"
-               height={`${sizeMap[size] * 0.5}rem`}
+            <ImageBroken
+               weight="bold"
+               className="text-current"
+               size={`${sizeMap[size] * 0.5}rem`}
             />
          )}
       </div>

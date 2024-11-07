@@ -2,14 +2,22 @@ import { Stats } from "fs";
 import { IAudioMetadata } from "music-metadata";
 import { FC, useCallback, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import useAsyncEffect from "use-async-effect";
 
-import { DialogDescription, DialogHeader, DialogTitle } from "@/components/ui";
+import {
+   Alert,
+   AlertDescription,
+   Button,
+   DialogHeader,
+   DialogTitle,
+} from "@/components/ui";
 import { AUDIO_FILES_EXTENSIONS } from "@/constants";
 import { generateUniqueId } from "@/utils/stringUtils";
 import { prepareToast } from "@/utils/toastUtils";
 
+import { AudiobookElement, AudiobookSkeleton } from "./components";
+
 export type LoadStatus =
+   | "idle"
    | "selectingFiles"
    | "processingPaths"
    | "done"
@@ -22,18 +30,26 @@ export type FileData = {
    isSelected: boolean;
 };
 
-export const ImportNewFile: FC = () => {
+export type ImportNewFileProps = {
+   setIsFilesSelected: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const ImportNewFile: FC<ImportNewFileProps> = ({
+   setIsFilesSelected,
+}) => {
    const { formatMessage } = useIntl();
-   const [status, setStatus] = useState<LoadStatus>("selectingFiles");
+   const [status, setStatus] = useState<LoadStatus>("idle");
 
    const [canOpenDialog, setCanOpenDialog] = useState(true);
    const [selectedFiles, setSelectedFiles] = useState<FileData[]>([]);
    const [failedPaths, setFailedPaths] = useState<string[]>([]);
+   const [numberOfSelectedFiles, setNumberOfSelectedFiles] = useState(0);
 
    const selectFiles = useCallback(async () => {
       if (!canOpenDialog) return;
 
       setCanOpenDialog(false);
+      setStatus("selectingFiles");
 
       const { filePaths, canceled } = await window.api.showOpenDialog({
          properties: ["multiSelections", "openFile"],
@@ -51,7 +67,13 @@ export const ImportNewFile: FC = () => {
          ],
       });
 
-      if (canceled || filePaths.length === 0) return;
+      if (canceled || filePaths.length === 0) {
+         setCanOpenDialog(true);
+         setStatus("idle");
+         return;
+      }
+      setNumberOfSelectedFiles(filePaths.length);
+      setIsFilesSelected(true);
       setStatus("processingPaths");
 
       const promises = filePaths.map(async (path) => {
@@ -73,30 +95,60 @@ export const ImportNewFile: FC = () => {
             (result) => result !== undefined
          );
          setSelectedFiles(results);
+         setStatus("done");
       } catch (error) {
          prepareToast.error({
-            title: formatMessage({ id: "toasts.importFileRead.title" }),
+            title: formatMessage({ id: "toasts.error.importFileRead.title" }),
             description: formatMessage({
                id: "toasts.error.importFileRead.description",
             }),
             id: `importFileRead-${generateUniqueId(filePaths)}`,
          });
+         setStatus("error");
          console.error(error);
       }
-   }, []);
+   }, [
+      setSelectedFiles,
+      setFailedPaths,
+      setCanOpenDialog,
+      canOpenDialog,
+      formatMessage,
+      setIsFilesSelected,
+   ]);
 
-   useAsyncEffect(async () => {
-      if (selectedFiles.length !== 0) return;
-   }, [selectedFiles]);
    return (
       <>
          <DialogHeader>
             <DialogTitle>
                <FormattedMessage id="importNew.pages.importFiles" />
             </DialogTitle>
-            <DialogDescription>new file</DialogDescription>
          </DialogHeader>
-         <div className="overflow-x-auto"></div>
+         <div className="overflow-x-auto flex flex-col gap-3">
+            {selectedFiles.length === 0 && status === "idle" && (
+               <Button
+                  variant="outline"
+                  className="h-24 text-xl"
+                  onClick={selectFiles}
+               >
+                  <FormattedMessage id="importNew.selectFilesBtn" />
+               </Button>
+            )}
+            {status === "selectingFiles" && (
+               <Alert>
+                  <AlertDescription>
+                     <FormattedMessage id="importNew.selectFilesMessage" />
+                  </AlertDescription>
+               </Alert>
+            )}
+            {status === "processingPaths" &&
+               Array.from({ length: numberOfSelectedFiles }).map((_, index) => (
+                  <AudiobookSkeleton key={index} />
+               ))}
+            {status === "done" &&
+               selectedFiles.map((file) => (
+                  <AudiobookElement data={file} key={file.path} />
+               ))}
+         </div>
       </>
    );
 };

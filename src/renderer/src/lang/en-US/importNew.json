@@ -29,6 +29,7 @@
         "importFolder": "Import folder"
     },
     "readingMetadata": "Reading files...",
+    "selectFilesBtn": "Select files to import",
     "selectFilesMessage": "Please use the file picker window to select the files you want to import.",
     "selectFilesWindow": {
         "button": "Import",

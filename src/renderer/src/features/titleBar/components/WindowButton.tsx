@@ -15,7 +15,7 @@ export const WindowButton = forwardRef<HTMLButtonElement, WindowButtonProps>(
             ref={ref}
             className={cls(
                "w-10 h-full transition-colors duration-100 rounded-md center",
-               "hover:bg-radix-gray-600",
+               "hover:bg-primary-200",
                className
             )}
             tabIndex={-1}

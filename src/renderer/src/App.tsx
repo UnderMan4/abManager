@@ -1,3 +1,4 @@
+import { IconContext } from "@phosphor-icons/react";
 import { LazyMotion, domAnimation } from "framer-motion";
 import { useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
@@ -36,16 +37,23 @@ function App(): JSX.Element {
    }, [colorPalette]);
 
    return (
-      <HistoryProvider>
-         <LazyMotion features={domAnimation}>
-            {libraryPath ? (
-               <RouterProvider router={appRouter} />
-            ) : (
-               <FirstSetup />
-            )}
-         </LazyMotion>
-         <Toaster richColors theme="dark" visibleToasts={5} />
-      </HistoryProvider>
+      <IconContext.Provider
+         value={{
+            weight: "bold",
+            className: "text-text",
+         }}
+      >
+         <HistoryProvider>
+            <LazyMotion features={domAnimation}>
+               {libraryPath ? (
+                  <RouterProvider router={appRouter} />
+               ) : (
+                  <FirstSetup />
+               )}
+            </LazyMotion>
+            <Toaster richColors theme="dark" visibleToasts={5} />
+         </HistoryProvider>
+      </IconContext.Provider>
    );
 }
 

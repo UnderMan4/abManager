@@ -21,7 +21,7 @@ export const useSettingsStore = create<SettingsState>()(
    persist(
       (set) => ({
          theme: "system",
-         colorPalette: "default", //TODO: Change to default later
+         colorPalette: "default",
          realTheme: window.api.getSystemTheme(),
          setTheme: (theme) => {
             theme === "system"

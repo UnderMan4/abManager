@@ -14,14 +14,25 @@ import {
    MenubarTrigger,
 } from "@/components/ui";
 import { ImportNewFile, ImportNewFolder } from "@/features/importNew";
+import { cls } from "@/utils/styleUtils";
 
 type DialogType = "importFiles" | "importFolder";
 
 export const TitleBarFileMenuBar: FC = () => {
    const [dialogType, setDialogType] = useState<DialogType | null>(null);
 
+   const [isFilesSelected, setIsFilesSelected] = useState(false);
+
+   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
    return (
-      <Dialog>
+      <Dialog
+         onOpenChange={(value) => {
+            setIsDialogOpen(value);
+            setIsFilesSelected(false);
+         }}
+         open={isDialogOpen}
+      >
          <MenubarMenu>
             <MenubarTrigger>
                <FormattedMessage id="menubar.menu.file.label" />
@@ -50,9 +61,13 @@ export const TitleBarFileMenuBar: FC = () => {
                </MenubarSub>
             </MenubarContent>
          </MenubarMenu>
-         <DialogContent className="max-w-[min(calc(100vw-10rem),75rem)]">
+         <DialogContent
+            className={cls({
+               // "max-w-[min(calc(100vw-10rem),75rem)]": isFilesSelected,
+            })}
+         >
             {dialogType === "importFiles" ? (
-               <ImportNewFile />
+               <ImportNewFile setIsFilesSelected={setIsFilesSelected} />
             ) : dialogType === "importFolder" ? (
                <ImportNewFolder />
             ) : null}
