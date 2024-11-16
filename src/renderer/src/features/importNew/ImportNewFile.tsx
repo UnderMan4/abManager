@@ -14,6 +14,7 @@ import { AUDIO_FILES_EXTENSIONS } from "@/constants";
 import { generateUniqueId } from "@/utils/stringUtils";
 import { prepareToast } from "@/utils/toastUtils";
 
+import { useImportFiles } from "../titleBar/hooks";
 import { AudiobookElement, AudiobookSkeleton } from "./components";
 
 export type LoadStatus =
@@ -31,90 +32,79 @@ export type FileData = {
 };
 
 export type ImportNewFileProps = {
-   setIsFilesSelected: React.Dispatch<React.SetStateAction<boolean>>;
+   importFiles: ReturnType<typeof useImportFiles>;
 };
 
-export const ImportNewFile: FC<ImportNewFileProps> = ({
-   setIsFilesSelected,
-}) => {
-   const { formatMessage } = useIntl();
-   const [status, setStatus] = useState<LoadStatus>("idle");
+export const ImportNewFile: FC<ImportNewFileProps> = ({ importFiles }) => {
+   // const selectFiles = useCallback(async () => {
+   //    if (!canOpenDialog) return;
 
-   const [canOpenDialog, setCanOpenDialog] = useState(true);
-   const [selectedFiles, setSelectedFiles] = useState<FileData[]>([]);
-   const [failedPaths, setFailedPaths] = useState<string[]>([]);
-   const [numberOfSelectedFiles, setNumberOfSelectedFiles] = useState(0);
+   //    setCanOpenDialog(false);
+   //    setStatus("selectingFiles");
 
-   const selectFiles = useCallback(async () => {
-      if (!canOpenDialog) return;
+   //    const { filePaths, canceled } = await window.api.showOpenDialog({
+   //       properties: ["multiSelections", "openFile"],
+   //       title: formatMessage({ id: "importNew.selectFilesWindow.title" }),
+   //       buttonLabel: formatMessage({
+   //          id: "importNew.selectFilesWindow.button",
+   //       }),
+   //       filters: [
+   //          {
+   //             name: formatMessage({
+   //                id: "importNew.selectFilesWindow.filterName",
+   //             }),
+   //             extensions: AUDIO_FILES_EXTENSIONS,
+   //          },
+   //       ],
+   //    });
 
-      setCanOpenDialog(false);
-      setStatus("selectingFiles");
+   //    if (canceled || filePaths.length === 0) {
+   //       setCanOpenDialog(true);
+   //       setStatus("idle");
+   //       return;
+   //    }
+   //    setNumberOfSelectedFiles(filePaths.length);
+   //    setStatus("processingPaths");
 
-      const { filePaths, canceled } = await window.api.showOpenDialog({
-         properties: ["multiSelections", "openFile"],
-         title: formatMessage({ id: "importNew.selectFilesWindow.title" }),
-         buttonLabel: formatMessage({
-            id: "importNew.selectFilesWindow.button",
-         }),
-         filters: [
-            {
-               name: formatMessage({
-                  id: "importNew.selectFilesWindow.filterName",
-               }),
-               extensions: AUDIO_FILES_EXTENSIONS,
-            },
-         ],
-      });
+   //    const promises = filePaths.map(async (path) => {
+   //       const metadata = await window.fs.readFileMetadata(path);
+   //       if ("error" in metadata) {
+   //          setFailedPaths((prev) => [...prev, path]);
+   //          return;
+   //       }
 
-      if (canceled || filePaths.length === 0) {
-         setCanOpenDialog(true);
-         setStatus("idle");
-         return;
-      }
-      setNumberOfSelectedFiles(filePaths.length);
-      setIsFilesSelected(true);
-      setStatus("processingPaths");
+   //       return {
+   //          ...metadata,
+   //          path,
+   //          isSelected: true,
+   //       };
+   //    });
 
-      const promises = filePaths.map(async (path) => {
-         const metadata = await window.fs.readFileMetadata(path);
-         if ("error" in metadata) {
-            setFailedPaths((prev) => [...prev, path]);
-            return;
-         }
-
-         return {
-            ...metadata,
-            path,
-            isSelected: true,
-         };
-      });
-
-      try {
-         const results: FileData[] = (await Promise.all(promises)).filter(
-            (result) => result !== undefined
-         );
-         setSelectedFiles(results);
-         setStatus("done");
-      } catch (error) {
-         prepareToast.error({
-            title: formatMessage({ id: "toasts.error.importFileRead.title" }),
-            description: formatMessage({
-               id: "toasts.error.importFileRead.description",
-            }),
-            id: `importFileRead-${generateUniqueId(filePaths)}`,
-         });
-         setStatus("error");
-         console.error(error);
-      }
-   }, [
-      setSelectedFiles,
-      setFailedPaths,
-      setCanOpenDialog,
-      canOpenDialog,
-      formatMessage,
-      setIsFilesSelected,
-   ]);
+   //    try {
+   //       const results: FileData[] = (await Promise.all(promises)).filter(
+   //          (result) => result !== undefined
+   //       );
+   //       setSelectedFiles(results);
+   //       setStatus("done");
+   //    } catch (error) {
+   //       prepareToast.error({
+   //          title: formatMessage({ id: "toasts.error.importFileRead.title" }),
+   //          description: formatMessage({
+   //             id: "toasts.error.importFileRead.description",
+   //          }),
+   //          id: `importFileRead-${generateUniqueId(filePaths)}`,
+   //       });
+   //       setStatus("error");
+   //       console.error(error);
+   //    }
+   // }, [
+   //    setSelectedFiles,
+   //    setFailedPaths,
+   //    setCanOpenDialog,
+   //    canOpenDialog,
+   //    formatMessage,
+   //    setIsFilesSelected,
+   // ]);
 
    return (
       <>
@@ -124,7 +114,7 @@ export const ImportNewFile: FC<ImportNewFileProps> = ({
             </DialogTitle>
          </DialogHeader>
          <div className="overflow-x-auto flex flex-col gap-3">
-            {selectedFiles.length === 0 && status === "idle" && (
+            {/* {selectedFiles.length === 0 && status === "idle" && (
                <Button
                   variant="outline"
                   className="h-24 text-xl"
@@ -132,20 +122,20 @@ export const ImportNewFile: FC<ImportNewFileProps> = ({
                >
                   <FormattedMessage id="importNew.selectFilesBtn" />
                </Button>
-            )}
-            {status === "selectingFiles" && (
+            )} */}
+            {importFiles.status === "selectingFiles" && (
                <Alert>
                   <AlertDescription>
                      <FormattedMessage id="importNew.selectFilesMessage" />
                   </AlertDescription>
                </Alert>
             )}
-            {status === "processingPaths" &&
-               Array.from({ length: numberOfSelectedFiles }).map((_, index) => (
-                  <AudiobookSkeleton key={index} />
-               ))}
-            {status === "done" &&
-               selectedFiles.map((file) => (
+            {importFiles.status === "processingPaths" &&
+               Array.from({ length: importFiles.numberOfSelectedFiles }).map(
+                  (_, index) => <AudiobookSkeleton key={index} />
+               )}
+            {importFiles.status === "done" &&
+               importFiles.selectedFiles.map((file) => (
                   <AudiobookElement data={file} key={file.path} />
                ))}
          </div>

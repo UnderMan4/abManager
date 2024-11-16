@@ -14,24 +14,22 @@ import {
    MenubarTrigger,
 } from "@/components/ui";
 import { ImportNewFile, ImportNewFolder } from "@/features/importNew";
-import { cls } from "@/utils/styleUtils";
+
+import { useImportFiles } from "./hooks";
 
 type DialogType = "importFiles" | "importFolder";
 
 export const TitleBarFileMenuBar: FC = () => {
    const [dialogType, setDialogType] = useState<DialogType | null>(null);
 
-   const [isFilesSelected, setIsFilesSelected] = useState(false);
-
-   const [isDialogOpen, setIsDialogOpen] = useState(false);
+   const importFiles = useImportFiles();
 
    return (
       <Dialog
          onOpenChange={(value) => {
-            setIsDialogOpen(value);
-            setIsFilesSelected(false);
+            importFiles.setIsDialogOpen(value);
          }}
-         open={isDialogOpen}
+         open={importFiles.isDialogOpen}
       >
          <MenubarMenu>
             <MenubarTrigger>
@@ -43,31 +41,24 @@ export const TitleBarFileMenuBar: FC = () => {
                      <FormattedMessage id="menubar.menu.file.import.label" />
                   </MenubarSubTrigger>
                   <MenubarSubContent>
-                     <DialogTrigger asChild>
-                        <MenubarItem
-                           onSelect={() => setDialogType("importFiles")}
-                        >
-                           <FormattedMessage id="menubar.menu.file.import.files" />
-                        </MenubarItem>
-                     </DialogTrigger>
-                     <DialogTrigger asChild>
-                        <MenubarItem
-                           onSelect={() => setDialogType("importFolder")}
-                        >
-                           <FormattedMessage id="menubar.menu.file.import.directory" />
-                        </MenubarItem>
-                     </DialogTrigger>
+                     <MenubarItem
+                        onSelect={() => setDialogType("importFiles")}
+                        onClick={() => importFiles.selectFiles()}
+                     >
+                        <FormattedMessage id="menubar.menu.file.import.files" />
+                     </MenubarItem>
+                     <MenubarItem
+                        onSelect={() => setDialogType("importFolder")}
+                     >
+                        <FormattedMessage id="menubar.menu.file.import.directory" />
+                     </MenubarItem>
                   </MenubarSubContent>
                </MenubarSub>
             </MenubarContent>
          </MenubarMenu>
-         <DialogContent
-            className={cls({
-               // "max-w-[min(calc(100vw-10rem),75rem)]": isFilesSelected,
-            })}
-         >
+         <DialogContent>
             {dialogType === "importFiles" ? (
-               <ImportNewFile setIsFilesSelected={setIsFilesSelected} />
+               <ImportNewFile importFiles={importFiles} />
             ) : dialogType === "importFolder" ? (
                <ImportNewFolder />
             ) : null}

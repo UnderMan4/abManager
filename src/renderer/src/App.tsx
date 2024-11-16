@@ -41,6 +41,7 @@ function App(): JSX.Element {
          value={{
             weight: "bold",
             className: "text-text",
+            size: "1rem",
          }}
       >
          <HistoryProvider>

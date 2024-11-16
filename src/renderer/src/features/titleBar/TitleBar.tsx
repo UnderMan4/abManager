@@ -15,16 +15,16 @@ export const TitleBar: FC = () => {
                </div>
                <div className="flex p-1 gap-1">
                   <WindowButton onClick={window.mainWindow.minimize}>
-                     <Minus weight="bold" />
+                     <Minus />
                   </WindowButton>
                   <WindowButton onClick={window.mainWindow.maximize}>
-                     <Square weight="bold" />
+                     <Square />
                   </WindowButton>
                   <WindowButton
                      onClick={window.mainWindow.close}
                      className="hover:bg-red-500"
                   >
-                     <X weight="bold" />
+                     <X />
                   </WindowButton>
                </div>
             </div>
