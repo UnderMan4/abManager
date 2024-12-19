@@ -5,7 +5,7 @@ import path from "path";
 // Custom APIs for renderer
 const api = {
    showOpenDialog: (
-      options: Electron.OpenDialogOptions
+      options: {modal:boolean,...(Electron.OpenDialogOptions)}
    ): Promise<Electron.OpenDialogReturnValue> =>
       ipcRenderer.invoke("show-open-dialog", options),
    getSystemTheme: (): "light" | "dark" =>

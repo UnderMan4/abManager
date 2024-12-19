@@ -13,8 +13,9 @@ export const HOME_PATHS = ["/", "/library", "/settings", "/playground"];
 export const AUDIO_FILES_EXTENSIONS: Electron.FileFilter["extensions"] = [
    "mp3",
    "m4b",
+   "m4a",
    "wav",
-];
+] as const;
 
 export const NAVBAR_ICON_SIZE = 28;
 
